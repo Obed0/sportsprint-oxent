@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ScrollReveal } from '../ScrollReveal';
 import { Link } from 'react-router';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, X } from 'lucide-react';
 import { PremiumButton, ParallaxImage, StaggerContainer, StaggerItem } from '../ui/PremiumAnimations';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -49,12 +49,7 @@ const cases = [
 ];
 
 export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
-
-  // On touch devices, always show the full quote
-  const isTouchDevice = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches;
-  const getQuote = (item: typeof cases[0]) =>
-    isTouchDevice ? item.quote : (hoveredId === item.id ? item.quote : item.briefQuote);
+  const [activeCase, setActiveCase] = useState<typeof cases[0] | null>(null);
 
   if (minimal) {
     return (
@@ -86,8 +81,6 @@ export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
                   <div
                     id={item.id}
                     className="border-b border-black/10 pb-8 lg:pb-10 last:border-b-0 last:pb-8 lg:last:pb-10 scroll-mt-32"
-                    onMouseEnter={() => setHoveredId(item.id)}
-                    onMouseLeave={() => setHoveredId(null)}
                   >
                     {/* Index & Tag */}
                     <div className="flex items-center gap-3 mb-2">
@@ -112,8 +105,14 @@ export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
                     {/* Testimonial Quote */}
                     <div className="border-l-2 border-black pl-4 py-0.5 mb-6">
                       <p className="text-base font-semibold italic text-black leading-relaxed">
-                      "{getQuote(item)}"
+                      "{item.briefQuote}"
                       </p>
+                      <button
+                        onClick={() => setActiveCase(item)}
+                        className="inline-flex items-center gap-1 text-xs font-black tracking-widest uppercase text-black border-b border-black/30 hover:border-black pb-0.5 transition-colors cursor-pointer mt-3"
+                      >
+                        VER MÁS
+                      </button>
                     </div>
 
                   </div>
@@ -123,6 +122,70 @@ export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
           </div>
 
         </div>
+
+        {/* Modal/Overlay Portal */}
+        <AnimatePresence>
+          {activeCase && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setActiveCase(null)}
+                className="absolute inset-0 bg-black/40 backdrop-blur-xs"
+              />
+              
+              {/* Content Card */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="relative bg-white text-black p-8 sm:p-10 max-w-xl w-full border border-black/10 shadow-2xl flex flex-col gap-6 max-h-[90vh] overflow-y-auto"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setActiveCase(null)}
+                  className="absolute top-4 right-4 text-neutral-400 hover:text-black transition-colors cursor-pointer p-1"
+                  aria-label="Cerrar"
+                >
+                  <X size={20} />
+                </button>
+
+                {/* Modal Header */}
+                <div>
+                  <span className="text-[10px] tracking-[0.2em] text-[#4B5563] font-bold uppercase block mb-1">
+                    {activeCase.tag}
+                  </span>
+                  <h3 className="font-heading font-black text-2xl sm:text-3xl uppercase leading-tight mb-1">
+                    {activeCase.title}
+                  </h3>
+                  <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider block">
+                    {activeCase.participants}
+                  </span>
+                </div>
+
+                {/* Full Testimonial */}
+                <div className="border-l-4 border-black pl-5 py-1 my-2">
+                  <p className="text-base sm:text-lg font-semibold italic text-black leading-relaxed">
+                    "{activeCase.quote}"
+                  </p>
+                </div>
+
+                {/* Modal Footer / Close button */}
+                <div className="flex justify-end mt-2">
+                  <button
+                    onClick={() => setActiveCase(null)}
+                    className="text-xs font-black tracking-widest uppercase text-black border border-black px-4 py-2 hover:bg-black hover:text-white transition-all cursor-pointer"
+                  >
+                    Cerrar
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       </section>
     );
   }
@@ -155,8 +218,6 @@ export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
                 key={index}
                 id={item.id}
                 className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center scroll-mt-24"
-                onMouseEnter={() => setHoveredId(item.id)}
-                onMouseLeave={() => setHoveredId(null)}
               >
                 {/* Media Area */}
                 <div
@@ -203,8 +264,14 @@ export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
                       {/* Quote */}
                       <div className="border-l-4 border-black pl-4 py-1 mb-8">
                         <p className="text-base font-semibold italic text-black leading-relaxed transition-all duration-300 min-h-[3.5rem] lg:min-h-[4.5rem]">
-                          "{getQuote(item)}"
+                          "{item.briefQuote}"
                         </p>
+                        <button
+                          onClick={() => setActiveCase(item)}
+                          className="inline-flex items-center gap-1 text-xs font-black tracking-widest uppercase text-black border-b border-black/30 hover:border-black pb-0.5 transition-colors cursor-pointer mt-4"
+                        >
+                          VER MÁS
+                        </button>
                       </div>
 
                       <PremiumButton
@@ -222,6 +289,70 @@ export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
           })}
         </div>
       </div>
+
+      {/* Modal/Overlay Portal */}
+      <AnimatePresence>
+        {activeCase && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveCase(null)}
+              className="absolute inset-0 bg-black/40 backdrop-blur-xs"
+            />
+            
+            {/* Content Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative bg-white text-black p-8 sm:p-10 max-w-xl w-full border border-black/10 shadow-2xl flex flex-col gap-6 max-h-[90vh] overflow-y-auto"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setActiveCase(null)}
+                className="absolute top-4 right-4 text-neutral-400 hover:text-black transition-colors cursor-pointer p-1"
+                aria-label="Cerrar"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Modal Header */}
+              <div>
+                <span className="text-[10px] tracking-[0.2em] text-[#4B5563] font-bold uppercase block mb-1">
+                  {activeCase.tag}
+                </span>
+                <h3 className="font-heading font-black text-2xl sm:text-3xl uppercase leading-tight mb-1">
+                  {activeCase.title}
+                </h3>
+                <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider block">
+                  {activeCase.participants}
+                </span>
+              </div>
+
+              {/* Full Testimonial */}
+              <div className="border-l-4 border-black pl-5 py-1 my-2">
+                <p className="text-base sm:text-lg font-semibold italic text-black leading-relaxed">
+                  "{activeCase.quote}"
+                </p>
+              </div>
+
+              {/* Modal Footer / Close button */}
+              <div className="flex justify-end mt-2">
+                <button
+                  onClick={() => setActiveCase(null)}
+                  className="text-xs font-black tracking-widest uppercase text-black border border-black px-4 py-2 hover:bg-black hover:text-white transition-all cursor-pointer"
+                >
+                  Cerrar
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
