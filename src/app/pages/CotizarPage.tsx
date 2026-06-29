@@ -124,7 +124,7 @@ export function CotizarPage() {
             
             {/* Left Column: B2B Copy & Trust Signs */}
             <div className="lg:col-span-5 flex flex-col justify-center">
-              <h1 className="font-heading font-black text-5xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.95] uppercase mb-8 text-black">
+              <h1 className="font-heading font-black text-4xl sm:text-6xl lg:text-5xl xl:text-7xl tracking-tight leading-[0.95] uppercase mb-8 text-black">
                 SOLICITA TU <br />
                 <span className="text-black hover:text-sp-accent transition-colors duration-300">
                   COTIZACIÓN
@@ -165,7 +165,13 @@ export function CotizarPage() {
               {/* WhatsApp Callout */}
               <div className="mt-12 p-6 bg-white border border-black flex flex-col sm:flex-row items-center justify-between gap-4 rounded-none">
                 <div className="flex items-center gap-3">
-                  <MessageSquare className="text-black" size={20} />
+                  <svg 
+                    viewBox="0 0 24 24" 
+                    className="w-6.5 h-6.5 text-[#25D366] fill-[#25D366] shrink-0"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.37 5.054L2 22l5.132-1.347a9.936 9.936 0 0 0 4.877 1.28h.005c5.505 0 9.989-4.478 9.99-9.984A10.02 10.02 0 0 0 12.012 2zm5.72 13.94c-.244.688-1.22 1.343-1.687 1.41-.397.056-.917.1-2.656-.626-2.222-.926-3.64-3.19-3.75-3.34-.112-.149-.912-1.213-.912-2.31 0-1.096.575-1.637.78-1.86.205-.224.446-.279.596-.279.15 0 .298.002.428.008.135.006.318-.052.497.38.186.448.634 1.547.69 1.66.056.112.093.242.019.39-.074.15-.112.242-.224.372-.112.13-.235.29-.335.39-.112.112-.229.233-.099.456.13.223.578.953 1.24 1.543.854.76 1.572.996 1.796 1.108.223.112.353.093.483-.056.13-.15.558-.65.707-.873.15-.223.298-.186.496-.112.2.075 1.265.596 1.482.707.217.112.36.168.41.254.05.087.05.503-.194 1.19z" />
+                  </svg>
                   <div>
                     <span className="text-xs font-bold uppercase text-black block">¿Prefieres cotizar vía WhatsApp?</span>
                     <span className="text-[10px] text-[#4B5563] font-semibold">Atención inmediata</span>
@@ -495,6 +501,7 @@ export function CotizarPage() {
                     text="SOLICITAR PRESUPUESTO"
                     variant="primary"
                     fullWidth
+                    animatedBorder
                   />
 
                   <span className="text-[10px] text-[#4B5563] block text-center mt-2 font-semibold">

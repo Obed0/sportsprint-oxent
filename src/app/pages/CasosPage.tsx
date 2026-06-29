@@ -44,7 +44,6 @@ const aaaClients = [
   'IOS Offices',
   'IdemSport',
   'SomosRunning',
-  'asdeporte',
   'En Dónde Correr'
 ];
 
@@ -88,7 +87,7 @@ export function CasosPage() {
       </section>
 
       {/* Clientes AAA Grid Section */}
-      <section id="clientes" className="py-20 bg-[#F5F5F7] text-black border-b border-neutral-200 scroll-mt-24">
+      <section id="clientes" className="py-10 sm:py-14 bg-[#F5F5F7] text-black border-b border-neutral-200 scroll-mt-24">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
 
           
@@ -97,7 +96,7 @@ export function CasosPage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 sm:gap-8 items-center justify-items-center"
+            className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-10 lg:gap-14 items-center justify-items-center"
           >
             {aaaClients.map((client) => {
               const LogoComponent = brandLogosMap[client];
@@ -106,15 +105,15 @@ export function CasosPage() {
                   key={client}
                   variants={itemVariants}
                   whileHover={{ 
-                    scale: 1.06, 
-                    y: -3,
+                    scale: 1.05, 
+                    y: -2,
                     transition: { duration: 0.2, ease: "easeOut" } 
                   }}
-                  className="w-full h-32 flex items-center justify-center p-4 group cursor-default"
+                  className="w-full h-24 sm:h-32 flex items-center justify-center p-2 group cursor-default transition-all duration-300"
                 >
                   {LogoComponent ? (
-                    <div className="w-full max-w-[200px] flex items-center justify-center transition-all duration-300">
-                      <LogoComponent className="w-full h-auto max-h-20" />
+                    <div className="w-full max-w-[220px] sm:max-w-[260px] flex items-center justify-center transition-all duration-300">
+                      <LogoComponent className="w-full h-auto max-h-16 sm:max-h-20" />
                     </div>
                   ) : (
                     <span className="font-heading font-black text-center text-sm sm:text-base tracking-widest text-[#4B5563] hover:text-black transition-colors duration-300 uppercase select-none">

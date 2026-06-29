@@ -1,4 +1,5 @@
 import React from 'react';
+import upLogoImg from '../../imports/universidad_panamericana.png';
 
 interface LogoProps {
   className?: string;
@@ -29,15 +30,11 @@ export function KardiasLogo({ className = 'h-8' }: LogoProps) {
 
 export function UPLogo({ className = 'h-8' }: LogoProps) {
   return (
-    <svg viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <path d="M12 6 H28 V20 C28 26, 20 32, 20 32 C20 32, 12 26, 12 20 V6 Z" fill="#0F2C59" />
-      <path d="M20 6 V32" stroke="#D4AF37" strokeWidth="1.5" />
-      <path d="M12 16 H28" stroke="#D4AF37" strokeWidth="1.5" />
-      <rect x="15" y="10" width="4" height="3" fill="#D4AF37" />
-      <rect x="21" y="10" width="4" height="3" fill="#D4AF37" />
-      <text x="36" y="21" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="800" fontSize="13" fill="#0F2C59" letterSpacing="0.5">UNIVERSIDAD</text>
-      <text x="36" y="32" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="800" fontSize="11" fill="#D4AF37" letterSpacing="2">PANAMERICANA</text>
-    </svg>
+    <img 
+      src={upLogoImg} 
+      alt="Universidad Panamericana" 
+      className={`${className} object-contain scale-[2.4] sm:scale-[2.7] origin-center transition-transform`} 
+    />
   );
 }
 
@@ -124,17 +121,6 @@ export function SomosRunningLogo({ className = 'h-8' }: LogoProps) {
   );
 }
 
-export function AsdeporteLogo({ className = 'h-8' }: LogoProps) {
-  return (
-    <svg viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <rect x="10" y="6" width="28" height="28" rx="6" fill="#FF6B00" />
-      <path d="M24 11 L31 27 H17 Z" fill="white" />
-      <path d="M24 11 Q20 22 28 27" stroke="#FF6B00" strokeWidth="2.5" fill="none" />
-      <text x="46" y="26" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="800" fontSize="16" fill="#1A1A1A" letterSpacing="-0.5">asdeporte</text>
-    </svg>
-  );
-}
-
 export function EnDondeCorrerLogo({ className = 'h-8' }: LogoProps) {
   return (
     <svg viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -158,6 +144,5 @@ export const brandLogosMap: Record<string, React.ComponentType<LogoProps>> = {
   'IOS Offices': IOSOfficesLogo,
   'IdemSport': IdemSportLogo,
   'SomosRunning': SomosRunningLogo,
-  'asdeporte': AsdeporteLogo,
   'En Dónde Correr': EnDondeCorrerLogo,
 };

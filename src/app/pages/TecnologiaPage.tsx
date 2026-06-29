@@ -11,6 +11,12 @@ import fabricCoolDry from '../../imports/fabric_cooldry.webp';
 import fabricPolyesterPlus from '../../imports/fabric_polyesterplus.webp';
 import fabricMicroPanal from '../../imports/fabric_micropanal.webp';
 
+// Import zoom texture images
+import zoomPet from '../../imports/telas_zoom/PET.jpg';
+import zoomCoolDry from '../../imports/telas_zoom/Cool_Dry.jpg';
+import zoomPolyesterPlus from '../../imports/telas_zoom/Poliester Plus.jpg';
+import zoomMicroPanal from '../../imports/telas_zoom/Micro Panal.jpg';
+
 
 interface Fabric {
   id: string;
@@ -22,6 +28,7 @@ interface Fabric {
   uvProtection: string;
   bestFor: string;
   image: string;
+  zoomImage: string;
   bulletSpecs: { label: string; text: string }[];
 }
 
@@ -36,6 +43,7 @@ const fabrics: Fabric[] = [
     uvProtection: 'UPF 30+',
     bestFor: 'Marcas y eventos running que buscan generar un impacto positivo y ecológico sin comprometer el rendimiento técnico. Cuida tu rendimiento y también el planeta.',
     image: fabricPet,
+    zoomImage: zoomPet,
     bulletSpecs: [
       { label: 'MATERIAL 100% RECICLADO', text: 'Cuidas tu rendimiento y también el planeta.' },
       { label: 'LIGERA Y TRANSPIRABLE', text: 'Mayor ventilación para entrenar sin límites.' },
@@ -53,6 +61,7 @@ const fabrics: Fabric[] = [
     uvProtection: 'UPF 40+',
     bestFor: 'Corredores elite de maratón y entrenamientos intensos. Expulsa la humedad, cuenta con tecnología anti mal olor y es sumamente suave al tacto.',
     image: fabricCoolDry,
+    zoomImage: zoomCoolDry,
     bulletSpecs: [
       { label: 'SECADO ULTRA RÁPIDO', text: 'Evacúa el sudor y te mantiene seco por más tiempo.' },
       { label: 'EXPULSA LA HUMEDAD', text: 'Mantiene tu piel fresca y cómoda en todo momento.' },
@@ -70,6 +79,7 @@ const fabrics: Fabric[] = [
     uvProtection: 'UPF 25+',
     bestFor: 'Prendas con excelente relación calidad-precio. Ofrece tela ligera y resistente para mayor comodidad y durabilidad en cada movimiento.',
     image: fabricPolyesterPlus,
+    zoomImage: zoomPolyesterPlus,
     bulletSpecs: [
       { label: 'TELA LIGERA Y RESISTENTE', text: 'Comodidad y durabilidad en cada movimiento.' },
       { label: 'EXCELENTE RELACIÓN CALIDAD-PRECIO', text: 'Alta calidad que se adapta a tu presupuesto sin comprometer tu rendimiento.' },
@@ -87,6 +97,7 @@ const fabrics: Fabric[] = [
     uvProtection: 'UPF 30+',
     bestFor: 'Corredores que exigen la máxima frescura y ligereza. Brinda una sensación fresca al correr gracias a su estructura que mejora la circulación del aire.',
     image: fabricMicroPanal,
+    zoomImage: zoomMicroPanal,
     bulletSpecs: [
       { label: 'MEJORA LA VENTILACIÓN', text: 'Su estructura de micro panal permite una mayor circulación de aire para mantenerte fresco.' },
       { label: 'SENSACIÓN FRESCA AL CORRER', text: 'Te mantiene seco y cómodo, incluso en las mayores exigencias.' },
@@ -101,6 +112,9 @@ const fabrics: Fabric[] = [
 export function TecnologiaPage() {
   const [selectedFabricA, setSelectedFabricA] = useState(fabrics[0].id);
   const [selectedFabricB, setSelectedFabricB] = useState(fabrics[1].id);
+
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [clickedCard, setClickedCard] = useState<string | null>(null);
 
   const fabricA = fabrics.find((f) => f.id === selectedFabricA) || fabrics[0];
   const fabricB = fabrics.find((f) => f.id === selectedFabricB) || fabrics[1];
@@ -126,61 +140,80 @@ export function TecnologiaPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {fabrics.map((fabric, i) => (
-              <ScrollReveal key={fabric.id} delay={i * 0.1} direction="up" className="h-full">
-                <Card3DTilt className="h-full">
-                  <div className="bg-white border border-black flex flex-col h-full group hover:scale-102 transition-transform duration-300 rounded-none relative overflow-hidden">
-                    <div className="aspect-square bg-neutral-100 overflow-hidden relative border-b border-neutral-200 rounded-none">
-                      <ImageWithFallback
-                        src={fabric.image}
-                        alt={fabric.name}
-                        className="w-full h-full object-cover img-bw-high-contrast"
-                        loading="lazy"
-                      />
-                    </div>
+            {fabrics.map((fabric, i) => {
+              const isZoomed = hoveredCard === fabric.id || clickedCard === fabric.id;
+              return (
+                <ScrollReveal key={fabric.id} delay={i * 0.1} direction="up" className="h-full">
+                  <Card3DTilt className="h-full">
+                    <div 
+                      onClick={() => setClickedCard(clickedCard === fabric.id ? null : fabric.id)}
+                      onMouseEnter={() => setHoveredCard(fabric.id)}
+                      onMouseLeave={() => setHoveredCard(null)}
+                      className="bg-white border border-black flex flex-col h-full group hover:scale-102 transition-transform duration-300 rounded-none relative overflow-hidden cursor-pointer select-none"
+                    >
+                      <div className="aspect-square bg-neutral-100 overflow-hidden relative border-b border-neutral-200 rounded-none">
+                        <ImageWithFallback
+                          src={fabric.image}
+                          alt={fabric.name}
+                          className={`w-full h-full object-cover img-bw-high-contrast absolute inset-0 transition-opacity duration-500 ${
+                            isZoomed ? 'opacity-0' : 'opacity-100'
+                          }`}
+                          loading="lazy"
+                        />
+                        <ImageWithFallback
+                          src={fabric.zoomImage}
+                          alt={`${fabric.name} textura`}
+                          className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-500 ${
+                            isZoomed ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          loading="lazy"
+                        />
+                      </div>
 
-                    <div className="p-6 relative flex-grow flex flex-col justify-between">
-                      <div>
-                        <h3 className="font-heading font-black text-xl uppercase text-black mb-6">
-                          {fabric.name}
-                        </h3>
-                        <div className="space-y-5">
-                          {fabric.bulletSpecs.map((spec, idx) => (
-                            <div key={idx} className="flex gap-3 items-start text-xs leading-relaxed">
-                              <span className="w-1.5 h-1.5 bg-[#FF6663] rounded-full shrink-0 mt-1.5" />
-                              <div>
-                                <h4 className="text-black font-bold text-[10px] tracking-wider uppercase mb-0.5">
-                                  {spec.label}
-                                </h4>
-                                <p className="text-neutral-500 font-medium">
-                                  {spec.text}
-                                </p>
+                      <div className="p-6 relative flex-grow flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-heading font-black text-xl uppercase text-black mb-6">
+                            {fabric.name}
+                          </h3>
+                          <div className="space-y-5">
+                            {fabric.bulletSpecs.map((spec, idx) => (
+                              <div key={idx} className="flex gap-3 items-start text-xs leading-relaxed">
+                                <span className="w-1.5 h-1.5 bg-[#FF6663] rounded-full shrink-0 mt-1.5" />
+                                <div>
+                                  <h4 className="text-black font-bold text-[10px] tracking-wider uppercase mb-0.5">
+                                    {spec.label}
+                                  </h4>
+                                  <p className="text-neutral-500 font-medium">
+                                    {spec.text}
+                                  </p>
+                                </div>
                               </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Hover state overlay */}
+                        <div className="absolute inset-0 bg-black text-white p-6 opacity-0 pointer-events-none group-hover:pointer-events-auto translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex flex-col justify-start z-20">
+                          <h3 className="font-heading font-black text-xl uppercase text-white mb-6">
+                            {fabric.name}
+                          </h3>
+                          <span className="text-[10px] tracking-[0.2em] text-[#FF6663] font-bold uppercase block mb-3">
+                            Ideal para:
+                          </span>
+                          <p className="text-xs sm:text-sm text-neutral-300 font-medium leading-relaxed">
+                            {fabric.bestFor}
+                          </p>
                         </div>
                       </div>
-
-                      {/* Hover state overlay */}
-                      <div className="absolute inset-0 bg-black text-white p-6 opacity-0 pointer-events-none group-hover:pointer-events-auto translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex flex-col justify-start z-20">
-                        <h3 className="font-heading font-black text-xl uppercase text-white mb-6">
-                          {fabric.name}
-                        </h3>
-                        <span className="text-[10px] tracking-[0.2em] text-[#FF6663] font-bold uppercase block mb-3">
-                          Ideal para:
-                        </span>
-                        <p className="text-xs sm:text-sm text-neutral-300 font-medium leading-relaxed">
-                          {fabric.bestFor}
-                        </p>
-                      </div>
                     </div>
-                  </div>
-                </Card3DTilt>
-              </ScrollReveal>
-            ))}
+                  </Card3DTilt>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>
+
 
       {/* Interactive Comparator */}
       <section id="comparador" className="py-24 bg-white text-black border-b border-neutral-200 scroll-mt-24">

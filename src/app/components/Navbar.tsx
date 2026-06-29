@@ -22,7 +22,6 @@ const aaaClients = [
   'IOS Offices',
   'IdemSport',
   'SomosRunning',
-  'asdeporte',
   'En Dónde Correr'
 ];
 
@@ -303,10 +302,9 @@ export function Navbar() {
                       </span>
                       <div className="flex flex-col">
                         {[
-                          { title: 'Infraestructura', path: '/nosotros#infraestructura' },
-                          { title: 'Nuestra Evolución', path: '/nosotros#evolucion' },
-                          { title: 'Certificaciones', path: '/nosotros#certificaciones' },
-                          { title: 'Sustentabilidad', path: '/nosotros#sustentabilidad' }
+                          { title: '¿Quiénes Somos?', path: '/nosotros' },
+                          { title: 'Planta de Manufactura / Infraestructura', path: '/nosotros#infraestructura' },
+                          { title: 'Galería Industrial', path: '/nosotros#galeria' }
                         ].map((item) => (
                           <Link
                             key={item.title}
@@ -354,10 +352,10 @@ export function Navbar() {
                       </span>
                       <div className="flex flex-col">
                         {[
+                          { title: 'Clientes', path: '/casos-de-exito#clientes' },
                           { title: 'Carrera IOS (IOS Offices)', path: '/casos-de-exito#ios-offices' },
                           { title: 'AllMkting & En Dónde Correr', path: '/casos-de-exito#allmkting' },
-                          { title: 'Trotime', path: '/casos-de-exito#trotime' },
-                          { title: 'Clientes AAA', path: '/casos-de-exito#clientes' }
+                          { title: 'Trotime', path: '/casos-de-exito#trotime' }
                         ].map((item) => (
                           <Link
                             key={item.title}
@@ -405,9 +403,8 @@ export function Navbar() {
                       </span>
                       <div className="flex flex-col">
                         {[
-                          { title: 'Muestrario de Tejidos', path: '/tecnologia-textil#tejidos' },
-                          { title: 'Técnicas de Impresión', path: '/tecnologia-textil#impresion' },
-                          { title: 'Costuras de Precisión', path: '/tecnologia-textil#costuras' }
+                          { title: 'Catálogo de Tejidos Premium', path: '/tecnologia-textil#tejidos' },
+                          { title: 'Comparador Textil', path: '/tecnologia-textil#comparador' }
                         ].map((item) => (
                           <Link
                             key={item.title}
@@ -504,10 +501,9 @@ export function Navbar() {
                         className="pl-2 mt-2 flex flex-col overflow-hidden text-sm border-l border-black/10"
                       >
                         {[
-                          { title: 'Infraestructura', path: '/nosotros#infraestructura' },
-                          { title: 'Nuestra Evolución', path: '/nosotros#evolucion' },
-                          { title: 'Certificaciones', path: '/nosotros#certificaciones' },
-                          { title: 'Sustentabilidad', path: '/nosotros#sustentabilidad' }
+                          { title: '¿Quiénes Somos?', path: '/nosotros' },
+                          { title: 'Planta de Manufactura / Infraestructura', path: '/nosotros#infraestructura' },
+                          { title: 'Galería Industrial', path: '/nosotros#galeria' }
                         ].map((item) => (
                           <Link 
                             key={item.title}
@@ -543,10 +539,10 @@ export function Navbar() {
                         className="pl-2 mt-2 flex flex-col overflow-hidden text-sm border-l border-black/10"
                       >
                         {[
+                          { title: 'Clientes', path: '/casos-de-exito#clientes' },
                           { title: 'Carrera IOS (IOS Offices)', path: '/casos-de-exito#ios-offices' },
                           { title: 'AllMkting & En Dónde Correr', path: '/casos-de-exito#allmkting' },
-                          { title: 'Trotime', path: '/casos-de-exito#trotime' },
-                          { title: 'Clientes AAA', path: '/casos-de-exito#clientes' }
+                          { title: 'Trotime', path: '/casos-de-exito#trotime' }
                         ].map((item) => (
                           <Link 
                             key={item.title}
@@ -582,9 +578,8 @@ export function Navbar() {
                         className="pl-2 mt-2 flex flex-col overflow-hidden text-sm border-l border-black/10"
                       >
                         {[
-                          { title: 'Muestrario de Tejidos', path: '/tecnologia-textil#tejidos' },
-                          { title: 'Técnicas de Impresión', path: '/tecnologia-textil#impresion' },
-                          { title: 'Costuras de Precisión', path: '/tecnologia-textil#costuras' }
+                          { title: 'Catálogo de Tejidos Premium', path: '/tecnologia-textil#tejidos' },
+                          { title: 'Comparador Textil', path: '/tecnologia-textil#comparador' }
                         ].map((item) => (
                           <Link 
                             key={item.title}

@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router';
 import { ArrowUp, Download, Mail, Phone, MapPin, Instagram, Facebook, Linkedin } from 'lucide-react';
-import logoTransparent from '../../imports/logo_transparent.webp';
+import logoTransparent from '../../imports/logo_transparent.png';
 import { PremiumButton } from './ui/PremiumAnimations';
 import { ScrollReveal } from './ScrollReveal';
 
@@ -9,7 +9,7 @@ const footerLinks = {
     { label: 'INICIO', href: '/' },
     { label: 'NOSOTROS', href: '/nosotros' },
     { label: 'CASOS DE ÉXITO', href: '/casos-de-exito' },
-    { label: 'TECNOLOGÍA TEXTIL', href: '/tecnologia-textil' },
+    { label: 'TELAS Y MATERIALES', href: '/tecnologia-textil' },
   ],
   servicios: [
     { label: 'Playeras Atléticas', href: '/catalogo#playeras' },
@@ -55,7 +55,7 @@ export function Footer() {
     showSecondaryBtn = false;
   } else if (path === '/acercasportsprint' || path === '/nosotros') {
     ctaTitle = '¿BUSCAS UN PROVEEDOR SIN INTERMEDIARIOS?';
-    ctaSubtext = 'Trato directo de planta. Garantizamos calidad de exportación y tiempos de entrega exactos.';
+    ctaSubtext = '';
     primaryBtnText = 'CONÓCENOS';
     primaryBtnTo = '/cotizar';
     showSecondaryBtn = false;

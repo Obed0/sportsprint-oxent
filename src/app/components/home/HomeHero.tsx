@@ -76,7 +76,7 @@ export function HomeHero() {
               className="w-full sm:w-auto text-center shrink-0"
             />
             <PremiumButton
-              to="/casos-de-exito"
+              to="/catalogo"
               text="Ver Portafolio"
               variant="secondary"
               className="w-full sm:w-auto text-center shrink-0"

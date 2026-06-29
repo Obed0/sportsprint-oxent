@@ -238,7 +238,10 @@ interface PremiumButtonProps {
   fullWidth?: boolean;
   download?: string;
   type?: 'button' | 'submit' | 'reset';
+  animatedBorder?: boolean;
 }
+
+const MotionLink = motion(Link);
 
 export function PremiumButton({
   to,
@@ -250,6 +253,7 @@ export function PremiumButton({
   fullWidth = false,
   download,
   type = 'button',
+  animatedBorder = false,
 }: PremiumButtonProps) {
   // Base styling configuration
   let baseBg = 'bg-black';
@@ -274,17 +278,37 @@ export function PremiumButton({
     hoverText = 'text-white';
   }
 
-  const elementClasses = `${baseBg} ${baseText} ${className} relative overflow-hidden border font-bold uppercase tracking-widest text-[10px] sm:text-xs py-4 px-8 block text-center rounded-none select-none cursor-pointer transition-colors duration-300`;
+  const borderClass = animatedBorder ? 'border-transparent' : 'border-current';
+  const elementClasses = `${baseBg} ${baseText} ${className} relative overflow-hidden border ${borderClass} font-bold uppercase tracking-widest text-[10px] sm:text-xs py-4 px-8 block text-center rounded-none select-none cursor-pointer transition-colors duration-300`;
 
   const content = (
-    <motion.div
-      className="relative flex items-center justify-center gap-2 w-full h-full z-10"
-      initial="initial"
-      whileHover="hover"
-    >
+    <div className="relative flex items-center justify-center gap-2 w-full h-full z-10">
+      {animatedBorder && (
+        <svg className="absolute inset-0 w-full h-full pointer-events-none z-[5]" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <motion.rect
+            x="1"
+            y="1"
+            rx="0"
+            ry="0"
+            className="w-[calc(100%-2px)] h-[calc(100%-2px)]"
+            stroke="#FF6663"
+            strokeWidth="2"
+            strokeDasharray="0.15 0.85"
+            animate={{
+              pathOffset: [0, 1],
+            }}
+            transition={{
+              duration: 4,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+          />
+        </svg>
+      )}
+
       {/* Background sweep block */}
       <motion.div
-        className={`absolute inset-y-0 left-0 -mx-8 -my-4 z-0 origin-left w-[150%] ${hoverBgClass}`}
+        className={`absolute inset-y-0 left-0 -mx-8 -my-4 z-[2] origin-left w-[150%] ${hoverBgClass}`}
         variants={{
           initial: { scaleX: 0 },
           hover: { scaleX: 1 },
@@ -329,28 +353,46 @@ export function PremiumButton({
           {icon}
         </motion.span>
       )}
-    </motion.div>
+    </div>
   );
 
   if (to) {
     if (download) {
       return (
-        <a href={to} download={download} className={`${elementClasses} ${fullWidth ? 'w-full' : 'w-fit'}`}>
+        <motion.a 
+          href={to} 
+          download={download} 
+          className={`${elementClasses} ${fullWidth ? 'w-full' : 'w-fit'}`}
+          initial="initial"
+          whileHover="hover"
+        >
           {content}
-        </a>
+        </motion.a>
       );
     }
     return (
-      <Link to={to} onClick={onClick} className={`${elementClasses} ${fullWidth ? 'w-full' : 'w-fit'}`}>
+      <MotionLink 
+        to={to} 
+        onClick={onClick} 
+        className={`${elementClasses} ${fullWidth ? 'w-full' : 'w-fit'}`}
+        initial="initial"
+        whileHover="hover"
+      >
         {content}
-      </Link>
+      </MotionLink>
     );
   }
 
   return (
-    <button type={type} onClick={onClick} className={`${elementClasses} ${fullWidth ? 'w-full' : 'w-fit'}`}>
+    <motion.button 
+      type={type} 
+      onClick={onClick} 
+      className={`${elementClasses} ${fullWidth ? 'w-full' : 'w-fit'}`}
+      initial="initial"
+      whileHover="hover"
+    >
       {content}
-    </button>
+    </motion.button>
   );
 }
 

@@ -90,58 +90,32 @@ export function NosotrosPage() {
         </div>
       </section>
 
-      {/* Stats Grid */}
-      <section className="py-16 sm:py-20 bg-white text-black border-b border-neutral-200">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 lg:gap-x-8">
-            {stats.map((stat, i) => {
-              const StatIcon = stat.icon;
-              return (
-                <ScrollReveal key={i} delay={i * 0.1} direction="up">
-                  <div className="flex flex-col border-l border-black/15 pl-6 py-2 group cursor-default select-none">
-                    {/* Top: Number */}
-                    <span className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-black leading-none mb-3 group-hover:text-[#FF6663] transition-colors duration-300 select-none">
-                      {stat.value}
-                    </span>
-                    {/* Bottom: Icon & Description */}
-                    <div className="flex items-center gap-2">
-                      <div className="text-black group-hover:text-[#FF6663] transition-colors duration-300 shrink-0">
-                        <StatIcon className="w-4.5 h-4.5" />
-                      </div>
-                      <span className="text-[10px] text-[#4B5563] font-bold uppercase tracking-wider leading-tight block">
-                        {stat.label}
-                      </span>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* Infrastructure & Advanced Machinery Section */}
       <section id="infraestructura" className="py-24 bg-black text-white border-b border-black scroll-mt-24">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5">
-              <h2 className="font-heading font-black text-4xl sm:text-5xl tracking-tight uppercase mb-6 text-white">
-                PRODUCCIÓN 100% INTERNA SIN INTERMEDIARIOS
+              <h2 className="font-heading font-black text-4xl sm:text-5xl tracking-tight uppercase mb-8 text-white">
+                Nuestra Tecnología
               </h2>
-              <p className="text-neutral-300 text-sm leading-relaxed mb-6 font-medium">
-                En Sports Print MX creemos en el control absoluto. Desde el diseño inicial hasta la confección del kit final, todo ocurre bajo el mismo techo. Esto nos permite eliminar intermediarios y garantizar precios directos de fábrica con tiempos de entrega insuperables.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 bg-white rounded-full mt-2 shrink-0" />
-                  <p className="text-xs text-neutral-200 leading-normal">
-                    Calandras e impresoras de alta precisión que nos permiten sublimación digital continua de alta definición a 1200 dpi.
+              
+              <div className="space-y-8">
+                <div>
+                  <h3 className="font-heading font-bold text-xl uppercase text-[#FF6663] mb-2">
+                    100% Producción Interna
+                  </h3>
+                  <p className="text-neutral-300 text-sm leading-relaxed font-medium">
+                    Diseño, impresión, corte y costura bajo un mismo techo. Controlamos cada proceso en nuestra planta para ofrecerte precios directos de fábrica y la certidumbre total de que cada prenda pasará un control de calidad estricto.
                   </p>
                 </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 bg-white rounded-full mt-2 shrink-0" />
-                  <p className="text-xs text-neutral-200 leading-normal">
-                    Tecnología rotativa de estampación industrial de alta velocidad para cubrir tirajes masivos mayores a 50,000 piezas sin perder calidad.
+
+                <div>
+                  <h3 className="font-heading font-bold text-xl uppercase text-[#FF6663] mb-2">
+                    Nitidez que Resiste Todo
+                  </h3>
+                  <p className="text-neutral-300 text-sm leading-relaxed font-medium">
+                    Tecnología textil que integra la tinta directamente en las fibras de la tela. Tu marca y patrocinadores lucirán impecables en alta definición, con colores que no se borran, no se agrietan y resisten el rendimiento deportivo más exigente.
                   </p>
                 </div>
               </div>
@@ -216,7 +190,7 @@ export function NosotrosPage() {
       </AnimatePresence>
 
       {/* Industrial Gallery Section */}
-      <section className="py-24 bg-[#F5F5F7] text-black border-b border-neutral-200">
+      <section id="galeria" className="py-24 bg-[#F5F5F7] text-black border-b border-neutral-200 scroll-mt-24">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
           <div className="text-center max-w-xl mx-auto mb-16">
             <span className="text-[10px] tracking-[0.25em] text-[#4B5563] font-bold uppercase block mb-3">
