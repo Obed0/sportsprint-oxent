@@ -1,5 +1,7 @@
 import React from 'react';
 import upLogoImg from '../../imports/universidad_panamericana.png';
+import unamLogoImg from '../../imports/logo_unam.png';
+import ipnLogoImg from '../../imports/logo_ipn.png';
 
 interface LogoProps {
   className?: string;
@@ -65,7 +67,7 @@ export function AllMktingLogo({ className = 'h-8' }: LogoProps) {
     <svg viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path d="M12 28 L20 12 L28 28" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M15 24 H25" stroke="#1A1A1A" strokeWidth="2" />
-      <path d="M24 16 L32 8 M32 8 H28 M32 8 V12" stroke="#FF6663" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <path d="M24 16 L32 8 M32 8 H28 M32 8 V12" stroke="#E43537" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       <text x="38" y="26" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="18" fill="#1A1A1A" letterSpacing="-0.5">ALL<tspan fill="#4B5563">MKTING</tspan></text>
     </svg>
   );
@@ -75,7 +77,7 @@ export function AdientLogo({ className = 'h-8' }: LogoProps) {
   return (
     <svg viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path d="M12 12 H22 L17 28 Z" fill="#0070C0" />
-      <path d="M20 12 H30 L25 28 Z" fill="#FF6663" />
+      <path d="M20 12 H30 L25 28 Z" fill="#E43537" />
       <text x="36" y="26" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="19" fill="#1A1A1A" letterSpacing="0">ADIENT</text>
     </svg>
   );
@@ -135,6 +137,26 @@ export function EnDondeCorrerLogo({ className = 'h-8' }: LogoProps) {
   );
 }
 
+export function UNAMLogo({ className = 'h-8' }: LogoProps) {
+  return (
+    <img 
+      src={unamLogoImg} 
+      alt="UNAM" 
+      className={`${className} object-contain`} 
+    />
+  );
+}
+
+export function IPNLogo({ className = 'h-8' }: LogoProps) {
+  return (
+    <img 
+      src={ipnLogoImg} 
+      alt="IPN" 
+      className={`${className} object-contain`} 
+    />
+  );
+}
+
 export const brandLogosMap: Record<string, React.ComponentType<LogoProps>> = {
   'Fundación Kardias': KardiasLogo,
   'Universidad Panamericana': UPLogo,
@@ -145,4 +167,6 @@ export const brandLogosMap: Record<string, React.ComponentType<LogoProps>> = {
   'IdemSport': IdemSportLogo,
   'SomosRunning': SomosRunningLogo,
   'En Dónde Correr': EnDondeCorrerLogo,
+  'UNAM': UNAMLogo,
+  'IPN': IPNLogo,
 };

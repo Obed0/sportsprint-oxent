@@ -7,21 +7,21 @@ import { ShieldCheck, Calendar, Users, Cpu, Leaf, Compass, X } from 'lucide-reac
 import { motion, AnimatePresence } from 'motion/react';
 import { PremiumButton, Card3DTilt } from '../components/ui/PremiumAnimations';
 
-import gallery1 from '../../imports/Gemini_Generated_Image_ecrae5ecrae5ecra.webp';
-import gallery2 from '../../imports/Gemini_Generated_Image_ehcjcyehcjcyehcj.webp';
-import gallery3 from '../../imports/Gemini_Generated_Image_h21rm5h21rm5h21r.webp';
-import gallery4 from '../../imports/Gemini_Generated_Image_ir2xj0ir2xj0ir2x.webp';
-import gallery5 from '../../imports/Gemini_Generated_Image_j2spr7j2spr7j2sp.webp';
-import gallery6 from '../../imports/Gemini_Generated_Image_ocyfe1ocyfe1ocyf.webp';
-import gallery7 from '../../imports/Gemini_Generated_Image_xdio20xdio20xdio.webp';
-import gallery8 from '../../imports/Gemini_Generated_Image_yf9pyryf9pyryf9p.webp';
+import gallery1 from '../../imports/gallery_p7.png'; // Fase 1: preparación de materiales (Copilot_20260629_223334.png)
+import gallery2 from '../../imports/gallery_p4.png'; // Fase 2: impresión de material (Copilot_20260623_221720.png)
+import gallery3 from '../../imports/gallery_p2.png'; // Fase 3: Corte de moldes (ChatGPT Image 30 jun 2026, 22_17_59.png)
+import gallery4 from '../../imports/gallery_p3.png'; // Fase 4: inspección de tejidos (Operaria de blusa rosa y calandra)
+import gallery5 from '../../imports/gallery_p9.png'; // Fase 5: Sublimación de alto volumen (Copilot_20260629_224039.png)
+import gallery6 from '../../imports/gallery_p10.png'; // Fase 6: Confección y costura (ChatGPT Image 30 jun 2026, 22_44_42.png)
+import gallery7 from '../../imports/gallery_p8.png'; // Fase 7: Control y empaque (Copilot_20260629_223757.png)
+import gallery8 from '../../imports/gallery_p1.png'; // Fase 8: Logística de entrega (Oficina / Calandra)
 
 const galleryImages = [
-  { src: gallery2, title: 'Preparación de materiales', desc: 'Preparación y acondicionamiento de rollos de tela.' },
-  { src: gallery4, title: 'Impresión de material', desc: 'Impresión digital continua sobre papel de transferencia.' },
-  { src: gallery5, title: 'Corte de moldes', desc: 'Corte láser robótico automatizado con desperdicio mínimo.' },
-  { src: gallery1, title: 'Inspección de tejidos', desc: 'Control de calidad de la materia prima en planta.' },
-  { src: gallery3, title: 'Sublimación de alto volumen', desc: 'Calandras rotativas de alta velocidad para sublimación masiva.' },
+  { src: gallery1, title: 'Preparación de materiales', desc: 'Preparación y acondicionamiento de rollos de tela.' },
+  { src: gallery2, title: 'Impresión de material', desc: 'Impresión digital continua sobre papel de transferencia.' },
+  { src: gallery3, title: 'Corte de moldes', desc: 'Corte láser robótico automatizado con desperdicio mínimo.' },
+  { src: gallery4, title: 'Inspección de tejidos', desc: 'Control de calidad de la materia prima en planta.' },
+  { src: gallery5, title: 'Sublimación de alto volumen', desc: 'Calandras rotativas de alta velocidad para sublimación masiva.' },
   { src: gallery6, title: 'Confección y costura', desc: 'Línea de confección y costura de alta precisión.' },
   { src: gallery7, title: 'Control y empaque', desc: 'Control de calidad final y empaque individual.' },
   { src: gallery8, title: 'Logística de entrega', desc: 'Distribución y logística nacional para eventos.' }
@@ -82,7 +82,7 @@ export function NosotrosPage() {
                     </span>
                   </div>
                   {/* Accent border on hover */}
-                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#FF6663] transition-all duration-300 pointer-events-none z-20" />
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#E43537] transition-all duration-300 pointer-events-none z-20" />
                 </div>
               </ScrollReveal>
             </div>
@@ -102,7 +102,7 @@ export function NosotrosPage() {
               
               <div className="space-y-8">
                 <div>
-                  <h3 className="font-heading font-bold text-xl uppercase text-[#FF6663] mb-2">
+                  <h3 className="font-heading font-bold text-xl uppercase text-[#E43537] mb-2">
                     100% Producción Interna
                   </h3>
                   <p className="text-neutral-300 text-sm leading-relaxed font-medium">
@@ -111,7 +111,7 @@ export function NosotrosPage() {
                 </div>
 
                 <div>
-                  <h3 className="font-heading font-bold text-xl uppercase text-[#FF6663] mb-2">
+                  <h3 className="font-heading font-bold text-xl uppercase text-[#E43537] mb-2">
                     Nitidez que Resiste Todo
                   </h3>
                   <p className="text-neutral-300 text-sm leading-relaxed font-medium">
@@ -222,10 +222,10 @@ export function NosotrosPage() {
                   {/* Text overlay content */}
                   <div className="absolute inset-0 flex flex-col justify-end p-6 z-20 pointer-events-none">
                     {/* Subtle index number or category */}
-                    <span className="text-[9px] font-bold tracking-[0.2em] text-[#FF6663] mb-2 uppercase select-none opacity-85 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-[9px] font-bold tracking-[0.2em] text-[#E43537] mb-2 uppercase select-none opacity-85 group-hover:opacity-100 transition-opacity duration-300">
                       FASE {String(i + 1).padStart(2, '0')}
                     </span>
-                    <h4 className="font-heading font-black text-base sm:text-lg uppercase text-white leading-[1.15] mb-1 group-hover:text-[#FF6663] transition-colors duration-300">
+                    <h4 className="font-heading font-black text-base sm:text-lg uppercase text-white leading-[1.15] mb-1 group-hover:text-[#E43537] transition-colors duration-300">
                       {img.title}
                     </h4>
                     {/* Description collapses on hover */}
@@ -235,7 +235,7 @@ export function NosotrosPage() {
                   </div>
 
                   {/* Accent border on hover */}
-                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#FF6663] transition-all duration-300 pointer-events-none z-30" />
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#E43537] transition-all duration-300 pointer-events-none z-30" />
                 </div>
               </ScrollReveal>
             ))}

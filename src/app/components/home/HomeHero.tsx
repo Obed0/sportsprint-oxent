@@ -20,10 +20,10 @@ function NeonGrid() {
         }}
       />
       {/* Pulsing neon dots at key grid intersections */}
-      <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-[#FF6663] rounded-full blur-[2px] animate-ping" style={{ animationDuration: '4s' }} />
-      <div className="absolute top-2/3 left-1/4 w-1.5 h-1.5 bg-[#FF6663] rounded-full blur-[1px] animate-pulse" style={{ animationDuration: '3s' }} />
-      <div className="absolute top-1/3 left-2/3 w-2 h-2 bg-[#FF6663] rounded-full blur-[2px] animate-pulse" style={{ animationDuration: '5s' }} />
-      <div className="absolute top-3/4 left-4/5 w-1.5 h-1.5 bg-[#FF6663] rounded-full blur-[1px] animate-ping" style={{ animationDuration: '6s' }} />
+      <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-[#E43537] rounded-full blur-[2px] animate-ping" style={{ animationDuration: '4s' }} />
+      <div className="absolute top-2/3 left-1/4 w-1.5 h-1.5 bg-[#E43537] rounded-full blur-[1px] animate-pulse" style={{ animationDuration: '3s' }} />
+      <div className="absolute top-1/3 left-2/3 w-2 h-2 bg-[#E43537] rounded-full blur-[2px] animate-pulse" style={{ animationDuration: '5s' }} />
+      <div className="absolute top-3/4 left-4/5 w-1.5 h-1.5 bg-[#E43537] rounded-full blur-[1px] animate-ping" style={{ animationDuration: '6s' }} />
     </div>
   );
 }
@@ -95,7 +95,7 @@ export function HomeHero() {
                 transition={{ type: 'spring', stiffness: 200, damping: 15 }}
                 className="w-full flex flex-col text-left cursor-default select-none border-l border-white/10 pl-4 group pb-4 border-b border-white/10 md:border-b-0 md:pb-0"
               >
-                <span className="font-heading font-black text-4xl sm:text-5xl tracking-tight leading-none mb-1 text-white select-none group-hover:text-[#FF6663] transition-colors duration-300">
+                <span className="font-heading font-black text-4xl sm:text-5xl tracking-tight leading-none mb-1 text-white select-none group-hover:text-[#E43537] transition-colors duration-300">
                   {metric.value}
                 </span>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-white/80 mb-1">

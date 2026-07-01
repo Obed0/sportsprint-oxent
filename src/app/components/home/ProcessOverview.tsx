@@ -52,7 +52,7 @@ export function ProcessOverview() {
                 <div className="flex flex-col h-full group">
                   {/* Step bubble / Icon */}
                   <div className="flex items-center justify-between mb-8">
-                    <div className="w-16 h-16 border border-[#E5E5EA] bg-[#F5F5F7] flex items-center justify-center relative z-20 group-hover:bg-[#FF6663] group-hover:border-black transition-colors duration-300 shadow-sm">
+                    <div className="w-16 h-16 border border-[#E5E5EA] bg-[#F5F5F7] flex items-center justify-center relative z-20 group-hover:bg-[#E43537] group-hover:border-black transition-colors duration-300 shadow-sm">
                       {step.icon}
                     </div>
                     <span className="font-heading text-5xl text-neutral-200 group-hover:text-black transition-colors duration-300 leading-none bg-white pl-3 relative z-20">

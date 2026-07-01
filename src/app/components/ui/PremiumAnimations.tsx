@@ -258,18 +258,18 @@ export function PremiumButton({
   // Base styling configuration
   let baseBg = 'bg-black';
   let baseText = 'text-white border-black';
-  let hoverBgClass = 'bg-[#FF6663]';
+  let hoverBgClass = 'bg-[#E43537]';
   let hoverText = 'text-black';
 
   if (variant === 'secondary') {
     baseBg = 'bg-transparent';
     baseText = 'text-white border-white';
-    hoverBgClass = 'bg-[#FF6663]';
+    hoverBgClass = 'bg-[#E43537]';
     hoverText = 'text-black';
   } else if (variant === 'white') {
     baseBg = 'bg-white';
     baseText = 'text-black border-white';
-    hoverBgClass = 'bg-[#FF6663]';
+    hoverBgClass = 'bg-[#E43537]';
     hoverText = 'text-black';
   } else if (variant === 'outline-black') {
     baseBg = 'bg-transparent';
@@ -281,6 +281,17 @@ export function PremiumButton({
   const borderClass = animatedBorder ? 'border-transparent' : 'border-current';
   const elementClasses = `${baseBg} ${baseText} ${className} relative overflow-hidden border ${borderClass} font-bold uppercase tracking-widest text-[10px] sm:text-xs py-4 px-8 block text-center rounded-none select-none cursor-pointer transition-colors duration-300`;
 
+  const sweepBlock = (
+    <motion.div
+      className={`absolute inset-0 z-[2] origin-left ${hoverBgClass}`}
+      variants={{
+        initial: { scaleX: 0 },
+        hover: { scaleX: 1 },
+      }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+    />
+  );
+
   const content = (
     <div className="relative flex items-center justify-center gap-2 w-full h-full z-10">
       {animatedBorder && (
@@ -291,7 +302,7 @@ export function PremiumButton({
             rx="0"
             ry="0"
             className="w-[calc(100%-2px)] h-[calc(100%-2px)]"
-            stroke="#FF6663"
+            stroke="#E43537"
             strokeWidth="2"
             strokeDasharray="0.15 0.85"
             animate={{
@@ -305,16 +316,6 @@ export function PremiumButton({
           />
         </svg>
       )}
-
-      {/* Background sweep block */}
-      <motion.div
-        className={`absolute inset-y-0 left-0 -mx-8 -my-4 z-[2] origin-left w-[150%] ${hoverBgClass}`}
-        variants={{
-          initial: { scaleX: 0 },
-          hover: { scaleX: 1 },
-        }}
-        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-      />
 
       {/* Slide-up text effect */}
       <span className="relative z-10 overflow-hidden block">
@@ -366,6 +367,7 @@ export function PremiumButton({
           initial="initial"
           whileHover="hover"
         >
+          {sweepBlock}
           {content}
         </motion.a>
       );
@@ -378,6 +380,7 @@ export function PremiumButton({
         initial="initial"
         whileHover="hover"
       >
+        {sweepBlock}
         {content}
       </MotionLink>
     );
@@ -391,6 +394,7 @@ export function PremiumButton({
       initial="initial"
       whileHover="hover"
     >
+      {sweepBlock}
       {content}
     </motion.button>
   );
@@ -547,7 +551,7 @@ export function TextScramble({
       transition={{ type: 'spring', stiffness: 350, damping: 22 }}
     >
       {displayText}
-      <span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-[#FF6663] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out pointer-events-none" />
+      <span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-[#E43537] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out pointer-events-none" />
     </motion.span>
   );
 }

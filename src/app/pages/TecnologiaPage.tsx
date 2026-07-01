@@ -12,10 +12,10 @@ import fabricPolyesterPlus from '../../imports/fabric_polyesterplus.webp';
 import fabricMicroPanal from '../../imports/fabric_micropanal.webp';
 
 // Import zoom texture images
-import zoomPet from '../../imports/telas_zoom/PET.jpg';
-import zoomCoolDry from '../../imports/telas_zoom/Cool_Dry.jpg';
-import zoomPolyesterPlus from '../../imports/telas_zoom/Poliester Plus.jpg';
-import zoomMicroPanal from '../../imports/telas_zoom/Micro Panal.jpg';
+import zoomPet from '../../imports/telas_zoom/pet2.png';
+import zoomCoolDry from '../../imports/telas_zoom/cool dry2.png';
+import zoomPolyesterPlus from '../../imports/telas_zoom/poliesterplus2.png';
+import zoomMicroPanal from '../../imports/telas_zoom/micropanal2.png';
 
 
 interface Fabric {
@@ -38,17 +38,17 @@ const fabrics: Fabric[] = [
     name: 'PET (100% Reciclado)',
     weight: '120 g/m²',
     composition: '100% Poliéster Reciclado (PET)',
-    breathability: 'Excelente (Ligera y Transpirable)',
+    breathability: 'Excelente ventilación',
     elasticity: 'Media (Trama Elástica)',
     uvProtection: 'UPF 30+',
-    bestFor: 'Marcas y eventos running que buscan generar un impacto positivo y ecológico sin comprometer el rendimiento técnico. Cuida tu rendimiento y también el planeta.',
+    bestFor: 'Eventos running ecológicos de alto rendimiento técnico.',
     image: fabricPet,
     zoomImage: zoomPet,
     bulletSpecs: [
-      { label: 'MATERIAL 100% RECICLADO', text: 'Cuidas tu rendimiento y también el planeta.' },
+      { label: 'MATERIAL ECOLÓGICO', text: 'Cuida tu rendimiento y el planeta.' },
       { label: 'LIGERA Y TRANSPIRABLE', text: 'Mayor ventilación para entrenar sin límites.' },
-      { label: 'SECADO RÁPIDO', text: 'Evacúa el sudor y te mantiene seco por más tiempo.' },
-      { label: 'APORTA VALOR ECOLÓGICO A TU EVENTO', text: 'Ideal para marcas y eventos que quieren generar impacto positivo.' }
+      { label: 'SECADO RÁPIDO', text: 'Evacúa el sudor por más tiempo.' },
+      { label: 'VALOR SUSTENTABLE', text: 'Impacto ecológico positivo para tu evento.' }
     ]
   },
   {
@@ -56,17 +56,17 @@ const fabrics: Fabric[] = [
     name: 'Cool Dry',
     weight: '130 g/m²',
     composition: '100% Poliéster de Rápida Evaporación',
-    breathability: 'Excelente (Secado Ultra Rápido)',
+    breathability: 'Secado ultra rápido',
     elasticity: 'Alta (Filtro UV e hidrófilo)',
     uvProtection: 'UPF 40+',
-    bestFor: 'Corredores elite de maratón y entrenamientos intensos. Expulsa la humedad, cuenta con tecnología anti mal olor y es sumamente suave al tacto.',
+    bestFor: 'Corredores élite, maratones y entrenamientos intensos.',
     image: fabricCoolDry,
     zoomImage: zoomCoolDry,
     bulletSpecs: [
-      { label: 'SECADO ULTRA RÁPIDO', text: 'Evacúa el sudor y te mantiene seco por más tiempo.' },
-      { label: 'EXPULSA LA HUMEDAD', text: 'Mantiene tu piel fresca y cómoda en todo momento.' },
-      { label: 'TECNOLOGÍA ANTI MAL OLOR', text: 'Ayuda a prevenir los malos olores para que te sientas seguro(a) durante más tiempo.' },
-      { label: 'TELA SUAVE AL TACTO', text: 'Ligera, cómoda y agradable para tu piel.' }
+      { label: 'SECADO ULTRA RÁPIDO', text: 'Evacúa el sudor rápidamente de tu piel.' },
+      { label: 'EXPULSA LA HUMEDAD', text: 'Mantiene tu piel fresca y cómoda siempre.' },
+      { label: 'ANTI MAL OLOR', text: 'Previene olores durante el ejercicio.' },
+      { label: 'SUAVE AL TACTO', text: 'Ligera y sumamente agradable para la piel.' }
     ]
   },
   {
@@ -74,17 +74,17 @@ const fabrics: Fabric[] = [
     name: 'Poliéster Plus',
     weight: '140 g/m²',
     composition: '100% Poliéster Resistente',
-    breathability: 'Buena Transpirabilidad',
+    breathability: 'Buena transpirabilidad',
     elasticity: 'Media (Estructural)',
     uvProtection: 'UPF 25+',
-    bestFor: 'Prendas con excelente relación calidad-precio. Ofrece tela ligera y resistente para mayor comodidad y durabilidad en cada movimiento.',
+    bestFor: 'Prendas duraderas con excelente relación costo-beneficio.',
     image: fabricPolyesterPlus,
     zoomImage: zoomPolyesterPlus,
     bulletSpecs: [
-      { label: 'TELA LIGERA Y RESISTENTE', text: 'Comodidad y durabilidad en cada movimiento.' },
-      { label: 'EXCELENTE RELACIÓN CALIDAD-PRECIO', text: 'Alta calidad que se adapta a tu presupuesto sin comprometer tu rendimiento.' },
-      { label: 'SECADO RÁPIDO', text: 'La tecnología de secado rápido te mantiene fresco y listo para rendir al máximo.' },
-      { label: 'BUENA TRANSPIRABILIDAD', text: 'Permite la circulación del aire y mantiene tu piel fresca durante más tiempo.' }
+      { label: 'LIGERA Y RESISTENTE', text: 'Comodidad y alta durabilidad en movimiento.' },
+      { label: 'EXCELENTE COSTO-BENEFICIO', text: 'Alta calidad a un precio muy accesible.' },
+      { label: 'SECADO RÁPIDO', text: 'Te mantiene fresco y listo para rendir.' },
+      { label: 'TRANSPIRABILIDAD CONSTANTE', text: 'Permite una óptima circulación del aire.' }
     ]
   },
   {
@@ -92,17 +92,17 @@ const fabrics: Fabric[] = [
     name: 'Micro Panal',
     weight: '110 g/m²',
     composition: '100% Poliéster en Tejido de Panal',
-    breathability: 'Extrema (Mejora la Ventilación)',
+    breathability: 'Ventilación extrema',
     elasticity: 'Alta (Material Ultraligero)',
     uvProtection: 'UPF 30+',
-    bestFor: 'Corredores que exigen la máxima frescura y ligereza. Brinda una sensación fresca al correr gracias a su estructura que mejora la circulación del aire.',
+    bestFor: 'Máxima frescura y ligereza en climas cálidos.',
     image: fabricMicroPanal,
     zoomImage: zoomMicroPanal,
     bulletSpecs: [
-      { label: 'MEJORA LA VENTILACIÓN', text: 'Su estructura de micro panal permite una mayor circulación de aire para mantenerte fresco.' },
-      { label: 'SENSACIÓN FRESCA AL CORRER', text: 'Te mantiene seco y cómodo, incluso en las mayores exigencias.' },
-      { label: 'LIGERA Y CÓMODA', text: 'Material ultraligero que se adapta a tu movimiento sin restricciones.' },
-      { label: 'LIGERA Y CÓMODA (Tacto suave)', text: 'Tacto suave y agradable para que te enfoques solo en tu rendimiento.' }
+      { label: 'VENTILACIÓN PREMIUM', text: 'Estructura que optimiza el flujo de aire.' },
+      { label: 'FRESCURA CONSTANTE', text: 'Te mantiene seco ante la mayor exigencia.' },
+      { label: 'DISEÑO ULTRALIGERO', text: 'Ajuste cómodo y sin ninguna restricción.' },
+      { label: 'TACTO ULTRA SUAVE', text: 'Máximo confort y suavidad al correr.' }
     ]
   },
 ];
@@ -113,8 +113,12 @@ export function TecnologiaPage() {
   const [selectedFabricA, setSelectedFabricA] = useState(fabrics[0].id);
   const [selectedFabricB, setSelectedFabricB] = useState(fabrics[1].id);
 
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  const [clickedCard, setClickedCard] = useState<string | null>(null);
+  // Controla qué telas muestran su información de detalle
+  const [activeTelas, setActiveTelas] = useState<Record<string, boolean>>({});
+
+  const toggleTela = (id: string) => {
+    setActiveTelas((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   const fabricA = fabrics.find((f) => f.id === selectedFabricA) || fabrics[0];
   const fabricB = fabrics.find((f) => f.id === selectedFabricB) || fabrics[1];
@@ -141,68 +145,102 @@ export function TecnologiaPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {fabrics.map((fabric, i) => {
-              const isZoomed = hoveredCard === fabric.id || clickedCard === fabric.id;
+              const isDetailOpen = !!activeTelas[fabric.id];
               return (
                 <ScrollReveal key={fabric.id} delay={i * 0.1} direction="up" className="h-full">
                   <Card3DTilt className="h-full">
                     <div 
-                      onClick={() => setClickedCard(clickedCard === fabric.id ? null : fabric.id)}
-                      onMouseEnter={() => setHoveredCard(fabric.id)}
-                      onMouseLeave={() => setHoveredCard(null)}
-                      className="bg-white border border-black flex flex-col h-full group hover:scale-102 transition-transform duration-300 rounded-none relative overflow-hidden cursor-pointer select-none"
+                      className="bg-white border border-black flex flex-col h-full rounded-none relative overflow-hidden select-none"
                     >
                       <div className="aspect-square bg-neutral-100 overflow-hidden relative border-b border-neutral-200 rounded-none">
                         <ImageWithFallback
                           src={fabric.image}
                           alt={fabric.name}
-                          className={`w-full h-full object-cover img-bw-high-contrast absolute inset-0 transition-opacity duration-500 ${
-                            isZoomed ? 'opacity-0' : 'opacity-100'
+                          className={`w-full h-full object-cover absolute inset-0 transition-all duration-700 ease-out ${
+                            isDetailOpen ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
                           }`}
                           loading="lazy"
                         />
                         <ImageWithFallback
                           src={fabric.zoomImage}
                           alt={`${fabric.name} textura`}
-                          className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-500 ${
-                            isZoomed ? 'opacity-100' : 'opacity-0'
+                          className={`w-full h-full object-cover absolute inset-0 transition-all duration-700 ease-out ${
+                            isDetailOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
                           }`}
                           loading="lazy"
                         />
                       </div>
 
-                      <div className="p-6 relative flex-grow flex flex-col justify-between">
+                      <div className="p-6 flex-grow flex flex-col justify-between">
                         <div>
-                          <h3 className="font-heading font-black text-xl uppercase text-black mb-6">
-                            {fabric.name}
-                          </h3>
-                          <div className="space-y-5">
-                            {fabric.bulletSpecs.map((spec, idx) => (
-                              <div key={idx} className="flex gap-3 items-start text-xs leading-relaxed">
-                                <span className="w-1.5 h-1.5 bg-[#FF6663] rounded-full shrink-0 mt-1.5" />
+                          <div className="min-h-[56px] flex items-start mb-4">
+                            <h3 className="font-heading font-black text-xl uppercase text-black leading-[1.1]">
+                              {fabric.name}
+                            </h3>
+                          </div>
+                          
+                          <div className="min-h-[170px] transition-all duration-300">
+                            {/* Información técnica breve (Siempre visible al inicio) */}
+                            {!isDetailOpen ? (
+                              <div className="space-y-3 text-xs font-semibold">
                                 <div>
-                                  <h4 className="text-black font-bold text-[10px] tracking-wider uppercase mb-0.5">
-                                    {spec.label}
-                                  </h4>
-                                  <p className="text-neutral-500 font-medium">
-                                    {spec.text}
+                                  <span className="text-[9px] tracking-widest text-[#E43537] font-bold uppercase block mb-1">
+                                    Ideal para:
+                                  </span>
+                                  <p className="text-neutral-600 font-medium leading-relaxed">
+                                    {fabric.bestFor}
                                   </p>
                                 </div>
+                                <div className="pt-2 border-t border-neutral-100 grid grid-cols-2 gap-2">
+                                  <div>
+                                    <span className="text-[9px] tracking-widest text-neutral-400 font-bold uppercase block">
+                                      Gramaje
+                                    </span>
+                                    <span className="text-black font-bold">{fabric.weight}</span>
+                                  </div>
+                                  <div>
+                                    <span className="text-[9px] tracking-widest text-neutral-400 font-bold uppercase block">
+                                      Transpirabilidad
+                                    </span>
+                                    <span className="text-black font-bold text-[11px] block leading-tight">
+                                      {fabric.breathability}
+                                    </span>
+                                  </div>
+                                </div>
                               </div>
-                            ))}
+                            ) : (
+                              /* Ficha técnica detallada por clic (Especificaciones / Beneficios) */
+                              <div className="space-y-3">
+                                {fabric.bulletSpecs.map((spec, idx) => (
+                                  <div key={idx} className="flex gap-2 items-start text-xs leading-tight">
+                                    <span className="w-1.5 h-1.5 bg-[#E43537] rounded-full shrink-0 mt-1" />
+                                    <div>
+                                      <h4 className="text-black font-bold text-[9px] tracking-wider uppercase mb-0.5">
+                                        {spec.label}
+                                      </h4>
+                                      <p className="text-neutral-500 font-medium text-[11px]">
+                                        {spec.text}
+                                      </p>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
                           </div>
                         </div>
 
-                        {/* Hover state overlay */}
-                        <div className="absolute inset-0 bg-black text-white p-6 opacity-0 pointer-events-none group-hover:pointer-events-auto translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex flex-col justify-start z-20">
-                          <h3 className="font-heading font-black text-xl uppercase text-white mb-6">
-                            {fabric.name}
-                          </h3>
-                          <span className="text-[10px] tracking-[0.2em] text-[#FF6663] font-bold uppercase block mb-3">
-                            Ideal para:
-                          </span>
-                          <p className="text-xs sm:text-sm text-neutral-300 font-medium leading-relaxed">
-                            {fabric.bestFor}
-                          </p>
+                        {/* Botón Ver Tela */}
+                        <div className="mt-6 pt-4 border-t border-neutral-100">
+                          <button
+                            onClick={() => toggleTela(fabric.id)}
+                            className={`w-full py-2.5 text-[11px] font-bold tracking-widest uppercase border transition-all duration-300 rounded-none cursor-pointer ${
+                              isDetailOpen
+                                ? 'bg-black text-white border-black hover:bg-neutral-900 shadow-[2px_2px_0px_#E43537]'
+                                : 'bg-white text-black border-black hover:bg-neutral-50'
+                            }`}
+                          >
+                            {isDetailOpen ? 'Ver Ficha' : 'Ver Tela'}
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -245,7 +283,7 @@ export function TecnologiaPage() {
                       disabled={f.id === selectedFabricB}
                       className={`p-3 text-xs font-bold uppercase tracking-wider text-center border transition-all duration-300 ease-out rounded-none ${
                         selectedFabricA === f.id
-                          ? 'bg-black text-white border-black shadow-[2px_2px_0px_#FF6663]'
+                          ? 'bg-black text-white border-black shadow-[2px_2px_0px_#E43537]'
                           : f.id === selectedFabricB
                           ? 'bg-neutral-50 text-neutral-300 border-neutral-200 cursor-not-allowed opacity-50'
                           : 'bg-white text-black border-black hover:bg-neutral-50 hover:scale-[1.02]'
@@ -270,7 +308,7 @@ export function TecnologiaPage() {
                       disabled={f.id === selectedFabricA}
                       className={`p-3 text-xs font-bold uppercase tracking-wider text-center border transition-all duration-300 ease-out rounded-none ${
                         selectedFabricB === f.id
-                          ? 'bg-black text-white border-black shadow-[2px_2px_0px_#FF6663]'
+                          ? 'bg-black text-white border-black shadow-[2px_2px_0px_#E43537]'
                           : f.id === selectedFabricA
                           ? 'bg-neutral-50 text-neutral-300 border-neutral-200 cursor-not-allowed opacity-50'
                           : 'bg-white text-black border-black hover:bg-neutral-50 hover:scale-[1.02]'

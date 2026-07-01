@@ -21,7 +21,7 @@ export function TerminosPage() {
             </p>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 1. Solicitudes de información y cotización
               </h2>
               <p className="text-justify">
@@ -33,7 +33,7 @@ export function TerminosPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 2. Cotizaciones
               </h2>
               <p className="text-justify">
@@ -48,7 +48,7 @@ export function TerminosPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 3. Términos aplicables a cotizaciones y pedidos
               </h2>
               <p className="text-justify">
@@ -70,7 +70,7 @@ export function TerminosPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 4. Productos personalizados
               </h2>
               <p className="text-justify">
@@ -82,7 +82,7 @@ export function TerminosPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 5. Imágenes, muestras y referencias visuales
               </h2>
               <p className="text-justify">
@@ -94,7 +94,7 @@ export function TerminosPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 6. Tiempos de entrega
               </h2>
               <p className="text-justify">
@@ -106,7 +106,7 @@ export function TerminosPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 7. Comunicación con asesores
               </h2>
               <p className="text-justify">
@@ -115,7 +115,7 @@ export function TerminosPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 8. Limitación de responsabilidad
               </h2>
               <p className="text-justify">
@@ -127,19 +127,19 @@ export function TerminosPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 9. Modificaciones a los Términos Comerciales
               </h2>
               <p className="text-justify">
                 Sports Print MX podrá modificar o actualizar los presentes Términos Comerciales en cualquier momento. Las modificaciones serán publicadas en este sitio web y entrarán en vigor a partir de su publicación.
               </p>
-              <p className="text-justify font-bold text-[#FF6663]">
+              <p className="text-justify font-bold text-[#E43537]">
                 Para pedidos ya confirmados, aplicarán las condiciones establecidas en la cotización aceptada por el cliente, salvo acuerdo distinto por escrito.
               </p>
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 10. Contacto
               </h2>
               <p className="text-justify">

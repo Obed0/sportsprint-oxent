@@ -83,7 +83,7 @@ export function Diferenciadores() {
               <StaggerItem key={i} className="h-full">
                 <GlowCard>
                   <div>
-                    <div className="w-12 h-12 bg-black flex items-center justify-center mb-6 rounded-none group-hover:bg-[#FF6663] transition-colors duration-300">
+                    <div className="w-12 h-12 bg-black flex items-center justify-center mb-6 rounded-none group-hover:bg-[#E43537] transition-colors duration-300">
                       <Icon className="w-6 h-6 text-white transition-colors duration-300" />
                     </div>
                     <h3 className="font-heading font-black text-2xl uppercase mb-3 text-black">

@@ -21,7 +21,7 @@ export function AvisoPage() {
             </p>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 1. Datos personales que recabamos
               </h2>
               <p className="text-justify">
@@ -45,7 +45,7 @@ export function AvisoPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 2. Finalidades del tratamiento de datos personales
               </h2>
               <p className="text-justify">
@@ -80,7 +80,7 @@ export function AvisoPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 3. Transferencia de datos personales
               </h2>
               <p className="text-justify">
@@ -95,7 +95,7 @@ export function AvisoPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 4. Protección y conservación de los datos personales
               </h2>
               <p className="text-justify">
@@ -107,7 +107,7 @@ export function AvisoPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 5. Derechos ARCO
               </h2>
               <p className="text-justify">
@@ -133,7 +133,7 @@ export function AvisoPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 6. Revocación del consentimiento y limitación de uso
               </h2>
               <p className="text-justify">
@@ -148,7 +148,7 @@ export function AvisoPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 7. Uso de cookies y tecnologías similares
               </h2>
               <p className="text-justify">
@@ -160,7 +160,7 @@ export function AvisoPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 8. Datos proporcionados por menores de edad
               </h2>
               <p className="text-justify">
@@ -175,13 +175,13 @@ export function AvisoPage() {
             </div>
 
             <div className="border-t border-neutral-200 pt-8 space-y-4">
-              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider">
+              <h2 className="text-lg font-extrabold uppercase text-neutral-900 tracking-wider pl-3 border-l-2 border-[#E43537]">
                 9. Cambios al Aviso de Privacidad
               </h2>
               <p className="text-justify">
                 SPORTS PRINT podrá modificar, actualizar o cambiar el presente Aviso de Privacidad en cualquier momento, derivado de cambios legales, internos, comerciales, operativos o por la incorporación de nuevos productos, servicios o herramientas tecnológicas.
               </p>
-              <p className="text-justify font-bold text-[#FF6663]">
+              <p className="text-justify font-bold text-[#E43537]">
                 Cualquier modificación será publicada en el sitio web oficial de SPORTS PRINT MX.
               </p>
             </div>

@@ -16,7 +16,7 @@
   --secondary-foreground: #000000;
   --muted: #FFFFFF;
   --muted-foreground: #4B5563;
-  --accent: #FF6663;
+  --accent: #E43537;
   --accent-foreground: #000000;
   --destructive: #000000;
   --destructive-foreground: #FFFFFF;
@@ -33,7 +33,7 @@
   --sp-black: #000000;
   --sp-gray-text: #4B5563;
   --sp-gray-border: #E5E5EA;
-  --sp-accent: #FF6663;
+  --sp-accent: #E43537;
 
   /* Motion tokens */
   --ease-reveal: cubic-bezier(0.25, 0.46, 0.45, 0.94);

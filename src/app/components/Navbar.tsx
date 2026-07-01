@@ -1,10 +1,48 @@
-import { Menu, X, ChevronDown, ArrowRight, Instagram, Facebook, Linkedin } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Instagram, Facebook, Linkedin, Search, Shirt, Backpack, Award, Dumbbell, GlassWater } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { brandLogosMap } from './ClientLogos';
 import { PremiumButton } from './ui/PremiumAnimations';
 import logoTransparent from '../../imports/logo_transparent.webp';
+
+const searchDatabase = [
+  {
+    id: 'playeras',
+    title: 'Playeras atléticas',
+    icon: Shirt,
+    keywords: ['playeras', 'playera', 'camisetas', 'camiseta', 'jersey', 'jerseys', 'ropa', 'deportiva', 'vestimenta', 'telas', 'sublimado'],
+    url: '/catalogo#playeras'
+  },
+  {
+    id: 'morrales',
+    title: 'Morrales reforzados',
+    icon: Backpack,
+    keywords: ['morrales', 'morral', 'mochilas', 'mochila', 'bolsa', 'bolsas', 'bulto', 'morralito', 'bolso', 'talega'],
+    url: '/catalogo#morrales'
+  },
+  {
+    id: 'medallas',
+    title: 'Medallas Metálicas',
+    icon: Award,
+    keywords: ['medallas', 'medalla', 'metalica', 'metalicas', 'trofeo', 'premio', 'premios', 'reconocimiento', 'bronce', 'plata', 'oro'],
+    url: '/catalogo#medallas'
+  },
+  {
+    id: 'kits',
+    title: 'Kits deportivos',
+    icon: Dumbbell,
+    keywords: ['kits', 'kit', 'paquete', 'paquetes', 'combo', 'combos', 'corredor', 'corredores', 'competidor', 'competidores'],
+    url: '/catalogo#kits'
+  },
+  {
+    id: 'otros',
+    title: 'Otros Accesorios',
+    icon: GlassWater,
+    keywords: ['otros', 'gorras', 'gorra', 'viseras', 'visera', 'botellas', 'botella', 'cilindros', 'cilindro', 'termos', 'termo', 'accesorios', 'accesorio', 'hidratacion'],
+    url: '/catalogo#otros'
+  }
+];
 
 // Prefetch functions for lazy route chunks optimization
 const prefetchCatalogo = () => import('../pages/CatalogoPage');
@@ -22,7 +60,9 @@ const aaaClients = [
   'IOS Offices',
   'IdemSport',
   'SomosRunning',
-  'En Dónde Correr'
+  'En Dónde Correr',
+  'UNAM',
+  'IPN'
 ];
 
 export function Navbar() {
@@ -34,7 +74,93 @@ export function Navbar() {
   const [mobileExpandedCasos, setMobileExpandedCasos] = useState(false);
   const [mobileExpandedTecnologia, setMobileExpandedTecnologia] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Search states & refs
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchSuggestions, setSearchSuggestions] = useState<typeof searchDatabase>([]);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+
+  // Focus search input when opened
+  useEffect(() => {
+    if (isSearchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [isSearchOpen]);
+
+  // Click outside search container to close it
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
+        setIsSearchOpen(false);
+        setSearchQuery('');
+        setSearchSuggestions([]);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Update suggestions dynamically
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchSuggestions([]);
+      return;
+    }
+    const query = searchQuery.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Remove accents
+    const filtered = searchDatabase.filter(item => 
+      item.title.toLowerCase().includes(query) || 
+      item.keywords.some(kw => kw.includes(query))
+    );
+    setSearchSuggestions(filtered);
+  }, [searchQuery]);
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+
+    const query = searchQuery.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    // Try to find an exact or keyword match
+    const match = searchDatabase.find(item => 
+      item.title.toLowerCase().includes(query) || 
+      item.keywords.some(kw => kw === query || kw.includes(query))
+    );
+
+    if (match) {
+      // Navigate to destination
+      navigate(match.url);
+      // If we are already on /catalogo, need to scroll to section
+      if (location.pathname === '/catalogo') {
+        const element = document.getElementById(match.id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    } else {
+      // Fallback: just go to catalog
+      navigate('/catalogo');
+    }
+
+    setIsSearchOpen(false);
+    setSearchQuery('');
+    setSearchSuggestions([]);
+  };
+
+  const handleSuggestionClick = (url: string, id: string) => {
+    navigate(url);
+    if (location.pathname === '/catalogo') {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setIsSearchOpen(false);
+    setSearchQuery('');
+    setSearchSuggestions([]);
+  };
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -89,14 +215,14 @@ export function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b ${
+        className={`fixed top-0 w-full z-[9999] transition-all duration-300 bg-white/80 backdrop-blur-md border-b ${
           scrolled ? 'border-black py-3' : 'border-black/10 py-5'
         }`}
         onMouseLeave={handleMouseLeave}
       >
         {/* Scroll Progress Indicator */}
         <motion.div
-          className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#FF6663] origin-left z-50"
+          className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#E43537] origin-left z-50"
           style={{ scaleX }}
         />
 
@@ -184,7 +310,164 @@ export function Navbar() {
             </div>
 
             {/* Right Action buttons */}
-            <div className="flex items-center gap-3 sm:gap-4 h-full">
+            <div className="flex items-center gap-2 sm:gap-3 h-full">
+              {/* Search Bar - Desktop */}
+              <div ref={searchContainerRef} className={`relative hidden lg:flex items-center transition-all duration-300 ${isSearchOpen ? 'mx-5' : 'mx-1.5'}`}>
+                <motion.div
+                  animate={{
+                    width: isSearchOpen ? 260 : 42,
+                    borderRadius: isSearchOpen ? "14px" : "9999px",
+                  }}
+                  transition={{ type: "spring", stiffness: 350, damping: 28 }}
+                  onClick={() => {
+                    if (!isSearchOpen) {
+                      setIsSearchOpen(true);
+                    }
+                  }}
+                  className={`flex items-center h-10 overflow-hidden transition-shadow transition-colors duration-300 border ${
+                    isSearchOpen 
+                      ? "bg-white border-neutral-200 shadow-[0_4px_12px_rgba(0,0,0,0.08)]" 
+                      : "bg-white/80 backdrop-blur-md border-black/10 hover:border-black/20 cursor-pointer justify-center shadow-[0_2px_8px_rgba(0,0,0,0.02)]"
+                  }`}
+                >
+                  <form onSubmit={handleSearchSubmit} className="flex items-center w-full h-full px-1 justify-between">
+                    <input
+                      ref={searchInputRef}
+                      type="text"
+                      placeholder="BUSCAR..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className={`bg-transparent border-0 outline-none text-xs font-bold uppercase tracking-wider text-black placeholder-neutral-400 h-full transition-all duration-300 ${
+                        isSearchOpen ? "opacity-100 pl-3 w-full flex-grow" : "opacity-0 w-0 p-0 flex-none pointer-events-none"
+                      }`}
+                    />
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (isSearchOpen) {
+                          if (searchQuery.trim()) {
+                            handleSearchSubmit({ preventDefault: () => {} } as any);
+                          } else {
+                            setIsSearchOpen(false);
+                            setSearchQuery('');
+                          }
+                        } else {
+                          setIsSearchOpen(true);
+                        }
+                      }}
+                      className="w-8 h-8 rounded-full flex items-center justify-center text-black hover:bg-neutral-100/50 transition-colors shrink-0 flex-none"
+                      aria-label="Buscar"
+                    >
+                      <Search size={16} />
+                    </button>
+                  </form>
+                </motion.div>
+
+                {/* Desktop Search Suggestions */}
+                <AnimatePresence>
+                  {isSearchOpen && searchSuggestions.length > 0 && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full right-0 mt-2 w-64 bg-white border border-neutral-100 shadow-[0_8px_24px_rgba(0,0,0,0.08)] z-[10000] p-2 rounded-xl"
+                    >
+                      <span className="text-[9px] tracking-[0.2em] text-neutral-400 font-bold uppercase block px-3 py-1 border-b border-neutral-100 mb-1">
+                        Sugerencias de búsqueda
+                      </span>
+                      {searchSuggestions.map((item) => (
+                        <button
+                          key={item.id}
+                          onClick={() => handleSuggestionClick(item.url, item.id)}
+                          className="w-full text-left px-3 py-2 text-xs font-bold text-neutral-700 hover:text-black hover:bg-neutral-50 transition-colors uppercase tracking-wider flex items-center gap-3 rounded-lg"
+                        >
+                          <item.icon size={15} className="text-neutral-400 group-hover:text-black transition-colors duration-300 shrink-0" />
+                          <span>{item.title}</span>
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Search Bar - Mobile */}
+              <div className={`lg:hidden flex items-center relative transition-all duration-300 ${isSearchOpen ? 'mx-3' : 'mx-0.5'}`}>
+                <motion.div
+                  animate={{
+                    width: isSearchOpen ? 180 : 38,
+                    borderRadius: isSearchOpen ? "12px" : "9999px",
+                  }}
+                  transition={{ type: "spring", stiffness: 350, damping: 28 }}
+                  onClick={() => {
+                    if (!isSearchOpen) {
+                      setIsSearchOpen(true);
+                    }
+                  }}
+                  className={`flex items-center h-9 overflow-hidden transition-shadow transition-colors duration-300 border ${
+                    isSearchOpen 
+                      ? "bg-white border-neutral-200 shadow-[0_4px_12px_rgba(0,0,0,0.08)]" 
+                      : "bg-white/80 backdrop-blur-md border-black/10 cursor-pointer justify-center shadow-[0_2px_8px_rgba(0,0,0,0.02)]"
+                  }`}
+                >
+                  <form onSubmit={handleSearchSubmit} className="flex items-center w-full h-full px-0.5 justify-between">
+                    <input
+                      ref={searchInputRef}
+                      type="text"
+                      placeholder="BUSCAR..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className={`bg-transparent border-0 outline-none text-[10px] font-bold uppercase tracking-wider text-black placeholder-neutral-400 h-full transition-all duration-300 ${
+                        isSearchOpen ? "opacity-100 pl-2 w-full flex-grow" : "opacity-0 w-0 p-0 flex-none pointer-events-none"
+                      }`}
+                    />
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (isSearchOpen) {
+                          if (searchQuery.trim()) {
+                            handleSearchSubmit({ preventDefault: () => {} } as any);
+                          } else {
+                            setIsSearchOpen(false);
+                            setSearchQuery('');
+                          }
+                        } else {
+                          setIsSearchOpen(true);
+                        }
+                      }}
+                      className="w-7 h-7 rounded-full flex items-center justify-center text-black hover:bg-neutral-50/50 transition-colors shrink-0 flex-none"
+                      aria-label="Buscar"
+                    >
+                      <Search size={14} />
+                    </button>
+                  </form>
+                </motion.div>
+
+                {/* Mobile Suggestions */}
+                <AnimatePresence>
+                  {isSearchOpen && searchSuggestions.length > 0 && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full right-0 mt-2 w-48 bg-white border border-neutral-100 shadow-[0_8px_24px_rgba(0,0,0,0.08)] z-[10000] p-2 rounded-xl"
+                    >
+                      {searchSuggestions.map((item) => (
+                        <button
+                          key={item.id}
+                          onClick={() => handleSuggestionClick(item.url, item.id)}
+                          className="w-full text-left px-3 py-2 text-xs font-bold text-neutral-700 hover:text-black hover:bg-neutral-50 transition-colors uppercase tracking-wider flex items-center gap-3 rounded-lg"
+                        >
+                          <item.icon size={14} className="text-neutral-400 group-hover:text-black transition-colors duration-300 shrink-0" />
+                          <span>{item.title}</span>
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
               {/* COTIZA AHORA - Visible on Desktop AND Mobile */}
               <div onMouseEnter={prefetchCotizar} onFocus={prefetchCotizar}>
                 <PremiumButton
@@ -192,7 +475,7 @@ export function Navbar() {
                   onClick={() => { setIsOpen(false); setActiveDropdown(null); }}
                   text="COTIZA AHORA"
                   variant="primary"
-                  className="!py-2.5 sm:!py-3 !px-4 sm:!px-6 shrink-0"
+                  className="!py-2.5 sm:!py-3 !px-3 sm:!px-6 shrink-0"
                 />
               </div>
 
@@ -250,11 +533,11 @@ export function Navbar() {
                       </span>
                       <div className="flex flex-col">
                         {[
-                          { title: 'Playeras', path: '/catalogo#playeras' },
-                          { title: 'Morrales', path: '/catalogo#morrales' },
-                          { title: 'Medallas', path: '/catalogo#medallas' },
-                          { title: 'Kits Deportivos', path: '/catalogo#kits' },
-                          { title: 'Otros Accesorios', path: '/catalogo#otros' }
+                          { title: 'Playeras', path: '/catalogo#playeras', icon: Shirt },
+                          { title: 'Morrales', path: '/catalogo#morrales', icon: Backpack },
+                          { title: 'Medallas', path: '/catalogo#medallas', icon: Award },
+                          { title: 'Kits Deportivos', path: '/catalogo#kits', icon: Dumbbell },
+                          { title: 'Otros Accesorios', path: '/catalogo#otros', icon: GlassWater }
                         ].map((prod) => (
                           <Link
                             key={prod.title}
@@ -262,8 +545,9 @@ export function Navbar() {
                             onClick={() => setActiveDropdown(null)}
                             className="group flex items-center border-b border-neutral-100 py-3.5 hover:pl-2 transition-all duration-300"
                           >
-                            <div className="flex items-center gap-3">
-                              <span className="w-1.5 h-1.5 bg-[#FF6663] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 rounded-none" />
+                            <div className="flex items-center gap-3.5">
+                              <span className="w-1.5 h-1.5 bg-[#E43537] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 rounded-none" />
+                              <prod.icon size={18} className="text-neutral-400 group-hover:text-black transition-colors duration-300 shrink-0" />
                               <h4 className="font-heading font-bold text-xs sm:text-[13px] tracking-[0.12em] uppercase text-neutral-600 group-hover:text-black transition-colors duration-300">
                                 {prod.title}
                               </h4>
@@ -313,7 +597,7 @@ export function Navbar() {
                             className="group flex items-center border-b border-neutral-100 py-3.5 hover:pl-2 transition-all duration-300"
                           >
                             <div className="flex items-center gap-3">
-                              <span className="w-1.5 h-1.5 bg-[#FF6663] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 rounded-none" />
+                              <span className="w-1.5 h-1.5 bg-[#E43537] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 rounded-none" />
                               <h4 className="font-heading font-bold text-xs sm:text-[13px] tracking-[0.12em] uppercase text-neutral-600 group-hover:text-black transition-colors duration-300">
                                 {item.title}
                               </h4>
@@ -364,7 +648,7 @@ export function Navbar() {
                             className="group flex items-center border-b border-neutral-100 py-3.5 hover:pl-2 transition-all duration-300"
                           >
                             <div className="flex items-center gap-3">
-                              <span className="w-1.5 h-1.5 bg-[#FF6663] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 rounded-none" />
+                              <span className="w-1.5 h-1.5 bg-[#E43537] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 rounded-none" />
                               <h4 className="font-heading font-bold text-xs sm:text-[13px] tracking-[0.12em] uppercase text-neutral-600 group-hover:text-black transition-colors duration-300">
                                 {item.title}
                               </h4>
@@ -413,7 +697,7 @@ export function Navbar() {
                             className="group flex items-center border-b border-neutral-100 py-3.5 hover:pl-2 transition-all duration-300"
                           >
                             <div className="flex items-center gap-3">
-                              <span className="w-1.5 h-1.5 bg-[#FF6663] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 rounded-none" />
+                              <span className="w-1.5 h-1.5 bg-[#E43537] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 rounded-none" />
                               <h4 className="font-heading font-bold text-xs sm:text-[13px] tracking-[0.12em] uppercase text-neutral-600 group-hover:text-black transition-colors duration-300">
                                 {item.title}
                               </h4>

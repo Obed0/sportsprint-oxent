@@ -53,7 +53,7 @@ export function ValueProps() {
               <div className="neu-card border border-[#E5E5EA] bg-[#F5F5F7] p-8 md:p-10 flex flex-col justify-between h-full group hover:bg-white hover:-translate-y-2 transition-all duration-300 ease-out">
                 <div>
                   <div className="flex justify-between items-start mb-10">
-                    <div className="p-3 border border-[#E5E5EA] bg-white rounded-none shadow-sm group-hover:bg-[#FF6663] group-hover:border-black transition-colors duration-300">
+                    <div className="p-3 border border-[#E5E5EA] bg-white rounded-none shadow-sm group-hover:bg-[#E43537] group-hover:border-black transition-colors duration-300">
                       {prop.icon}
                     </div>
                     <span className="font-heading text-4xl text-neutral-300 group-hover:text-black transition-colors duration-300">
@@ -92,7 +92,7 @@ export function ValueProps() {
           </div>
           <Link
             to="/cotizar"
-            className="text-sm font-bold tracking-widest uppercase border-b-2 border-black hover:border-[#FF6663] transition-colors duration-300 ease-out py-1 shrink-0"
+            className="text-sm font-bold tracking-widest uppercase border-b-2 border-black hover:border-[#E43537] transition-colors duration-300 ease-out py-1 shrink-0"
           >
             Cotizar Ahora
           </Link>

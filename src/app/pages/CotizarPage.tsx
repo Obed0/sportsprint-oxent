@@ -310,7 +310,7 @@ export function CotizarPage() {
                           onClick={() => setFormData((prev) => ({ ...prev, volume: opt.value }))}
                           className={`p-3.5 text-xs font-bold uppercase tracking-wider text-center border transition-all duration-200 rounded-none ${
                             formData.volume === opt.value
-                              ? 'bg-black text-white border-black shadow-[2px_2px_0px_#FF6663]'
+                              ? 'bg-black text-white border-black shadow-[2px_2px_0px_#E43537]'
                               : 'bg-white text-black border-black hover:bg-neutral-50 hover:scale-[1.02]'
                           }`}
                         >
@@ -419,7 +419,7 @@ export function CotizarPage() {
                         }}
                         className={`p-3.5 text-xs font-bold uppercase tracking-wider text-center border transition-all duration-200 rounded-none ${
                           hasDesign === 'no'
-                            ? 'bg-black text-white border-black shadow-[2px_2px_0px_#FF6663]'
+                            ? 'bg-black text-white border-black shadow-[2px_2px_0px_#E43537]'
                             : 'bg-white text-black border-black hover:bg-neutral-50 hover:scale-[1.02]'
                         }`}
                       >
@@ -430,7 +430,7 @@ export function CotizarPage() {
                         onClick={() => setHasDesign('si')}
                         className={`p-3.5 text-xs font-bold uppercase tracking-wider text-center border transition-all duration-200 rounded-none ${
                           hasDesign === 'si'
-                            ? 'bg-black text-white border-black shadow-[2px_2px_0px_#FF6663]'
+                            ? 'bg-black text-white border-black shadow-[2px_2px_0px_#E43537]'
                             : 'bg-white text-black border-black hover:bg-neutral-50 hover:scale-[1.02]'
                         }`}
                       >

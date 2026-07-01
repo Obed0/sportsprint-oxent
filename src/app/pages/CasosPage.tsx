@@ -44,7 +44,9 @@ const aaaClients = [
   'IOS Offices',
   'IdemSport',
   'SomosRunning',
-  'En Dónde Correr'
+  'En Dónde Correr',
+  'UNAM',
+  'IPN'
 ];
 
 const containerVariants = {
@@ -96,7 +98,7 @@ export function CasosPage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-10 lg:gap-14 items-center justify-items-center"
+            className="flex flex-wrap justify-center gap-x-10 sm:gap-x-14 lg:gap-x-20 gap-y-6 sm:gap-y-10 items-center max-w-[1200px] mx-auto"
           >
             {aaaClients.map((client) => {
               const LogoComponent = brandLogosMap[client];
@@ -109,10 +111,10 @@ export function CasosPage() {
                     y: -2,
                     transition: { duration: 0.2, ease: "easeOut" } 
                   }}
-                  className="w-full h-24 sm:h-32 flex items-center justify-center p-2 group cursor-default transition-all duration-300"
+                  className="w-[130px] sm:w-[180px] lg:w-[240px] h-20 sm:h-28 flex items-center justify-center p-2 group cursor-default transition-all duration-300"
                 >
                   {LogoComponent ? (
-                    <div className="w-full max-w-[220px] sm:max-w-[260px] flex items-center justify-center transition-all duration-300">
+                    <div className="w-full flex items-center justify-center transition-all duration-300">
                       <LogoComponent className="w-full h-auto max-h-16 sm:max-h-20" />
                     </div>
                   ) : (
@@ -145,9 +147,9 @@ export function CasosPage() {
           <div className="grid md:grid-cols-2 gap-6 md:gap-10">
             {testimonials.map((test, i) => (
               <ScrollReveal key={i} delay={i * 0.15} direction="up">
-                <div className="group border border-black p-8 sm:p-10 flex flex-col justify-between h-full rounded-none hover:border-[#FF6663] transition-colors duration-300">
+                <div className="group border border-black p-8 sm:p-10 flex flex-col justify-between h-full rounded-none hover:border-[#E43537] transition-colors duration-300">
                   <div>
-                    <Quote className="w-10 h-10 text-neutral-200 group-hover:text-[#FF6663] group-hover:fill-[#FF6663]/5 transition-all duration-300 mb-6" />
+                    <Quote className="w-10 h-10 text-neutral-200 group-hover:text-[#E43537] group-hover:fill-[#E43537]/5 transition-all duration-300 mb-6" />
                     <p className="text-[#4B5563] text-sm leading-relaxed mb-8 italic font-medium">
                       "{test.quote}"
                     </p>

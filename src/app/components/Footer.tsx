@@ -69,16 +69,16 @@ export function Footer() {
       {!isCotizarOrAvisoOrTerminos && (
         <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-[10] w-[200px] h-[200px] sm:w-[480px] sm:h-[480px] md:w-[680px] md:h-[680px]" style={{ willChange: 'transform' }}>
           {/* Backlight Glow for Premium Contrast */}
-          <div className="absolute inset-0 bg-[#FF6663] opacity-35 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute inset-0 bg-[#E43537] opacity-35 rounded-full blur-[80px] pointer-events-none" />
           
           {/* Organic Morphing SVG Blob Background */}
           <svg
             viewBox="0 0 200 200"
-            className="absolute inset-0 bg-[#FF6663]/25 pointer-events-none animate-morph-blob"
+            className="absolute inset-0 bg-[#E43537]/25 pointer-events-none animate-morph-blob"
           >
             <path
               fill="currentColor"
-              className="text-[#FF6663]/30"
+              className="text-[#E43537]/30"
               d="M45.5,-75.8C58.3,-69.5,67.6,-56.3,73.8,-41.8C80,-27.3,83.1,-11.6,83.9,4.2C84.7,20,83.2,35.8,76.1,48.7C69.1,61.7,56.5,71.8,42.4,77.5C28.3,83.1,12.7,84.4,-2.4,88.1C-17.5,91.8,-32.1,98,-44.6,94.9C-57.1,91.8,-67.6,79.5,-74.6,65.6C-81.6,51.8,-85.2,36.5,-86.3,21.3C-87.4,6,-86.1,-9.1,-81.4,-22.7C-76.7,-36.3,-68.7,-48.4,-57.5,-55.1C-46.3,-61.8,-32,-63.1,-18.2,-68.7C-4.4,-74.3,9,-84.1,24.9,-84.3C40.7,-84.5,32.7,-82.1,45.5,-75.8Z"
               transform="translate(100 100)"
             />
@@ -93,8 +93,8 @@ export function Footer() {
           <div className="absolute inset-0 bg-black z-0" />
           
           {/* Decorative Neon Accent Lines */}
-          <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[#FF6663] to-transparent z-20" />
-          <div className="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-[#FF6663] opacity-5 filter blur-[120px] z-20" />
+          <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[#E43537] to-transparent z-20" />
+          <div className="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-[#E43537] opacity-5 filter blur-[120px] z-20" />
 
           <div className="max-w-[1400px] mx-auto relative z-20 flex flex-col items-center w-full">
             <ScrollReveal duration={0.7} direction="up" className="w-full flex flex-col items-center relative z-20">

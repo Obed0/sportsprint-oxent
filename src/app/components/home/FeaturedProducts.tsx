@@ -93,7 +93,7 @@ export function FeaturedProducts() {
                     <ul className="space-y-2 mb-6">
                       {item.specs.map((spec, sIdx) => (
                         <li key={sIdx} className="flex items-start gap-2 text-xs sm:text-sm text-neutral-600 font-medium">
-                          <span className="w-1.5 h-1.5 bg-[#FF6663] rounded-full shrink-0 mt-1.5" />
+                          <span className="w-1.5 h-1.5 bg-[#E43537] rounded-full shrink-0 mt-1.5" />
                           <span>{spec}</span>
                         </li>
                       ))}

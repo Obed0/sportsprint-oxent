@@ -23,7 +23,7 @@ const products = [
       'Sublimado de alta definición y gran durabilidad.',
       'Colores intensos que no se cuartean.'
     ],
-    accent: '#FF6663',
+    accent: '#E43537',
   },
   {
     num: '02',
@@ -37,7 +37,7 @@ const products = [
       'Esquinas reforzadas para mayor durabilidad.',
       'Cordones gruesos para un transporte cómodo.'
     ],
-    accent: '#FF6663',
+    accent: '#E43537',
   },
   {
     num: '03',
@@ -47,7 +47,7 @@ const products = [
     desc: 'Medallas conmemorativas de alto relieve. Diseños exclusivos y acabados en 2D/3D con listones satinados sublimados a todo color.',
     image: imgMedallas,
     specs: ['Diseños en 2D y 3D', 'Listón satinado', 'Terminados oro, plata y bronce', 'Costuras de alta resistencia'],
-    accent: '#FF6663',
+    accent: '#E43537',
   },
   {
     num: '04',
@@ -61,7 +61,7 @@ const products = [
       'Morral, medalla y número de competidor.',
       'Listos para entregar a cada participante.'
     ],
-    accent: '#FF6663',
+    accent: '#E43537',
   },
   {
     num: '05',
@@ -71,7 +71,7 @@ const products = [
     desc: 'Botellas, gorras y accesorios deportivos personalizados para tu evento.',
     image: imgOtros,
     specs: ['Gorras y viseras de running', 'Botellas de hidratación', 'Cintas y bandas elásticas', 'Calidad de impresión premium', 'Y más...'],
-    accent: '#FF6663',
+    accent: '#E43537',
   },
 ];
 
@@ -158,7 +158,7 @@ function CatalogSection({ product, index }: { product: typeof products[0]; index
               <div className="grid sm:grid-cols-2 gap-4">
                 {product.specs.map((spec, idx) => (
                   <div key={idx} className="flex items-center gap-3 text-xs sm:text-sm text-neutral-800 font-semibold border-b border-neutral-100 pb-2">
-                    <span className="w-1.5 h-1.5 bg-[#FF6663] rounded-full shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-[#E43537] rounded-full shrink-0" />
                     <span>{spec}</span>
                   </div>
                 ))}
