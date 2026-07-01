@@ -191,13 +191,7 @@ export function TecnologiaPage() {
                                     {fabric.bestFor}
                                   </p>
                                 </div>
-                                <div className="pt-2 border-t border-neutral-100 grid grid-cols-2 gap-2">
-                                  <div>
-                                    <span className="text-[9px] tracking-widest text-neutral-400 font-bold uppercase block">
-                                      Gramaje
-                                    </span>
-                                    <span className="text-black font-bold">{fabric.weight}</span>
-                                  </div>
+                                <div className="pt-2 border-t border-neutral-100">
                                   <div>
                                     <span className="text-[9px] tracking-widest text-neutral-400 font-bold uppercase block">
                                       Transpirabilidad
@@ -332,11 +326,7 @@ export function TecnologiaPage() {
                   </tr>
                 </thead>
                 <tbody className="text-xs sm:text-sm font-semibold">
-                  <tr className="border-b border-neutral-200">
-                    <td className="p-4 text-[#4B5563] bg-neutral-50 font-bold uppercase tracking-wider">Gramaje</td>
-                    <td className="p-4 text-black border-l border-neutral-200">{fabricA.weight}</td>
-                    <td className="p-4 text-black border-l border-neutral-200">{fabricB.weight}</td>
-                  </tr>
+
                   <tr className="border-b border-neutral-200">
                     <td className="p-4 text-[#4B5563] bg-neutral-50 font-bold uppercase tracking-wider">Composición</td>
                     <td className="p-4 text-black border-l border-neutral-200">{fabricA.composition}</td>
