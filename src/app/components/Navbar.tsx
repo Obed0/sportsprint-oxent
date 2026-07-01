@@ -745,11 +745,11 @@ export function Navbar() {
                         className="pl-2 mt-2 flex flex-col overflow-hidden text-sm border-l border-black/10"
                       >
                         {[
-                          { title: 'Playeras', path: '/catalogo#playeras' },
-                          { title: 'Morrales', path: '/catalogo#morrales' },
-                          { title: 'Medallas', path: '/catalogo#medallas' },
-                          { title: 'Kits Deportivos', path: '/catalogo#kits' },
-                          { title: 'Otros Accesorios', path: '/catalogo#otros' }
+                          { title: 'Playeras', path: '/catalogo#playeras', icon: Shirt },
+                          { title: 'Morrales', path: '/catalogo#morrales', icon: Backpack },
+                          { title: 'Medallas', path: '/catalogo#medallas', icon: Award },
+                          { title: 'Kits Deportivos', path: '/catalogo#kits', icon: Dumbbell },
+                          { title: 'Otros Accesorios', path: '/catalogo#otros', icon: GlassWater }
                         ].map((prod) => (
                           <Link 
                             key={prod.title}
@@ -757,8 +757,9 @@ export function Navbar() {
                             onClick={() => setIsOpen(false)}
                             className="py-2.5 active:bg-neutral-50 block border-b border-neutral-100/50"
                           >
-                            <span className="font-heading font-bold text-neutral-600 active:text-black uppercase tracking-[0.1em] text-xs block">
-                              {prod.title}
+                            <span className="font-heading font-bold text-neutral-600 active:text-black uppercase tracking-[0.1em] text-xs flex items-center gap-3">
+                              <prod.icon size={15} className="text-neutral-400 shrink-0" />
+                              <span>{prod.title}</span>
                             </span>
                           </Link>
                         ))}
