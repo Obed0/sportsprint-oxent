@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ScrollReveal } from '../ScrollReveal';
 import { Link } from 'react-router';
-import { ArrowRight, X } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { PremiumButton, ParallaxImage, StaggerContainer, StaggerItem } from '../ui/PremiumAnimations';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -80,7 +80,7 @@ export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
                 <ScrollReveal key={item.id} delay={index * 0.15} direction="up">
                   <div
                     id={item.id}
-                    className="border-b border-black/10 pb-8 lg:pb-10 last:border-b-0 last:pb-8 lg:last:pb-10 scroll-mt-32 relative"
+                    className="border-b border-black/10 pb-8 lg:pb-10 last:border-b-0 last:pb-8 lg:last:pb-10 scroll-mt-32"
                   >
                     {/* Index & Tag */}
                     <div className="flex items-center gap-3 mb-2">
@@ -102,60 +102,49 @@ export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
                       {item.participants}
                     </span>
 
-                    {/* Testimonial Quote */}
+                    {/* Testimonial Quote — Inline Expanding */}
                     <div className="border-l-2 border-black pl-4 py-0.5 mb-6">
-                      <p className="text-base font-semibold italic text-black leading-relaxed">
-                      "{item.briefQuote}"
-                      </p>
-                      <button
-                        onClick={() => setActiveCase(item)}
-                        className="inline-flex items-center gap-1 text-xs font-black tracking-widest uppercase text-black border-b border-black/30 hover:border-black pb-0.5 transition-colors cursor-pointer mt-3"
-                      >
-                        VER MÁS
-                      </button>
+                      <AnimatePresence mode="wait">
+                        {activeCase?.id === item.id ? (
+                          <motion.div
+                            key="full"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                            className="overflow-hidden"
+                          >
+                            <p className="text-sm sm:text-base font-semibold italic text-black leading-relaxed">
+                              "{item.quote}"
+                            </p>
+                            <button
+                              onClick={() => setActiveCase(null)}
+                              className="inline-flex items-center gap-1 text-xs font-black tracking-widest uppercase text-black border-b border-black/30 hover:border-black pb-0.5 transition-colors cursor-pointer mt-3"
+                            >
+                              CERRAR
+                            </button>
+                          </motion.div>
+                        ) : (
+                          <motion.div
+                            key="brief"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <p className="text-base font-semibold italic text-black leading-relaxed">
+                              "{item.briefQuote}"
+                            </p>
+                            <button
+                              onClick={() => setActiveCase(item)}
+                              className="inline-flex items-center gap-1 text-xs font-black tracking-widest uppercase text-black border-b border-black/30 hover:border-black pb-0.5 transition-colors cursor-pointer mt-3"
+                            >
+                              VER MÁS
+                            </button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
-
-                    {/* Inline Overlay for full quote */}
-                    <AnimatePresence>
-                      {activeCase?.id === item.id && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 10 }}
-                          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                          className="absolute inset-0 bg-white z-10 p-6 border border-black shadow-lg flex flex-col justify-between"
-                        >
-                          <button
-                            onClick={() => setActiveCase(null)}
-                            className="absolute top-4 right-4 text-neutral-400 hover:text-black transition-colors cursor-pointer p-1"
-                            aria-label="Cerrar"
-                          >
-                            <X size={18} />
-                          </button>
-
-                          <div>
-                            <span className="text-[10px] tracking-[0.2em] text-[#4B5563] font-bold uppercase block mb-1">
-                              {item.tag}
-                            </span>
-                            <h3 className="font-heading font-black text-lg sm:text-xl uppercase leading-tight mb-3">
-                              {item.title}
-                            </h3>
-                            <div className="border-l-2 border-black pl-3 py-0.5">
-                              <p className="text-sm sm:text-base font-semibold italic text-black leading-relaxed">
-                                "{item.quote}"
-                              </p>
-                            </div>
-                          </div>
-
-                          <button
-                            onClick={() => setActiveCase(null)}
-                            className="inline-flex items-center gap-1 text-xs font-black tracking-widest uppercase text-black border-b border-black/30 hover:border-black pb-0.5 transition-colors cursor-pointer mt-3 w-fit"
-                          >
-                            CERRAR
-                          </button>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
 
                   </div>
                 </ScrollReveal>
@@ -218,7 +207,7 @@ export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
 
                 {/* Editorial Text Area */}
                 <div
-                  className={`lg:col-span-6 flex flex-col justify-center lg:min-h-[360px] relative ${
+                  className={`lg:col-span-6 flex flex-col justify-center lg:min-h-[360px] ${
                     isLeft ? 'lg:order-2' : 'lg:order-1'
                   }`}
                 >
@@ -239,17 +228,48 @@ export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
                         {item.participants}
                       </span>
 
-                      {/* Quote */}
+                      {/* Quote — Inline Expanding */}
                       <div className="border-l-4 border-black pl-4 py-1 mb-8">
-                        <p className="text-base font-semibold italic text-black leading-relaxed transition-all duration-300 min-h-[3.5rem] lg:min-h-[4.5rem]">
-                          "{item.briefQuote}"
-                        </p>
-                        <button
-                          onClick={() => setActiveCase(item)}
-                          className="inline-flex items-center gap-1 text-xs font-black tracking-widest uppercase text-black border-b border-black/30 hover:border-black pb-0.5 transition-colors cursor-pointer mt-4"
-                        >
-                          VER MÁS
-                        </button>
+                        <AnimatePresence mode="wait">
+                          {activeCase?.id === item.id ? (
+                            <motion.div
+                              key="full"
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                              className="overflow-hidden"
+                            >
+                              <p className="text-sm sm:text-base font-semibold italic text-black leading-relaxed">
+                                "{item.quote}"
+                              </p>
+                              <button
+                                onClick={() => setActiveCase(null)}
+                                className="inline-flex items-center gap-1 text-xs font-black tracking-widest uppercase text-black border-b border-black/30 hover:border-black pb-0.5 transition-colors cursor-pointer mt-4"
+                              >
+                                CERRAR
+                              </button>
+                            </motion.div>
+                          ) : (
+                            <motion.div
+                              key="brief"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <p className="text-base font-semibold italic text-black leading-relaxed min-h-[3.5rem] lg:min-h-[4.5rem]">
+                                "{item.briefQuote}"
+                              </p>
+                              <button
+                                onClick={() => setActiveCase(item)}
+                                className="inline-flex items-center gap-1 text-xs font-black tracking-widest uppercase text-black border-b border-black/30 hover:border-black pb-0.5 transition-colors cursor-pointer mt-4"
+                              >
+                                VER MÁS
+                              </button>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
 
                       <PremiumButton
@@ -261,48 +281,6 @@ export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
                       />
                     </motion.div>
                   </ScrollReveal>
-
-                  {/* Inline Overlay for full quote */}
-                  <AnimatePresence>
-                    {activeCase?.id === item.id && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute inset-0 bg-white z-10 p-6 sm:p-8 border border-black shadow-lg flex flex-col justify-between"
-                      >
-                        <button
-                          onClick={() => setActiveCase(null)}
-                          className="absolute top-4 right-4 text-neutral-400 hover:text-black transition-colors cursor-pointer p-1"
-                          aria-label="Cerrar"
-                        >
-                          <X size={20} />
-                        </button>
-
-                        <div>
-                          <span className="text-[10px] tracking-[0.2em] text-[#4B5563] font-bold uppercase block mb-1">
-                            {item.tag}
-                          </span>
-                          <h3 className="font-heading font-black text-xl sm:text-2xl uppercase leading-tight mb-4">
-                            {item.title}
-                          </h3>
-                          <div className="border-l-4 border-black pl-4 py-1">
-                            <p className="text-base font-semibold italic text-black leading-relaxed">
-                              "{item.quote}"
-                            </p>
-                          </div>
-                        </div>
-
-                        <button
-                          onClick={() => setActiveCase(null)}
-                          className="inline-flex items-center gap-1 text-xs font-black tracking-widest uppercase text-black border-b border-black/30 hover:border-black pb-0.5 transition-colors cursor-pointer mt-4 w-fit"
-                        >
-                          CERRAR
-                        </button>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </div>
               </div>
             );

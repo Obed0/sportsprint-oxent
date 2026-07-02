@@ -23,14 +23,14 @@ export function CTABanner() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto">
             <Link
               to="/cotizar"
-              className="group flex items-center justify-center gap-2 bg-[#E43537] text-black hover:bg-white hover:text-black text-sm font-bold tracking-widest uppercase px-10 py-5 border border-[#E43537] hover:border-white transition-all duration-300 shadow-[4px_4px_0px_#000] hover:shadow-[4px_4px_0px_#E43537]"
+              className="group flex items-center justify-center gap-2 bg-[#E43537] text-black hover:bg-white hover:text-black text-sm font-bold tracking-widest uppercase px-6 sm:px-10 py-5 border border-[#E43537] hover:border-white transition-all duration-300 shadow-[4px_4px_0px_#000] hover:shadow-[4px_4px_0px_#E43537]"
             >
               Agendar Consulta de Manufactura
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               to="/tecnologia-textil"
-              className="flex items-center justify-center bg-transparent text-white hover:bg-white hover:text-black text-sm font-bold tracking-widest uppercase px-10 py-5 border border-white transition-all duration-300"
+              className="flex items-center justify-center bg-transparent text-white hover:bg-white hover:text-black text-sm font-bold tracking-widest uppercase px-6 sm:px-10 py-5 border border-white transition-all duration-300"
             >
               Ver Tecnologías Textiles
             </Link>

@@ -93,7 +93,7 @@ export function HomeHero() {
               <motion.div 
                 whileHover={{ y: -5, scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="w-full flex flex-col text-left cursor-default select-none border-l border-white/10 pl-4 group pb-4 border-b border-white/10 md:border-b-0 md:pb-0"
+                className="w-full flex flex-col text-left cursor-default select-none border-l-0 md:border-l border-white/10 pl-0 md:pl-4 group pb-4 border-b border-white/10 md:border-b-0 md:pb-0"
               >
                 <span className="font-heading font-black text-4xl sm:text-5xl tracking-tight leading-none mb-1 text-white select-none group-hover:text-[#E43537] transition-colors duration-300">
                   {metric.value}

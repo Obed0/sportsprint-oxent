@@ -98,7 +98,7 @@ export function Footer() {
 
           <div className="max-w-[1400px] mx-auto relative z-20 flex flex-col items-center w-full">
             <ScrollReveal duration={0.7} direction="up" className="w-full flex flex-col items-center relative z-20">
-              <h3 className="font-heading text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[1.15] uppercase max-w-4xl mx-auto mb-6 text-white relative py-8 sm:py-16 flex items-center justify-center w-full min-h-[120px] sm:min-h-[220px] z-30">
+              <h3 className="font-heading text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[1.15] uppercase max-w-4xl mx-auto mb-6 text-white relative py-6 sm:py-16 flex items-center justify-center w-full min-h-0 sm:min-h-[220px] z-30">
                 <span className="relative z-30 block max-w-3xl">
                   {ctaTitle}
                 </span>

@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { brandLogosMap } from './ClientLogos';
 import { PremiumButton } from './ui/PremiumAnimations';
-import logoTransparent from '../../imports/Logo3.jpeg';
+import logoTransparent from '../../imports/Logo3.png';
 
 const searchDatabase = [
   {
@@ -230,7 +230,6 @@ export function Navbar() {
           <div className="flex justify-between items-center h-16">
             
             {/* Logo */}
-            {/* Logo */}
             <Link 
               to="/" 
               onClick={() => { setIsOpen(false); setActiveDropdown(null); }}
@@ -239,7 +238,7 @@ export function Navbar() {
               <motion.img 
                 src={logoTransparent} 
                 alt="Sports Print MX Logo" 
-                className="h-14 sm:h-20 lg:h-24 w-auto object-contain"
+                className="h-12 sm:h-14 lg:h-16 w-auto object-contain py-0.5"
                 whileHover={{ rotate: -3, scale: 1.05 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 10 }}
               />
@@ -316,15 +315,15 @@ export function Navbar() {
                 <motion.div
                   animate={{
                     width: isSearchOpen ? 260 : 42,
-                    borderRadius: isSearchOpen ? "14px" : "9999px",
                   }}
+                  style={{ borderRadius: '9999px', transform: 'translateZ(0)' }}
                   transition={{ type: "spring", stiffness: 350, damping: 28 }}
                   onClick={() => {
                     if (!isSearchOpen) {
                       setIsSearchOpen(true);
                     }
                   }}
-                  className={`flex items-center h-10 overflow-hidden transition-shadow transition-colors duration-300 border ${
+                  className={`flex items-center h-10 rounded-full overflow-hidden transition-shadow transition-colors duration-300 border ${
                     isSearchOpen 
                       ? "bg-white border-neutral-200 shadow-[0_4px_12px_rgba(0,0,0,0.08)]" 
                       : "bg-white/80 backdrop-blur-md border-black/10 hover:border-black/20 cursor-pointer justify-center shadow-[0_2px_8px_rgba(0,0,0,0.02)]"
@@ -396,15 +395,15 @@ export function Navbar() {
                 <motion.div
                   animate={{
                     width: isSearchOpen ? 180 : 38,
-                    borderRadius: isSearchOpen ? "12px" : "9999px",
                   }}
+                  style={{ borderRadius: '9999px', transform: 'translateZ(0)' }}
                   transition={{ type: "spring", stiffness: 350, damping: 28 }}
                   onClick={() => {
                     if (!isSearchOpen) {
                       setIsSearchOpen(true);
                     }
                   }}
-                  className={`flex items-center h-9 overflow-hidden transition-shadow transition-colors duration-300 border ${
+                  className={`flex items-center h-9 rounded-full overflow-hidden transition-shadow transition-colors duration-300 border ${
                     isSearchOpen 
                       ? "bg-white border-neutral-200 shadow-[0_4px_12px_rgba(0,0,0,0.08)]" 
                       : "bg-white/80 backdrop-blur-md border-black/10 cursor-pointer justify-center shadow-[0_2px_8px_rgba(0,0,0,0.02)]"
