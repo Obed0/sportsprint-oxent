@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { brandLogosMap } from './ClientLogos';
 import { PremiumButton } from './ui/PremiumAnimations';
-import logoTransparent from '../../imports/logo_transparent.webp';
+import logoTransparent from '../../imports/Logo3.jpeg';
 
 const searchDatabase = [
   {
