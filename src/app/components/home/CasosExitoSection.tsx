@@ -12,8 +12,8 @@ import imgVuela from '../../../imports/carreras/carrera_ios_new.jpg';
 const cases = [
   {
     id: 'ios-offices',
-    tag: 'IOS OFFICES',
-    title: 'Carrera IOS',
+    tag: 'Carrera IOS',
+    title: 'IOS OFFICES',
     participants: '8,000 corredores',
     quote: 'SportsPrint demostró un nivel sobresaliente de profesionalismo y compromiso en la producción masiva de nuestros kits. Su entrega en tiempo y forma fue clave para el correcto desarrollo del evento, reflejándose directamente en la satisfacción y experiencia de los 8,000 corredores.',
     briefQuote: 'Demostró un nivel sobresaliente de profesionalismo y compromiso',
@@ -24,8 +24,8 @@ const cases = [
   },
   {
     id: 'allmkting',
-    tag: 'ALLMKTING & EN DÓNDE CORRER',
-    title: 'Operación Multievento Continua',
+    tag: 'PROVEEDOR OFICIAL',
+    title: 'ALL MARKETING & EN DÓNDE CORRER',
     participants: '3,000 a 5,000 corredores por carrera',
     quote: 'A lo largo de tres años como nuestro proveedor exclusivo, han destacado por su innovación tecnológica, uso de telas de la mayor calidad and precisión logística. Un aliado responsable, comprometido y fiel cumplidor de sus tareas que siempre está a la altura de eventos masivos.',
     briefQuote: 'Un aliado responsable, comprometido y fiel cumplidor...',
@@ -36,8 +36,8 @@ const cases = [
   },
   {
     id: 'trotime',
-    tag: 'TROTIME',
-    title: 'Alianza Estratégica Multimarca',
+    tag: 'Alianza Estratégica',
+    title: 'TROTIME',
     participants: '1,500 a 4,000 corredores por evento',
     quote: 'Un aliado clave en la producción textil personalizada que destaca por su puntualidad y alta capacidad de respuesta. Confiamos plenamente en ellos para resolver solicitudes urgentes de forma eficiente y bajo entregas oportunas, sin comprometer jamás el acabado final.',
     briefQuote: 'Confiamos plenamente en ellos para resolver solicitudes urgentes...',
@@ -82,20 +82,20 @@ export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
                     id={item.id}
                     className="border-b border-black/10 pb-8 lg:pb-10 last:border-b-0 last:pb-8 lg:last:pb-10 scroll-mt-32"
                   >
-                    {/* Index & Tag */}
-                    <div className="flex items-center gap-3 mb-2">
+                    {/* Index & Title (Large) */}
+                    <div className="flex items-center gap-3 mb-1">
                       <span className="font-heading font-black text-xs text-neutral-300">
                         {String(index + 1).padStart(2, '0')}
                       </span>
-                      <span className="text-[10px] tracking-[0.2em] text-[#4B5563] font-bold uppercase">
-                        {item.tag}
-                      </span>
+                      <h3 className="font-heading font-black text-2xl sm:text-3xl uppercase">
+                        {item.title}
+                      </h3>
                     </div>
 
-                    {/* Title */}
-                    <h3 className="font-heading font-black text-2xl sm:text-3xl uppercase mb-1">
-                      {item.title}
-                    </h3>
+                    {/* Tag (Smaller secondary subtitle below Title) */}
+                    <span className="text-[10px] tracking-[0.2em] text-[#4B5563] font-bold uppercase block mb-1">
+                      {item.tag}
+                    </span>
 
                     {/* Participants */}
                     <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider block mb-6">
@@ -213,15 +213,15 @@ export function CasosExitoSection({ minimal = false }: { minimal?: boolean }) {
                 >
                   <ScrollReveal direction={isLeft ? 'left' : 'right'}>
                     <motion.div layout="position" transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}>
-                      {/* Tag */}
-                      <span className="text-[10px] tracking-[0.2em] text-[#4B5563] font-bold uppercase block mb-2">
-                        {item.tag}
-                      </span>
-
-                      {/* Title */}
+                      {/* Title (Large) */}
                       <h3 className="font-heading font-black text-3xl sm:text-4xl uppercase mb-1">
                         {item.title}
                       </h3>
+
+                      {/* Tag (Smaller secondary subtitle below Title) */}
+                      <span className="text-[10px] tracking-[0.2em] text-[#4B5563] font-bold uppercase block mb-2">
+                        {item.tag}
+                      </span>
 
                       {/* Participants count */}
                       <span className="text-xs font-bold text-black uppercase tracking-wider block mb-6">
