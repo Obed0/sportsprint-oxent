@@ -1,7 +1,7 @@
 import { ScrollReveal } from '../ScrollReveal';
 
 const metrics = [
-  { value: '500+', label: 'Eventos Realizados', sub: 'Maratones y carreras nacionales' },
+  { value: '500+', label: 'Eventos Realizados', sub: 'Eventos y carreras nacionales' },
   { value: '100%', label: 'Producción Interna', sub: 'Control de calidad absoluto' },
   { value: 'No. 1', label: 'En Pedidos Masivos', sub: 'Con la mayor capacidad en México' },
 ];

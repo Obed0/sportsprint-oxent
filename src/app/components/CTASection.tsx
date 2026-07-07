@@ -36,7 +36,7 @@ export function CTASection() {
 
             {/* WhatsApp CTA */}
             <a
-              href="https://wa.me/525512345678?text=Hola%2C%20me%20interesa%20cotizar%20kits%20deportivos%20para%20mi%20evento"
+              href="https://wa.me/525543945069?text=Hola%2C%20me%20interesa%20cotizar%20kits%20deportivos%20para%20mi%20evento"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-4 bg-[#25D366] text-white px-8 py-4 mb-10 hover:bg-[#22c55e] transition-all duration-300 hover:shadow-[0_0_30px_rgba(37,211,102,0.3)]"
@@ -72,7 +72,9 @@ export function CTASection() {
                 </div>
                 <div>
                   <div className="text-[10px] tracking-[0.15em] text-white/25 uppercase">Teléfono</div>
-                  <div className="text-white/60 text-sm">+52 55 1234 5678</div>
+                  <a href="tel:+525543945069" className="text-white/60 text-sm hover:text-white transition-colors hover:underline">
+                    +52 55 4394 5069
+                  </a>
                 </div>
               </div>
             </div>
@@ -159,7 +161,7 @@ export function CTASection() {
                   className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.08] text-white/60 text-sm focus:border-[#FF4D00]/50 focus:outline-none transition-colors appearance-none cursor-pointer"
                 >
                   <option value="" className="bg-[#111]">Selecciona una opción</option>
-                  <option value="maraton" className="bg-[#111]">Carrera / Maratón</option>
+                  <option value="maraton" className="bg-[#111]">Carrera / Evento</option>
                   <option value="trail" className="bg-[#111]">Trail Running</option>
                   <option value="corporativo" className="bg-[#111]">Evento Corporativo</option>
                   <option value="torneo" className="bg-[#111]">Torneo Deportivo</option>

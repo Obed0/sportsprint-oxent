@@ -149,7 +149,7 @@ export function TerminosPage() {
                 <p><strong>Firma:</strong> Sports Print MX</p>
                 <p><strong>Sitio web:</strong> <a href="https://www.sportsprintmx.com" target="_blank" rel="noopener noreferrer" className="text-black underline">www.sportsprintmx.com</a></p>
                 <p><strong>Correo electrónico:</strong> <a href="mailto:admin@sportsprintmx.com" className="text-black underline">admin@sportsprintmx.com</a></p>
-                <p><strong>Teléfono / WhatsApp:</strong> <a href="tel:5543945069" className="text-black underline">5543945069</a></p>
+                <p><strong>Teléfono / WhatsApp:</strong> <a href="tel:+525543945069" className="text-black underline">+52 55 4394 5069</a></p>
                 <p className="text-xs text-neutral-400 mt-2 font-normal">Última actualización: junio 2026</p>
               </div>
             </div>

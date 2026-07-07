@@ -30,7 +30,7 @@ function NeonGrid() {
 
 export function HomeHero() {
   const metrics = [
-    { value: '500+', label: 'Eventos Realizados', sub: 'Maratones y carreras nacionales' },
+    { value: '500+', label: 'Eventos Realizados', sub: 'Eventos y carreras nacionales' },
     { value: '100%', label: 'Producción Interna', sub: 'Control de calidad absoluto' },
     { value: 'No. 1', label: 'En Pedidos Masivos', sub: 'Con la mayor capacidad en México' },
   ];
@@ -41,7 +41,7 @@ export function HomeHero() {
       <div className="absolute inset-0 z-0">
         <ParallaxImage
           src={heroImg}
-          alt="Corredores de maratón y producción deportiva"
+          alt="Corredores de eventos y producción deportiva"
           className="opacity-40 filter brightness-90 contrast-110"
           yOffset={60}
           loading="eager"

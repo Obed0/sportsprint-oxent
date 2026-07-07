@@ -12,12 +12,12 @@ interface SEOMappings {
 
 const seoData: SEOMappings = {
   '/': {
-    title: 'Sports Print MX — Manufactura Premium de Playeras Deportivas para Maratones',
-    description: 'Manufactura mayorista de playeras deportivas premium para maratones y eventos masivos. Sublimación, tecnología Dry-Fit, producción de +50,000 piezas por tiraje. Solicita cotización por volumen.',
+    title: 'Sports Print MX — Manufactura Premium de Playeras Deportivas para Eventos',
+    description: 'Manufactura mayorista de playeras deportivas premium para eventos deportivos y carreras masivas. Sublimación, tecnología Dry-Fit, producción de +50,000 piezas por tiraje. Solicita cotización por volumen.',
   },
   '/catalogo': {
     title: 'Catálogo de Artículos Deportivos B2B | Sports Print MX',
-    description: 'Explora nuestra línea de producción de playeras, morrales, medallas metálicas conmemorativas y kits deportivos listos para entregar en maratones.',
+    description: 'Explora nuestra línea de producción de playeras, morrales, medallas metálicas conmemorativas y kits deportivos listos para entregar en eventos.',
   },
   '/nosotros': {
     title: 'Nosotros: Ingeniería y Planta Textil | Sports Print MX',
@@ -33,7 +33,7 @@ const seoData: SEOMappings = {
   },
   '/cotizar': {
     title: 'Cotización Comercial de Kits Deportivos | Sports Print MX',
-    description: 'Solicita un presupuesto masivo para tu maratón o carrera atlética. Muestrario técnico de costuras y telas gratis a tus oficinas a nivel nacional.',
+    description: 'Solicita un presupuesto masivo para tu evento o carrera atlética. Muestrario técnico de costuras y telas gratis a tus oficinas a nivel nacional.',
   },
 };
 

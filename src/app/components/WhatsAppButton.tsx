@@ -27,7 +27,7 @@ export function WhatsAppButton() {
     };
   }, [pathname]);
 
-  const waUrl = 'https://wa.me/525512345678?text=Hola%2C%20me%20interesa%20cotizar%20kits%20deportivos%20para%20mi%20evento';
+  const waUrl = 'https://wa.me/525543945069?text=Hola%2C%20me%20interesa%20cotizar%20kits%20deportivos%20para%20mi%20evento';
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);

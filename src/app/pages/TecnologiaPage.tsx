@@ -59,7 +59,7 @@ const fabrics: Fabric[] = [
     breathability: 'Secado ultra rápido',
     elasticity: 'Alta (Filtro UV e hidrófilo)',
     uvProtection: 'UPF 40+',
-    bestFor: 'Corredores élite, maratones y entrenamientos intensos.',
+    bestFor: 'Corredores élite, eventos y entrenamientos intensos.',
     image: fabricCoolDry,
     zoomImage: zoomCoolDry,
     bulletSpecs: [

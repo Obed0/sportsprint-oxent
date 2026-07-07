@@ -106,7 +106,7 @@ export function CotizarPage() {
     const message = encodeURIComponent(
       `Hola Sports Print MX, quiero cotizar un lote de kits deportivos para mi evento. Volumen estimado: ${formData.volume} piezas.`
     );
-    const url = `https://wa.me/525512345678?text=${message}`;
+    const url = `https://wa.me/525543945069?text=${message}`;
     const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if (isMobileDevice) {
       window.location.href = url;

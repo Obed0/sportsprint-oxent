@@ -23,7 +23,7 @@ const featured = [
   },
   {
     title: 'Morrales reforzados',
-    category: 'ACCESORIO DE MARATÓN',
+    category: 'ACCESORIO DE EVENTOS',
     desc: 'Resistencia y funcionalidad para entregar cada kit.',
     image: imgMorrales,
     specs: [
