@@ -6,12 +6,15 @@ import { PremiumButton } from '../components/ui/PremiumAnimations';
 import { Popover, PopoverContent, PopoverTrigger } from '../components/ui/popover';
 import { Calendar } from '../components/ui/calendar';
 import { es } from 'date-fns/locale';
+import { supabase } from '../lib/supabase';
 
 export function CotizarPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasDesign, setHasDesign] = useState<string>('');
   const [designFile, setDesignFile] = useState<File | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     companyName: '',
     contactName: '',
@@ -65,7 +68,7 @@ export function CotizarPage() {
     return `${day}/${month}/${year}`;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Check products selection
@@ -98,8 +101,69 @@ export function CotizarPage() {
     }
 
     setError(null);
-    console.log('Sending B2B Quote Request V2:', { ...formData, hasDesign, designFile });
-    setFormSubmitted(true);
+    setSubmitting(true);
+    setUploadProgress('Iniciando envío...');
+
+    try {
+      let designFileUrl = '';
+
+      // 1. Upload design file to Supabase Storage if present
+      if (hasDesign === 'si' && designFile) {
+        setUploadProgress('Subiendo archivo de diseño...');
+        
+        // Generate a unique file name to avoid collisions
+        const fileExt = designFile.name.split('.').pop();
+        const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 15)}.${fileExt}`;
+        const filePath = `quote-designs/${fileName}`;
+
+        const { data: uploadData, error: uploadError } = await supabase.storage
+          .from('designs')
+          .upload(filePath, designFile, {
+            cacheControl: '3600',
+            upsert: false
+          });
+
+        if (uploadError) {
+          throw new Error(`Error al subir el diseño: ${uploadError.message}`);
+        }
+
+        // Get public URL
+        const { data: publicUrlData } = supabase.storage
+          .from('designs')
+          .getPublicUrl(filePath);
+
+        designFileUrl = publicUrlData.publicUrl;
+      }
+
+      // 2. Insert record into database table 'quotes'
+      setUploadProgress('Guardando solicitud de cotización...');
+      const { error: dbError } = await supabase.from('quotes').insert([
+        {
+          company_name: formData.companyName,
+          contact_name: formData.contactName,
+          email: formData.email,
+          phone: formData.phone,
+          volume: formData.volume,
+          event_date: formData.eventDate,
+          products: formData.products,
+          has_design: hasDesign,
+          design_file_url: designFileUrl,
+          comments: formData.comments,
+        }
+      ]);
+
+      if (dbError) {
+        throw new Error(`Error al guardar en la base de datos: ${dbError.message}`);
+      }
+
+      setFormSubmitted(true);
+    } catch (err: any) {
+      console.error('Error submitting B2B quote:', err);
+      setError(err.message || 'Ocurrió un error inesperado al procesar tu solicitud. Por favor intenta de nuevo.');
+    } finally {
+      setSubmitting(false);
+      setUploadProgress(null);
+    }
   };
 
   const handleWhatsAppRedirect = () => {
@@ -498,10 +562,11 @@ export function CotizarPage() {
                   {/* Submit button */}
                   <PremiumButton
                     type="submit"
-                    text="SOLICITAR PRESUPUESTO"
+                    text={submitting ? (uploadProgress || "PROCESANDO...") : "SOLICITAR PRESUPUESTO"}
                     variant="primary"
                     fullWidth
                     animatedBorder
+                    disabled={submitting}
                   />
 
                   <span className="text-[10px] text-[#4B5563] block text-center mt-2 font-semibold">

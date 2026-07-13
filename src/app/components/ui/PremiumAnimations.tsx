@@ -239,6 +239,7 @@ interface PremiumButtonProps {
   download?: string;
   type?: 'button' | 'submit' | 'reset';
   animatedBorder?: boolean;
+  disabled?: boolean;
 }
 
 const MotionLink = motion(Link);
@@ -254,6 +255,7 @@ export function PremiumButton({
   download,
   type = 'button',
   animatedBorder = false,
+  disabled = false,
 }: PremiumButtonProps) {
   // Base styling configuration
   let baseBg = 'bg-black';
@@ -390,9 +392,10 @@ export function PremiumButton({
     <motion.button 
       type={type} 
       onClick={onClick} 
-      className={`${elementClasses} ${fullWidth ? 'w-full' : 'w-fit'}`}
+      disabled={disabled}
+      className={`${elementClasses} ${fullWidth ? 'w-full' : 'w-fit'} ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''}`}
       initial="initial"
-      whileHover="hover"
+      whileHover={disabled ? "initial" : "hover"}
     >
       {sweepBlock}
       {content}
