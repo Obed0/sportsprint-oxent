@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { PageTransition } from '../components/PageTransition';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { ShieldCheck, MessageSquare, Clock, FileCheck, CheckCircle2, Calendar as CalendarIcon } from 'lucide-react';
@@ -31,6 +31,43 @@ export function CotizarPage() {
     },
     comments: '',
   });
+
+  const formContainerRef = useRef<HTMLDivElement>(null);
+
+  // Automatically scroll to the confirmation/success message when form is submitted
+  useEffect(() => {
+    if (formSubmitted) {
+      setTimeout(() => {
+        formContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 80); // Small timeout to ensure DOM layout recalculation
+    }
+  }, [formSubmitted]);
+
+  const handleResetForm = () => {
+    setFormSubmitted(false);
+    setHasDesign('');
+    setDesignFile(null);
+    setFormData({
+      companyName: '',
+      contactName: '',
+      email: '',
+      phone: '',
+      volume: '500-1000',
+      eventDate: '',
+      products: {
+        playeras: false,
+        morrales: false,
+        medallas: false,
+        kits: false,
+        otros: false,
+      },
+      comments: '',
+    });
+    // Scroll back to the top of the form smoothly
+    setTimeout(() => {
+      formContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -252,23 +289,19 @@ export function CotizarPage() {
             </div>
 
             {/* Right Column: Form Area */}
-            <div className="lg:col-span-7 bg-white border border-black p-8 sm:p-10 shadow-none rounded-none relative">
+            <div ref={formContainerRef} className="lg:col-span-7 bg-white border border-black p-8 sm:p-10 shadow-none rounded-none relative">
               {formSubmitted ? (
                 <ScrollReveal direction="none">
                   <div className="text-center py-16 flex flex-col items-center">
                     <CheckCircle2 size={56} className="text-black mb-6" />
                     <h2 className="font-heading font-black text-3xl sm:text-4xl uppercase text-black mb-4 select-none">
-                      ¡SOLICITUD REGIBIDA!
+                      ¡SOLICITUD RECIBIDA!
                     </h2>
                     <p className="text-[#4B5563] text-sm leading-relaxed max-w-md mx-auto mb-8 font-medium">
                       Tu solicitud de cotización comercial ha sido registrada. Un especialista de Sports Print se pondrá en contacto contigo en las próximas horas para validar los detalles de tu evento.
                     </p>
                     <button
-                      onClick={() => {
-                        setFormSubmitted(false);
-                        setHasDesign('');
-                        setDesignFile(null);
-                      }}
+                      onClick={handleResetForm}
                       className="bg-black text-white hover:bg-neutral-800 text-xs font-bold tracking-widest uppercase px-6 py-3 transition-all rounded-none border border-black"
                     >
                       ENVIAR OTRA SOLICITUD
