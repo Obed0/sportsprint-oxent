@@ -235,7 +235,7 @@ export default async function handler(req, res) {
                       Notificación automática del sistema de cotizaciones
                     </p>
                     <p style="margin: 0; font-size: 11px; color: #64748b;">
-                      developed by <a href="https://oxent.com.mx" target="_blank" style="color: #0f172a; font-weight: 700; text-decoration: none;">oxent.com.mx</a>
+                      developed by <a href="https://oxent.com.mx" target="_blank" style="color: #6218EC; font-weight: 800; text-decoration: none;">oxent.com.mx</a>
                     </p>
                   </td>
                 </tr>
