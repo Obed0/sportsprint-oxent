@@ -45,20 +45,15 @@ export default async function handler(req, res) {
     if (typeof rawProducts === 'object' && !Array.isArray(rawProducts)) {
       const selected = Object.entries(rawProducts)
         .filter(([_, checked]) => Boolean(checked))
-        .map(([key]) => productLabels[key] || key.toUpperCase());
+        .map(([key]) => productLabels[key] || key);
 
       if (selected.length > 0) {
-        productsBadgesHTML = selected
-          .map(
-            (p) =>
-              `<span style="display: inline-block; background-color: #111111; color: #ffffff; padding: 4px 10px; border-radius: 3px; font-size: 11px; font-weight: bold; text-transform: uppercase; margin-right: 6px; margin-bottom: 6px; border: 1px solid #E43537;">${p}</span>`
-          )
-          .join('');
+        productsBadgesHTML = `<span style="font-size: 14px; font-weight: 600; color: #0f172a;">${selected.join(', ')}</span>`;
       } else {
-        productsBadgesHTML = '<span style="color: #666666; font-style: italic;">Sin especificación</span>';
+        productsBadgesHTML = '<span style="color: #94a3b8; font-style: italic;">Sin especificación</span>';
       }
     } else if (typeof rawProducts === 'string') {
-      productsBadgesHTML = `<span style="font-weight: bold; color: #111111;">${rawProducts}</span>`;
+      productsBadgesHTML = `<span style="font-size: 14px; font-weight: 600; color: #0f172a;">${rawProducts}</span>`;
     }
 
     // Clean phone number for WhatsApp direct link
