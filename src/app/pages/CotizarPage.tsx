@@ -174,23 +174,39 @@ export function CotizarPage() {
 
       // 2. Insert record into database table 'quotes'
       setUploadProgress('Guardando solicitud de cotización...');
-      const { error: dbError } = await supabase.from('quotes').insert([
-        {
-          company_name: formData.companyName,
-          contact_name: formData.contactName,
-          email: formData.email,
-          phone: formData.phone,
-          volume: formData.volume,
-          event_date: formData.eventDate,
-          products: formData.products,
-          has_design: hasDesign,
-          design_file_url: designFileUrl,
-          comments: formData.comments,
-        }
-      ]);
+      const quotePayload = {
+        company_name: formData.companyName,
+        contact_name: formData.contactName,
+        email: formData.email,
+        phone: formData.phone,
+        volume: formData.volume,
+        event_date: formData.eventDate,
+        products: formData.products,
+        has_design: hasDesign,
+        design_file_url: designFileUrl,
+        comments: formData.comments,
+      };
+
+      const { data: insertedData, error: dbError } = await supabase
+        .from('quotes')
+        .insert([quotePayload])
+        .select();
 
       if (dbError) {
         throw new Error(`Error al guardar en la base de datos: ${dbError.message}`);
+      }
+
+      // 3. Dispatch notification email (Direct API call fallback alongside Supabase Database Webhooks)
+      try {
+        setUploadProgress('Enviando notificación por correo...');
+        const recordToNotify = insertedData && insertedData[0] ? insertedData[0] : quotePayload;
+        await fetch('/api/send-quote-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ record: recordToNotify }),
+        });
+      } catch (emailErr) {
+        console.warn('Advertencia al llamar endpoint de correo:', emailErr);
       }
 
       setFormSubmitted(true);
