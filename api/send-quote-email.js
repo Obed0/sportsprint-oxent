@@ -63,82 +63,68 @@ export default async function handler(req, res) {
 
     // Clean phone number for WhatsApp direct link
     const cleanPhone = String(record.phone || '').replace(/\D/g, '');
-    const whatsappUrl = cleanPhone ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hola ${record.contact_name}, nos comunicamos de SportsprintMX respecto a tu cotización.`)}` : '';
+    const whatsappUrl = cleanPhone ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hola ${record.contact_name}, nos comunicamos de Sports Print MX respecto a tu solicitud.`)}` : '';
 
-    // HTML Email template with SportsprintMX x Oxent branding
+    // HTML Email template - Clean & Minimalist Design
     const htmlContent = `
       <!DOCTYPE html>
       <html>
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Nueva Cotización B2B - SportsprintMX</title>
+        <title>Solicitud Nueva - Sports Print MX</title>
       </head>
-      <body style="margin: 0; padding: 0; background-color: #f4f4f5; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #18181b;">
-        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4f4f5; padding: 30px 10px;">
+      <body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #0f172a;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f8fafc; padding: 40px 12px;">
           <tr>
             <td align="center">
               
               <!-- Container Card -->
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width: 640px; background-color: #ffffff; border: 1px solid #e4e4e7; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: left;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05); text-align: left;">
                 
-                <!-- Header with SportsprintMX x Oxent branding -->
+                <!-- Clean Minimal Header -->
                 <tr>
-                  <td style="background-color: #000000; padding: 28px 32px; border-bottom: 4px solid #E43537;">
-                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                      <tr>
-                        <td>
-                          <span style="font-size: 22px; font-weight: 900; letter-spacing: 2px; color: #ffffff; text-transform: uppercase;">
-                            SPORTSPRINT<span style="color: #E43537;">MX</span>
-                          </span>
-                          <span style="font-size: 11px; font-weight: 700; color: #a1a1aa; letter-spacing: 1px; margin-left: 8px; text-transform: uppercase; border-left: 1px solid #3f3f46; padding-left: 8px;">
-                            x OXENT
-                          </span>
-                        </td>
-                        <td align="right">
-                          <span style="background-color: #E43537; color: #ffffff; font-size: 10px; font-weight: 800; padding: 5px 10px; text-transform: uppercase; letter-spacing: 1px;">
-                            COTIZACIÓN B2B
-                          </span>
-                        </td>
-                      </tr>
-                    </table>
+                  <td style="background-color: #000000; padding: 24px 32px; text-align: center; border-bottom: 3px solid #E43537;">
+                    <span style="font-size: 20px; font-weight: 900; letter-spacing: 2.5px; color: #ffffff; text-transform: uppercase;">
+                      SPORTS PRINT <span style="color: #E43537;">MX</span>
+                    </span>
                   </td>
                 </tr>
 
                 <!-- Content Body -->
                 <tr>
-                  <td style="padding: 32px;">
+                  <td style="padding: 36px 32px;">
                     
-                    <h2 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 800; text-transform: uppercase; color: #000000; letter-spacing: 0.5px;">
+                    <h2 style="margin: 0 0 6px 0; font-size: 18px; font-weight: 800; color: #0f172a; letter-spacing: -0.2px;">
                       NUEVA SOLICITUD RECIBIDA
                     </h2>
-                    <p style="margin: 0 0 24px 0; font-size: 14px; color: #52525b; line-height: 1.5;">
-                      Se ha registrado una solicitud de producción desde el formulario web. A continuación se muestran todos los detalles capturados:
+                    <p style="margin: 0 0 28px 0; font-size: 14px; color: #64748b; line-height: 1.5;">
+                      Se ha registrado una nueva solicitud desde el formulario web. A continuación se presentan los detalles:
                     </p>
 
                     <!-- Table of details -->
-                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse: collapse; margin-bottom: 24px; border: 1px solid #e4e4e7;">
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse: collapse; margin-bottom: 28px; border: 1px solid #f1f5f9; border-radius: 6px; overflow: hidden;">
                       
-                      <tr style="background-color: #fafafa; border-bottom: 1px solid #e4e4e7;">
-                        <td width="38%" style="padding: 12px 16px; font-size: 12px; font-weight: 700; uppercase; color: #71717a; text-transform: uppercase; letter-spacing: 0.5px;">
+                      <tr style="background-color: #f8fafc; border-bottom: 1px solid #f1f5f9;">
+                        <td width="40%" style="padding: 12px 16px; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
                           Empresa / Evento:
                         </td>
-                        <td style="padding: 12px 16px; font-size: 14px; font-weight: 700; color: #000000;">
+                        <td style="padding: 12px 16px; font-size: 14px; font-weight: 700; color: #0f172a;">
                           ${record.company_name || 'N/A'}
                         </td>
                       </tr>
 
-                      <tr style="border-bottom: 1px solid #e4e4e7;">
-                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; uppercase; color: #71717a; text-transform: uppercase; letter-spacing: 0.5px;">
+                      <tr style="border-bottom: 1px solid #f1f5f9;">
+                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
                           Contacto Directo:
                         </td>
-                        <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #18181b;">
+                        <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #334155;">
                           ${record.contact_name || 'N/A'}
                         </td>
                       </tr>
 
-                      <tr style="background-color: #fafafa; border-bottom: 1px solid #e4e4e7;">
-                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; uppercase; color: #71717a; text-transform: uppercase; letter-spacing: 0.5px;">
+                      <tr style="background-color: #f8fafc; border-bottom: 1px solid #f1f5f9;">
+                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
                           Email Corporativo:
                         </td>
                         <td style="padding: 12px 16px; font-size: 14px; font-weight: 600;">
@@ -148,40 +134,40 @@ export default async function handler(req, res) {
                         </td>
                       </tr>
 
-                      <tr style="border-bottom: 1px solid #e4e4e7;">
-                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; uppercase; color: #71717a; text-transform: uppercase; letter-spacing: 0.5px;">
+                      <tr style="border-bottom: 1px solid #f1f5f9;">
+                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
                           Teléfono (WhatsApp):
                         </td>
                         <td style="padding: 12px 16px; font-size: 14px; font-weight: 600;">
-                          <span style="color: #18181b;">${record.phone || 'N/A'}</span>
+                          <span style="color: #334155;">${record.phone || 'N/A'}</span>
                           ${whatsappUrl ? `
-                            <a href="${whatsappUrl}" target="_blank" style="margin-left: 10px; display: inline-block; background-color: #25D366; color: #ffffff; text-decoration: none; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 2px; text-transform: uppercase;">
-                              Abrir WhatsApp
+                            <a href="${whatsappUrl}" target="_blank" style="margin-left: 10px; display: inline-block; background-color: #25D366; color: #ffffff; text-decoration: none; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">
+                              WhatsApp
                             </a>
                           ` : ''}
                         </td>
                       </tr>
 
-                      <tr style="background-color: #fafafa; border-bottom: 1px solid #e4e4e7;">
-                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; uppercase; color: #71717a; text-transform: uppercase; letter-spacing: 0.5px;">
+                      <tr style="background-color: #f8fafc; border-bottom: 1px solid #f1f5f9;">
+                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
                           Volumen Estimado:
                         </td>
-                        <td style="padding: 12px 16px; font-size: 14px; font-weight: 800; color: #000000;">
+                        <td style="padding: 12px 16px; font-size: 14px; font-weight: 800; color: #0f172a;">
                           ${record.volume || 'N/A'} piezas
                         </td>
                       </tr>
 
-                      <tr style="border-bottom: 1px solid #e4e4e7;">
-                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; uppercase; color: #71717a; text-transform: uppercase; letter-spacing: 0.5px;">
+                      <tr style="border-bottom: 1px solid #f1f5f9;">
+                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
                           Fecha del Evento:
                         </td>
-                        <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #18181b;">
+                        <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #334155;">
                           ${record.event_date || 'Sin fecha definida'}
                         </td>
                       </tr>
 
-                      <tr style="background-color: #fafafa; border-bottom: 1px solid #e4e4e7;">
-                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; uppercase; color: #71717a; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: top;">
+                      <tr style="background-color: #f8fafc; border-bottom: 1px solid #f1f5f9;">
+                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: top;">
                           Productos Requeridos:
                         </td>
                         <td style="padding: 12px 16px;">
@@ -189,22 +175,22 @@ export default async function handler(req, res) {
                         </td>
                       </tr>
 
-                      <tr style="border-bottom: 1px solid #e4e4e7;">
-                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; uppercase; color: #71717a; text-transform: uppercase; letter-spacing: 0.5px;">
+                      <tr style="border-bottom: 1px solid #f1f5f9;">
+                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
                           ¿Cuenta con Diseño?:
                         </td>
-                        <td style="padding: 12px 16px; font-size: 13px; font-weight: 700; text-transform: uppercase; color: ${record.has_design === 'si' ? '#15803d' : '#b45309'};">
+                        <td style="padding: 12px 16px; font-size: 13px; font-weight: 700; text-transform: uppercase; color: ${record.has_design === 'si' ? '#16a34a' : '#d97706'};">
                           ${record.has_design === 'si' ? '✓ Sí, adjuntó archivo' : 'No, requiere apoyo de diseño'}
                         </td>
                       </tr>
 
                       ${record.design_file_url ? `
-                      <tr style="background-color: #fef2f2; border-bottom: 1px solid #e4e4e7;">
-                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; uppercase; color: #b91c1c; text-transform: uppercase; letter-spacing: 0.5px;">
+                      <tr style="background-color: #fef2f2; border-bottom: 1px solid #f1f5f9;">
+                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; color: #dc2626; text-transform: uppercase; letter-spacing: 0.5px;">
                           Archivo de Diseño:
                         </td>
                         <td style="padding: 12px 16px;">
-                          <a href="${record.design_file_url}" target="_blank" style="display: inline-block; background-color: #E43537; color: #ffffff; font-weight: 800; font-size: 11px; text-decoration: none; padding: 8px 14px; text-transform: uppercase; letter-spacing: 0.5px;">
+                          <a href="${record.design_file_url}" target="_blank" style="display: inline-block; background-color: #E43537; color: #ffffff; font-weight: 700; font-size: 11px; text-decoration: none; padding: 6px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">
                             Descargar Arte Adjunto
                           </a>
                         </td>
@@ -212,25 +198,25 @@ export default async function handler(req, res) {
                       ` : ''}
 
                       <tr>
-                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; uppercase; color: #71717a; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: top; background-color: #fafafa;">
+                        <td style="padding: 12px 16px; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: top; background-color: #f8fafc;">
                           Comentarios / Notas:
                         </td>
-                        <td style="padding: 12px 16px; font-size: 13px; color: #27272a; line-height: 1.5; white-space: pre-wrap; background-color: #fafafa;">
-                          ${record.comments ? record.comments : '<span style="color: #9ca3af; font-style: italic;">Sin comentarios adicionales.</span>'}
+                        <td style="padding: 12px 16px; font-size: 13px; color: #334155; line-height: 1.5; white-space: pre-wrap; background-color: #f8fafc;">
+                          ${record.comments ? record.comments : '<span style="color: #94a3b8; font-style: italic;">Sin comentarios adicionales.</span>'}
                         </td>
                       </tr>
 
                     </table>
 
-                    <!-- Quick Action Bar -->
-                    <table width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-top: 24px; background-color: #000000; padding: 20px; border-left: 4px solid #E43537;">
+                    <!-- Minimalist Quick Action Bar -->
+                    <table width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #0f172a; border-radius: 6px; padding: 16px 20px; border-left: 4px solid #E43537;">
                       <tr>
                         <td>
-                          <p style="margin: 0 0 6px 0; font-size: 12px; font-weight: 700; color: #ffffff; text-transform: uppercase;">
+                          <p style="margin: 0 0 4px 0; font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">
                             Acción Recomendada:
                           </p>
-                          <p style="margin: 0; font-size: 12px; color: #a1a1aa;">
-                            Responder directamente a <a href="mailto:${record.email}" style="color: #ffffff; text-decoration: underline;">${record.email}</a> o contactar por WhatsApp.
+                          <p style="margin: 0; font-size: 13px; color: #ffffff;">
+                            Responder directamente a <a href="mailto:${record.email}" style="color: #ffffff; text-decoration: underline; font-weight: 600;">${record.email}</a> o contactar por WhatsApp.
                           </p>
                         </td>
                       </tr>
@@ -239,14 +225,17 @@ export default async function handler(req, res) {
                   </td>
                 </tr>
 
-                <!-- Footer -->
+                <!-- Minimalist Footer with Oxent Credit -->
                 <tr>
-                  <td style="background-color: #fafafa; padding: 20px 32px; border-top: 1px solid #e4e4e7; font-size: 11px; color: #71717a; text-align: center;">
-                    <p style="margin: 0 0 4px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #18181b;">
-                      SportsprintMX — Manufactura & Sublimación Industrial
+                  <td style="background-color: #f8fafc; padding: 24px 32px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #64748b; text-align: center;">
+                    <p style="margin: 0 0 6px 0; font-weight: 700; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px;">
+                      Sports Print MX
                     </p>
-                    <p style="margin: 0; font-size: 10px; color: #a1a1aa;">
-                      Notificación automática del sistema de cotizaciones B2B | Oxent Platform
+                    <p style="margin: 0 0 12px 0; font-size: 11px; color: #94a3b8;">
+                      Notificación automática del sistema de cotizaciones
+                    </p>
+                    <p style="margin: 0; font-size: 11px; color: #64748b;">
+                      developed by <a href="https://oxent.com.mx" target="_blank" style="color: #0f172a; font-weight: 700; text-decoration: none;">oxent.com.mx</a>
                     </p>
                   </td>
                 </tr>
@@ -263,6 +252,9 @@ export default async function handler(req, res) {
     // Sender email
     const fromEmail = process.env.SENDER_EMAIL || 'Sports Print MX <onboarding@resend.dev>';
 
+    // Email subject as requested: "Solicitud Nueva de [Empresa] - [Contacto]"
+    const emailSubject = `Solicitud Nueva de ${record.company_name || 'Cotización'} - ${record.contact_name || 'Contacto'}`;
+
     // Send email via Resend API
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -273,7 +265,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         from: fromEmail,
         to: toEmail,
-        subject: `[Cotización B2B] ${record.company_name} - ${record.contact_name} (${record.volume} pzs)`,
+        subject: emailSubject,
         html: htmlContent
       })
     });
