@@ -245,8 +245,8 @@ export default async function handler(req, res) {
       </html>
     `;
 
-    // Sender email (defaulting to noreply address on verified domain)
-    const fromEmail = process.env.SENDER_EMAIL || 'Sports Print MX <noreply@sportsprintmx.com>';
+    // Sender email - Always send from noreply address
+    const fromEmail = 'Sports Print MX <noreply@sportsprintmx.com>';
 
     // Email subject as requested: "Solicitud Nueva de [Empresa] - [Contacto]"
     const emailSubject = `Solicitud Nueva de ${record.company_name || 'Cotización'} - ${record.contact_name || 'Contacto'}`;
