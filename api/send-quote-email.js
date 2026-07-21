@@ -29,7 +29,7 @@ export default async function handler(req, res) {
     }
 
     // Destination emails (supports multiple emails separated by commas)
-    const rawSalesEmail = process.env.SALES_EMAIL || 'ventas@sportsprint.mx, oxent.sportspmx@gmail.com';
+    const rawSalesEmail = process.env.SALES_EMAIL || 'contacto@sportsprintmx.com, oxentsolutions@gmail.com';
     const toEmails = rawSalesEmail.split(',').map(e => e.trim()).filter(Boolean);
 
     // Format products badges
