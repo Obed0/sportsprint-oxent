@@ -61,7 +61,7 @@ export function NosotrosPage() {
                 ¿Quiénes somos?
               </h1>
               <p className="text-[#4B5563] text-base leading-relaxed max-w-2xl mb-6 font-medium">
-                Diseñamos, sublimamos, confeccionamos y ensamblamos cada producto en nuestra propia planta para garantizar calidad, tiempos de entrega competitivos y un mejor control del proceso.
+                Diseñamos, sublimamos, confeccionamos y ensamblamos cada producto en nuestra planta para garantizar calidad, tiempos de entrega competitivos y un mejor control del proceso.
               </p>
               <p className="text-[#4B5563] text-sm leading-relaxed max-w-2xl font-medium">
                 Nuestro modelo de producción nos permite cuidar cada detalle desde la impresión hasta el producto terminado, ofreciendo colores vivos, acabados de alta calidad y resultados consistentes en cada pedido.
@@ -78,7 +78,7 @@ export function NosotrosPage() {
                   />
                   <div className="absolute inset-0 bg-black/10 flex items-end p-6 z-10 pointer-events-none">
                     <span className="text-[10px] font-bold text-white bg-black px-3 py-1 uppercase tracking-widest rounded-none">
-                      PLANTA INDUSTRIAL
+                      IMPRESORAS DE ALTA GAMA
                     </span>
                   </div>
                   {/* Accent border on hover */}
@@ -106,7 +106,7 @@ export function NosotrosPage() {
                     100% Producción Interna
                   </h3>
                   <p className="text-neutral-300 text-sm leading-relaxed font-medium">
-                    Diseño, impresión, corte y costura bajo un mismo techo. Controlamos cada proceso en nuestra planta para ofrecerte precios directos de fábrica y la certidumbre total de que cada prenda pasará un control de calidad estricto.
+                    Diseño, impresión, corte y costura bajo una misma operación. Controlamos cada proceso en nuestra planta para ofrecerte precios directos de fábrica y la certidumbre total de que cada prenda pasará un control de calidad estricto.
                   </p>
                 </div>
 

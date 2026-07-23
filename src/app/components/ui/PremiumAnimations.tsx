@@ -286,6 +286,7 @@ export function PremiumButton({
   const sweepBlock = (
     <motion.div
       className={`absolute inset-0 z-[2] origin-left ${hoverBgClass}`}
+      style={{ scaleX: 0 }}
       variants={{
         initial: { scaleX: 0 },
         hover: { scaleX: 1 },
@@ -360,11 +361,14 @@ export function PremiumButton({
   );
 
   if (to) {
-    if (download) {
+    if (download || to.startsWith('http://') || to.startsWith('https://') || to.startsWith('mailto:') || to.startsWith('tel:')) {
       return (
         <motion.a 
           href={to} 
-          download={download} 
+          download={download}
+          target={to.startsWith('http') ? '_blank' : undefined}
+          rel={to.startsWith('http') ? 'noopener noreferrer' : undefined}
+          onClick={onClick}
           className={`${elementClasses} ${fullWidth ? 'w-full' : 'w-fit'}`}
           initial="initial"
           whileHover="hover"

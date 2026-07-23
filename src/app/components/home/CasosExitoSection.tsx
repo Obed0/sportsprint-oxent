@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { PremiumButton, ParallaxImage, StaggerContainer, StaggerItem } from '../ui/PremiumAnimations';
 import { motion, AnimatePresence } from 'motion/react';
 
-import imgTrotime from '../../../imports/race_women.webp';
+import imgTrotime from '../../../imports/carrera_whirlpool.jpg';
 import imgAllMkting from '../../../imports/carreras/IMGL1361.webp';
 import imgVuela from '../../../imports/carreras/carrera_ios_new.jpg';
 

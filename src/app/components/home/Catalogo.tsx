@@ -3,12 +3,12 @@ import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import { PremiumButton, ParallaxImage } from '../ui/PremiumAnimations';
 
-// Import real local B2B running event photos from the carreras import folder
-import imgPlayeras from '../../../imports/Playera_clean.webp';
+// Import transparent clean assets without baked static shadows for B2B catalog items
+import imgPlayeras from '../../../imports/Playera_pure.webp';
 import imgMorrales from '../../../imports/Morral_clean.webp';
-import imgMedallas from '../../../imports/Medalla_clean.webp';
-import imgKits from '../../../imports/Kit_clean.webp';
-import imgOtros from '../../../imports/Otros_clean.webp';
+import imgMedallas from '../../../imports/Medalla_pure.webp';
+import imgKits from '../../../imports/Kit_nobg.webp';
+import imgOtros from '../../../imports/Otros_pure.webp';
 
 const products = [
   {
@@ -21,7 +21,8 @@ const products = [
     specs: [
       'Secado rápido y máxima comodidad.',
       'Sublimado de alta definición y gran durabilidad.',
-      'Colores intensos que no se cuartean.'
+      'Colores intensos que no se cuartean.',
+      'Catálogo extenso de telas deportivas a elegir.'
     ],
     accent: '#E43537',
   },
@@ -34,7 +35,7 @@ const products = [
     image: imgMorrales,
     specs: [
       'Material de alta resistencia.',
-      'Esquinas reforzadas para mayor durabilidad.',
+      'Costura reforzada con 3 hilos para mayor durabilidad.',
       'Cordones gruesos para un transporte cómodo.'
     ],
     accent: '#E43537',
@@ -42,7 +43,7 @@ const products = [
   {
     num: '03',
     id: 'medallas',
-    title: 'Medallas Metálicas',
+    title: 'Medallas',
     subtitle: 'Premio al Esfuerzo Máximo',
     desc: 'Medallas conmemorativas de alto relieve. Diseños exclusivos y acabados en 2D/3D con listones satinados sublimados a todo color.',
     image: imgMedallas,
@@ -58,8 +59,8 @@ const products = [
     image: imgKits,
     specs: [
       'Playera premium personalizada.',
-      'Morral, medalla y número de competidor.',
-      'Listos para entregar a cada participante.'
+      'Medalla personalizable (diseño, tamaño y estilo).',
+      'Morral, número de competidor u otro artículo a elegir.'
     ],
     accent: '#E43537',
   },
@@ -125,12 +126,28 @@ function CatalogSection({ product, index }: { product: typeof products[0]; index
                 />
               )}
 
-              <ParallaxImage
-                src={product.image}
-                alt={product.title}
-                className="img-bw-high-contrast"
-                objectFit="contain"
-              />
+              {product.id === 'kits' ? (
+                /* Kits / Runner package — bottom aligned to prevent leg clipping, NO shadow */
+                <div className="relative w-full h-full flex flex-col items-center justify-end px-4 pt-6 pb-0 bg-white overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="max-h-[96%] w-auto object-contain object-bottom relative z-10 transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                /* Floating products (playeras, morrales, medallas, otros) — centered with 3D shadow underneath */
+                <div className="relative w-full h-full flex flex-col items-center justify-center p-6 bg-white overflow-hidden">
+                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-48 sm:w-56 h-4 bg-black/20 rounded-[100%] blur-md pointer-events-none group-hover:scale-110 group-hover:bg-black/35 transition-all duration-500" />
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="max-h-[85%] w-auto object-contain relative z-10 drop-shadow-[0_15px_15px_rgba(0,0,0,0.22)] transition-transform duration-500 ease-out group-hover:-translate-y-3 group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                </div>
+              )}
               
               <div className="absolute top-4 left-4 bg-black text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 border border-white z-20 rounded-none">
                 {product.subtitle}

@@ -27,10 +27,108 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
+    <style>
+      html, body { margin: 0; }
+      /* IMPORTANT: Do NOT set height:100% on html/body/#root — it traps scroll inside #root */
+      /* and makes document.documentElement.scrollHeight === window.innerHeight = 0 scrollable area */
+    </style>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Barra de progreso de scroll — rAF + lerp + GPU scaleX -->
+    <div id="progress-bar" style="
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 4px;
+      width: 100%;
+      background-color: #FF0000;
+      z-index: 999999;
+      pointer-events: none;
+      transform: scaleX(0);
+      transform-origin: left center;
+      will-change: transform;
+    "></div>
+
+    <script>
+      (function () {
+        var bar     = document.getElementById('progress-bar');
+        var target  = 0;   // 0..1  — updated on every scroll event
+        var current = 0;   // 0..1  — lerped toward target each rAF frame
+        var rafId   = null;
+        var EASE    = 0.10; // lerp factor: lower = smoother but slower (0.08-0.15 is ideal)
+
+        /* ── Helpers ─────────────────────────────────────────── */
+        function getTarget() {
+          var scrollTop  = window.scrollY || document.documentElement.scrollTop || 0;
+          var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+          return scrollable > 0 ? Math.min(1, Math.max(0, scrollTop / scrollable)) : 0;
+        }
+
+        function positionBar() {
+          var nav = document.querySelector('nav');
+          if (nav) {
+            // bottom edge of bar sits exactly on navbar border
+            bar.style.top = (nav.getBoundingClientRect().bottom - 4) + 'px';
+          }
+        }
+
+        /* ── Animation loop ──────────────────────────────────── */
+        function tick() {
+          var diff = target - current;
+
+          // Always re-measure nav position every frame — the navbar has a CSS
+          // height transition (py-3 <-> py-5) that runs independently of scroll,
+          // so positionBar() must track it frame-by-frame, not just on scroll.
+          positionBar();
+
+          if (Math.abs(diff) < 0.0002) {
+            current = target;
+            bar.style.transform = 'scaleX(' + current + ')';
+            // Keep ticking while nav may still be transitioning its height
+            rafId = requestAnimationFrame(tick);
+            return;
+          }
+
+          current += diff * EASE;
+          bar.style.transform = 'scaleX(' + current + ')';
+          rafId = requestAnimationFrame(tick);
+        }
+
+        function startLoop() {
+          if (!rafId) rafId = requestAnimationFrame(tick);
+        }
+
+        /* ── Event listeners ─────────────────────────────────── */
+        // capture:true catches scroll from any element in the tree
+        function onScroll() {
+          target = getTarget();
+          positionBar();
+          startLoop();
+        }
+
+        window.addEventListener('scroll',   onScroll, { capture: true, passive: true });
+        document.addEventListener('scroll', onScroll, { capture: true, passive: true });
+
+        window.addEventListener('resize', function () {
+          positionBar();
+          target  = getTarget();
+          current = target; // instant snap on resize — no lerp needed
+          bar.style.transform = 'scaleX(' + current + ')';
+        }, { passive: true });
+
+        /* ── Init: start the loop immediately and keep it alive ─ */
+        window.addEventListener('load', function () {
+          target  = getTarget();
+          current = target;
+          // Start the perpetual rAF loop — it keeps bar in sync with
+          // navbar height transitions even when scroll is idle
+          tick();
+        });
+      })();
+    </script>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

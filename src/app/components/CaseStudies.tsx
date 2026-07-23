@@ -1,7 +1,7 @@
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import imgTrotime from '../imports/Gemini_Generated_Image_yf9pyryf9pyryf9p.webp';
+import imgTrotime from '../imports/carrera_whirlpool.jpg';
 import imgAllMkting from '../imports/Gemini_Generated_Image_j2spr7j2spr7j2sp.webp';
 import imgVuela from '../imports/Gemini_Generated_Image_xdio20xdio20xdio.webp';
 

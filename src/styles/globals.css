@@ -18,9 +18,13 @@ button, a, [role="button"] {
   touch-action: manipulation;
 }
 
-/* Prevent bounce scroll from interfering with fixed elements */
-html {
+/* Prevent horizontal overflow — only on body, NOT html.
+   Applying overflow-x:hidden to html makes it the scroll viewport
+   and breaks window.scrollY (always returns 0). */
+body {
   overscroll-behavior-y: none;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* Selection */
@@ -159,7 +163,7 @@ html {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: marquee 18s linear infinite;
   will-change: transform;
 }
 

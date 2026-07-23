@@ -4,7 +4,7 @@ import { ClientLogos } from '../components/home/ClientLogos';
 import { Diferenciadores } from '../components/home/Diferenciadores';
 import { FeaturedProducts } from '../components/home/FeaturedProducts';
 import { ProcessOverview } from '../components/home/ProcessOverview';
-import { CasosExitoSection } from '../components/home/CasosExitoSection';
+import { TestimoniosSection } from '../components/home/TestimoniosSection';
 
 export function HomePage() {
   return (
@@ -14,7 +14,7 @@ export function HomePage() {
       <Diferenciadores />
       <FeaturedProducts />
       <ProcessOverview />
-      <CasosExitoSection minimal={true} />
+      <TestimoniosSection />
     </PageTransition>
   );
 }

@@ -57,7 +57,7 @@ export function Footer() {
     ctaTitle = '¿BUSCAS UN PROVEEDOR SIN INTERMEDIARIOS?';
     ctaSubtext = '';
     primaryBtnText = 'CONÓCENOS';
-    primaryBtnTo = '/cotizar';
+    primaryBtnTo = 'https://wa.me/525543945069?text=Hola%2C%20me%20interesa%20cotizar%20kits%20deportivos%20para%20mi%20evento';
     showSecondaryBtn = false;
   }
 
@@ -210,11 +210,11 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={14} className="shrink-0 text-black" />
-                <a href="tel:+525543945069" className="hover:underline transition-all">+52 55 4394 5069</a>
+                <a href="https://wa.me/525543945069?text=Hola%2C%20me%20interesa%20cotizar%20kits%20deportivos%20para%20mi%20evento" target="_blank" rel="noopener noreferrer" className="hover:underline transition-all">+52 55 4394 5069</a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={14} className="shrink-0 text-black" />
-                <span>contacto@sportsprintmx.com</span>
+                <a href="mailto:contacto@sportsprintmx.com" className="hover:underline transition-all">contacto@sportsprintmx.com</a>
               </li>
             </ul>
           </div>

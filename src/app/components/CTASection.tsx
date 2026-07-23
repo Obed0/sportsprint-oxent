@@ -61,7 +61,9 @@ export function CTASection() {
                 </div>
                 <div>
                   <div className="text-[10px] tracking-[0.15em] text-white/25 uppercase">Email</div>
-                  <div className="text-white/60 text-sm">contacto@sportsprintmx.com</div>
+                  <a href="mailto:contacto@sportsprintmx.com" className="text-white/60 text-sm hover:text-white transition-colors hover:underline">
+                    contacto@sportsprintmx.com
+                  </a>
                 </div>
               </div>
               <div className="flex items-center gap-4">
@@ -72,7 +74,7 @@ export function CTASection() {
                 </div>
                 <div>
                   <div className="text-[10px] tracking-[0.15em] text-white/25 uppercase">Teléfono</div>
-                  <a href="tel:+525543945069" className="text-white/60 text-sm hover:text-white transition-colors hover:underline">
+                  <a href="https://wa.me/525543945069?text=Hola%2C%20me%20interesa%20cotizar%20kits%20deportivos%20para%20mi%20evento" target="_blank" rel="noopener noreferrer" className="text-white/60 text-sm hover:text-white transition-colors hover:underline">
                     +52 55 4394 5069
                   </a>
                 </div>

@@ -5,9 +5,9 @@ import { ScrollReveal } from '../ScrollReveal';
 import { Card3DTilt, PremiumButton } from '../ui/PremiumAnimations';
 
 // Import real local B2B running event photos showing actual products offered
-import imgPlayeras from '../../../imports/Playera_clean.webp';
+import imgPlayeras from '../../../imports/Playera_pure.webp';
 import imgMorrales from '../../../imports/Morral_clean.webp';
-import imgKits from '../../../imports/Kit_clean.webp';
+import imgKits from '../../../imports/Kit_nobg.webp';
 
 const featured = [
   {
@@ -18,7 +18,8 @@ const featured = [
     specs: [
       'Secado rápido y máxima comodidad.',
       'Sublimado de alta definición y gran durabilidad.',
-      'Colores intensos que no se cuartean.'
+      'Colores intensos que no se cuartean.',
+      'Catálogo extenso de telas deportivas a elegir.'
     ],
   },
   {
@@ -28,7 +29,7 @@ const featured = [
     image: imgMorrales,
     specs: [
       'Material de alta resistencia.',
-      'Esquinas reforzadas para mayor durabilidad.',
+      'Costura reforzada con 3 hilos para mayor durabilidad.',
       'Cordones gruesos para un transporte cómodo.'
     ],
   },
@@ -39,8 +40,8 @@ const featured = [
     image: imgKits,
     specs: [
       'Playera premium personalizada.',
-      'Morral, medalla y número de competidor.',
-      'Listos para entregar a cada participante.'
+      'Medalla personalizable (diseño, tamaño y estilo).',
+      'Morral, número de competidor u otro artículo a elegir.'
     ],
   },
 ];
@@ -73,13 +74,29 @@ export function FeaturedProducts() {
                 <div className="bg-white border border-[#E5E5EA] flex flex-col justify-between h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-out group">
                 <div>
                   {/* Image Container with Custom Fit */}
-                  <div className="aspect-[4/3] w-full overflow-hidden bg-white relative border-b border-[#E5E5EA] flex items-end justify-center">
-                    <ImageWithFallback
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-contain object-bottom pt-4 px-4 transition-transform duration-300 ease-out group-hover:scale-[1.03]"
-                      loading="lazy"
-                    />
+                  <div className="aspect-[4/3] w-full overflow-hidden bg-white relative border-b border-[#E5E5EA] flex items-center justify-center p-4">
+                    {item.id === 'kits' || item.title?.toLowerCase().includes('kit') ? (
+                      /* Kits / Runner package — bottom aligned to prevent leg clipping, NO shadow */
+                      <div className="relative w-full h-full flex flex-col items-center justify-end px-4 pt-4 pb-0 overflow-hidden">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="max-h-[96%] w-auto object-contain object-bottom relative z-10 transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                          loading="lazy"
+                        />
+                      </div>
+                    ) : (
+                      /* Floating products — centered with 3D shadow underneath */
+                      <div className="relative w-full h-full flex flex-col items-center justify-center p-4">
+                        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-36 sm:w-44 h-3.5 bg-black/20 rounded-[100%] blur-md pointer-events-none group-hover:scale-110 group-hover:bg-black/35 transition-all duration-500" />
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="max-h-[88%] w-auto object-contain relative z-10 drop-shadow-[0_12px_12px_rgba(0,0,0,0.2)] transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:scale-[1.03]"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
                   </div>
 
                   {/* Body Content */}
@@ -105,7 +122,7 @@ export function FeaturedProducts() {
                 <div className="px-8 pb-8 pt-4">
                   <PremiumButton
                     to="/tecnologia-textil"
-                    text="Especificaciones y Telas"
+                    text="Ver más"
                     variant="outline-black"
                     fullWidth
                   />

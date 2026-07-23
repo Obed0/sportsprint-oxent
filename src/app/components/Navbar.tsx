@@ -1,6 +1,6 @@
 import { Menu, X, ChevronDown, ArrowRight, Instagram, Facebook, Linkedin, Search, Shirt, Backpack, Award, Dumbbell, GlassWater } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { brandLogosMap } from './ClientLogos';
 import { PremiumButton } from './ui/PremiumAnimations';
@@ -23,7 +23,7 @@ const searchDatabase = [
   },
   {
     id: 'medallas',
-    title: 'Medallas Metálicas',
+    title: 'Medallas',
     icon: Award,
     keywords: ['medallas', 'medalla', 'metalica', 'metalicas', 'trofeo', 'premio', 'premios', 'reconocimiento', 'bronce', 'plata', 'oro'],
     url: '/catalogo#medallas'
@@ -84,7 +84,7 @@ export function Navbar() {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
 
-  // Focus search input when opened
+
   useEffect(() => {
     if (isSearchOpen && searchInputRef.current) {
       searchInputRef.current.focus();
@@ -162,13 +162,6 @@ export function Navbar() {
     setSearchSuggestions([]);
   };
 
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
@@ -220,11 +213,6 @@ export function Navbar() {
         }`}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Scroll Progress Indicator */}
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#E43537] origin-left z-50"
-          style={{ scaleX }}
-        />
 
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
           <div className="flex justify-between items-center h-16">
@@ -277,19 +265,18 @@ export function Navbar() {
                 <ChevronDown size={12} className={`text-neutral-500 group-hover/navlink:text-black transition-all duration-200 ${activeDropdown === 'nosotros' ? 'rotate-180 text-black' : ''}`} />
               </Link>
 
-              {/* Casos de Éxito link with Dropdown indicator */}
+              {/* Casos de Éxito direct link */}
               <Link 
                 to="/casos-de-exito"
-                className="h-full flex items-center gap-1 group/navlink relative"
-                onMouseEnter={() => { handleMouseEnter('casos'); prefetchCasos(); }}
+                className="h-full flex items-center group/navlink relative"
+                onMouseEnter={prefetchCasos}
                 onFocus={prefetchCasos}
               >
                 <span className={`whitespace-nowrap text-xs font-bold tracking-widest transition-colors duration-200 uppercase ${
-                  isActive('/casos-de-exito') || activeDropdown === 'casos' ? 'text-black underline underline-offset-8 decoration-2 decoration-sp-accent' : 'text-neutral-500 group-hover/navlink:text-black'
+                  isActive('/casos-de-exito') ? 'text-black underline underline-offset-8 decoration-2 decoration-sp-accent' : 'text-neutral-500 group-hover/navlink:text-black'
                 }`}>
                   Casos de Éxito
                 </span>
-                <ChevronDown size={12} className={`text-neutral-500 group-hover/navlink:text-black transition-all duration-200 ${activeDropdown === 'casos' ? 'rotate-180 text-black' : ''}`} />
               </Link>
 
               {/* Tecnología link with Dropdown indicator */}
@@ -608,57 +595,6 @@ export function Navbar() {
                   </div>
                 )}
 
-                {activeDropdown === 'casos' && (
-                  <div className="grid lg:grid-cols-12 gap-12">
-                    
-                    {/* Left Column: Title and CTA */}
-                    <div className="lg:col-span-5 border-r border-black/10 pr-12 flex flex-col justify-between">
-                      <div className="pt-4">
-                        <h3 className="font-heading font-black text-2xl uppercase mb-3 text-black">
-                          Eventos Masivos y Proyectos AAA
-                        </h3>
-                      </div>
-                      <Link 
-                        to="/casos-de-exito"
-                        onClick={() => setActiveDropdown(null)}
-                        className="inline-flex items-center gap-2 text-xs font-bold text-black border-b border-black pb-1 hover:border-sp-accent transition-colors w-fit group/cta"
-                      >
-                        <span>Ver Casos de Éxito</span>
-                        <ArrowRight size={12} className="group-hover/cta:translate-x-1 transition-transform" />
-                      </Link>
-                    </div>
-
-                    {/* Right Column: Vertical Subcategories list */}
-                    <div className="lg:col-span-7 flex flex-col">
-                      <span className="text-[10px] tracking-[0.2em] text-neutral-400 font-bold uppercase block mb-3">
-                        Casos Clave
-                      </span>
-                      <div className="flex flex-col">
-                        {[
-                          { title: 'Clientes', path: '/casos-de-exito#clientes' },
-                          { title: 'Carrera IOS (IOS Offices)', path: '/casos-de-exito#ios-offices' },
-                          { title: 'AllMkting & En Dónde Correr', path: '/casos-de-exito#allmkting' },
-                          { title: 'Trotime', path: '/casos-de-exito#trotime' }
-                        ].map((item) => (
-                          <Link
-                            key={item.title}
-                            to={item.path}
-                            onClick={() => setActiveDropdown(null)}
-                            className="group flex items-center border-b border-neutral-100 py-3.5 hover:pl-2 transition-all duration-300"
-                          >
-                            <div className="flex items-center gap-3">
-                              <span className="w-1.5 h-1.5 bg-[#E43537] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 rounded-none" />
-                              <h4 className="font-heading font-bold text-xs sm:text-[13px] tracking-[0.12em] uppercase text-neutral-600 group-hover:text-black transition-colors duration-300">
-                                {item.title}
-                              </h4>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
-
                 {activeDropdown === 'tecnologia' && (
                   <div className="grid lg:grid-cols-12 gap-12">
                     
@@ -805,43 +741,15 @@ export function Navbar() {
                   </AnimatePresence>
                 </div>
 
-                {/* Casos de Éxito Accordion */}
+                {/* Casos de Éxito Direct Link */}
                 <div className="border-b border-black/10 pb-3">
-                  <button 
-                    onClick={() => setMobileExpandedCasos(!mobileExpandedCasos)}
+                  <Link 
+                    to="/casos-de-exito"
+                    onClick={() => setIsOpen(false)}
                     className="w-full flex justify-between items-center text-left font-heading text-2xl font-extrabold tracking-tight uppercase py-2 text-black"
                   >
                     <span>Casos de Éxito</span>
-                    <ChevronDown size={20} className={`transition-transform duration-200 ${mobileExpandedCasos ? 'rotate-180' : ''}`} />
-                  </button>
-                  <AnimatePresence>
-                    {mobileExpandedCasos && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="pl-2 mt-2 flex flex-col overflow-hidden text-sm border-l border-black/10"
-                      >
-                        {[
-                          { title: 'Clientes', path: '/casos-de-exito#clientes' },
-                          { title: 'Carrera IOS (IOS Offices)', path: '/casos-de-exito#ios-offices' },
-                          { title: 'AllMkting & En Dónde Correr', path: '/casos-de-exito#allmkting' },
-                          { title: 'Trotime', path: '/casos-de-exito#trotime' }
-                        ].map((item) => (
-                          <Link 
-                            key={item.title}
-                            to={item.path}
-                            onClick={() => setIsOpen(false)}
-                            className="py-2.5 active:bg-neutral-50 block border-b border-neutral-100/50"
-                          >
-                            <span className="font-heading font-bold text-neutral-600 active:text-black uppercase tracking-[0.1em] text-xs block">
-                              {item.title}
-                            </span>
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  </Link>
                 </div>
 
                 {/* Tecnología Accordion */}

@@ -65,7 +65,7 @@ export default function App() {
   useSEO();
 
   return (
-    <div className="min-h-screen bg-white text-black overflow-x-hidden flex flex-col justify-between rounded-none">
+    <div className="min-h-screen bg-white text-black flex flex-col justify-between rounded-none">
       <ScrollToHashAndTop />
       <Navbar />
       <WhatsAppButton />

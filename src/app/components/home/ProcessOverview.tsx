@@ -6,19 +6,19 @@ const steps = [
     num: '01',
     icon: <FileText className="w-6 h-6 text-black group-hover:text-white transition-colors duration-300" />,
     title: 'Cotización Comercial',
-    desc: 'Enviamos tu cotización formal y transparente, adaptándonos al volumen y presupuesto de tu evento.',
+    desc: 'Enviamos tu cotización formal, con precios justos, nos adaptamos al volumen y presupuesto de tu evento.',
   },
   {
     num: '02',
     icon: <Palette className="w-6 h-6 text-black group-hover:text-white transition-colors duration-300" />,
     title: 'Muestreo & Aprobación',
-    desc: 'Creamos una muestra física para que compruebes en persona la calidad de las telas, colores y costuras antes de iniciar la producción.',
+    desc: 'Preparamos una muestra física para que puedas evaluar personalmente la calidad de nuestras telas, colores y costuras antes de iniciar la producción.',
   },
   {
     num: '03',
     icon: <Activity className="w-6 h-6 text-black group-hover:text-white transition-colors duration-300" />,
     title: 'Producción en Serie',
-    desc: 'Fabricamos tus prendas en nuestra planta industrial utilizando tecnología avanzada que garantiza acabados uniformes e impecables.',
+    desc: 'Fabricamos tus prendas utilizando tecnología avanzada que garantiza acabados uniformes e impecables.',
   },
   {
     num: '04',

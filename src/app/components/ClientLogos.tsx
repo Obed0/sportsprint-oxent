@@ -2,6 +2,9 @@ import React from 'react';
 import upLogoImg from '../../imports/universidad_panamericana.png';
 import unamLogoImg from '../../imports/logo_unam.png';
 import ipnLogoImg from '../../imports/logo_ipn.png';
+import adientLogoImg from '../../imports/logo_adient_correct_transparent.png';
+import fhinixLogoImg from '../../imports/logo_fhinix_transparent.png';
+import runMktLogoImg from '../../imports/logo_runmkt.png';
 
 interface LogoProps {
   className?: string;
@@ -35,7 +38,7 @@ export function UPLogo({ className = 'h-8' }: LogoProps) {
     <img 
       src={upLogoImg} 
       alt="Universidad Panamericana" 
-      className={`${className} object-contain scale-[2.4] sm:scale-[2.7] origin-center transition-transform`} 
+      className={`${className} object-contain scale-[2.3] sm:scale-[2.5] origin-center transition-transform`} 
     />
   );
 }
@@ -75,17 +78,17 @@ export function AllMktingLogo({ className = 'h-8' }: LogoProps) {
 
 export function AdientLogo({ className = 'h-8' }: LogoProps) {
   return (
-    <svg viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <path d="M12 12 H22 L17 28 Z" fill="#0070C0" />
-      <path d="M20 12 H30 L25 28 Z" fill="#E43537" />
-      <text x="36" y="26" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="19" fill="#1A1A1A" letterSpacing="0">ADIENT</text>
-    </svg>
+    <img 
+      src={adientLogoImg} 
+      alt="Adient" 
+      className={`${className} object-contain scale-[1.3] sm:scale-[1.4] origin-center transition-transform`} 
+    />
   );
 }
 
 export function IOSOfficesLogo({ className = 'h-8' }: LogoProps) {
   return (
-    <svg viewBox="0 0 150 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg viewBox="0 0 150 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${className} scale-[0.85] sm:scale-[0.9] origin-center transition-transform`}>
       <rect x="10" y="8" width="24" height="24" fill="#1A1A1A" />
       <text x="13" y="24" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="12" fill="white" letterSpacing="-0.5">IOS</text>
       <text x="42" y="22" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="16" fill="#1A1A1A" letterSpacing="1">IOS</text>
@@ -96,7 +99,7 @@ export function IOSOfficesLogo({ className = 'h-8' }: LogoProps) {
 
 export function IdemSportLogo({ className = 'h-8' }: LogoProps) {
   return (
-    <svg viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${className} scale-[0.9] sm:scale-[0.95] origin-center transition-transform`}>
       <text x="10" y="27" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="21" fill="#E30613" letterSpacing="-0.5">IDEM</text>
       <text x="69" y="27" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="21" fill="#1A1A1A" letterSpacing="-0.5">SP</text>
       <circle cx="103" cy="19" r="6.5" fill="#1A1A1A" />
@@ -125,7 +128,7 @@ export function SomosRunningLogo({ className = 'h-8' }: LogoProps) {
 
 export function EnDondeCorrerLogo({ className = 'h-8' }: LogoProps) {
   return (
-    <svg viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${className} scale-[1.1] sm:scale-[1.15] origin-center transition-transform`}>
       <circle cx="24" cy="20" r="14" fill="#0054A6" />
       <circle cx="25" cy="13" r="2.5" fill="white" />
       <path d="M 24 16 L 22 22" stroke="white" strokeWidth="2" strokeLinecap="round" />
@@ -142,7 +145,7 @@ export function UNAMLogo({ className = 'h-8' }: LogoProps) {
     <img 
       src={unamLogoImg} 
       alt="UNAM" 
-      className={`${className} object-contain`} 
+      className={`${className} object-contain scale-[1.3] sm:scale-[1.4] origin-center transition-transform`} 
     />
   );
 }
@@ -152,8 +155,32 @@ export function IPNLogo({ className = 'h-8' }: LogoProps) {
     <img 
       src={ipnLogoImg} 
       alt="IPN" 
-      className={`${className} object-contain`} 
+      className={`${className} object-contain scale-[1.3] sm:scale-[1.4] origin-center transition-transform`} 
     />
+  );
+}
+
+export function FhinixSportsLogo({ className = 'h-8' }: LogoProps) {
+  return (
+    <img 
+      src={fhinixLogoImg} 
+      alt="Fhinix Sports" 
+      className={`${className} object-contain scale-[1.15] sm:scale-[1.2] origin-center transition-transform`} 
+    />
+  );
+}
+
+export function RunMktLogo({ className = 'h-8' }: LogoProps) {
+  return (
+    <div className={`${className} flex items-center justify-center scale-[1.0] sm:scale-[1.05] origin-center transition-transform`}>
+      <div className="aspect-square h-12 w-12 sm:h-16 sm:w-16 rounded-full overflow-hidden bg-black flex items-center justify-center p-1.5 border border-neutral-900">
+        <img 
+          src={runMktLogoImg} 
+          alt="Run MKT" 
+          className="w-full h-full object-contain scale-[1.1]" 
+        />
+      </div>
+    </div>
   );
 }
 
@@ -169,4 +196,6 @@ export const brandLogosMap: Record<string, React.ComponentType<LogoProps>> = {
   'En Dónde Correr': EnDondeCorrerLogo,
   'UNAM': UNAMLogo,
   'IPN': IPNLogo,
+  'Fhinix Sports': FhinixSportsLogo,
+  'Run MKT': RunMktLogo,
 };
