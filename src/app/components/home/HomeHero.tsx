@@ -134,7 +134,7 @@ export function HomeHero() {
 
   return (
     <section 
-      className="relative h-[100dvh] min-h-[620px] flex flex-col justify-between pt-24 sm:pt-28 pb-4 overflow-hidden bg-black text-white select-none"
+      className="relative min-h-[100dvh] md:h-[100dvh] md:min-h-[650px] flex flex-col justify-between pt-20 sm:pt-28 pb-3 sm:pb-4 overflow-hidden bg-black text-white select-none"
     >
       {/* 100% Fullscreen Background Image Slider Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
@@ -158,7 +158,7 @@ export function HomeHero() {
           >
             {/* Photo container: right-aligned, with mask-image to feather the left edge smoothly into black */}
             <div 
-              className="absolute top-0 bottom-0 right-0 w-full sm:w-[72%] lg:w-[65%] h-full overflow-hidden"
+              className="absolute top-0 bottom-0 right-0 w-full sm:w-[72%] lg:w-[65%] h-full overflow-hidden opacity-40 sm:opacity-100 transition-opacity"
               style={{
                 WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 15%, rgba(0,0,0,0.45) 30%, rgba(0,0,0,0.75) 45%, black 60%)',
                 maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 15%, rgba(0,0,0,0.45) 30%, rgba(0,0,0,0.75) 45%, black 60%)',
@@ -173,8 +173,8 @@ export function HomeHero() {
             </div>
 
             {/* Soft top & bottom vignette for navbar and metrics bar */}
-            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/60 to-transparent pointer-events-none z-10" />
-            <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/75 to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/85 via-black/50 to-transparent pointer-events-none z-10" />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -182,7 +182,7 @@ export function HomeHero() {
       <NeonGrid />
 
       {/* Multibanner Foreground Content & Controls */}
-      <div className="relative z-20 w-full my-auto flex-grow flex items-center overflow-hidden">
+      <div className="relative z-20 w-full my-auto flex-grow flex items-center overflow-hidden py-2 sm:py-4">
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={page}
@@ -198,14 +198,29 @@ export function HomeHero() {
               if (offset.x < -60) paginate(1);
               else if (offset.x > 60) paginate(-1);
             }}
-            className="w-full flex flex-col justify-center max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 py-4"
+            className="w-full flex flex-col justify-center max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 py-2 sm:py-4"
           >
+            {/* Category Badge */}
+            {currentBanner.badge && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="mb-2 sm:mb-3"
+              >
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/10 backdrop-blur-md border border-white/15 text-[#E43537] text-[9px] sm:text-xs font-bold tracking-[0.2em] uppercase rounded-none">
+                  <span className="w-1.5 h-1.5 bg-[#E43537] rounded-full animate-pulse" />
+                  {currentBanner.badge}
+                </span>
+              </motion.div>
+            )}
+
             {/* Title */}
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="font-heading font-black text-3xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-tight leading-[0.94] uppercase mb-4 text-white select-none max-w-5xl"
+              className="font-heading font-black text-2xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-tight leading-[1.0] sm:leading-[0.94] uppercase mb-3 sm:mb-4 text-white select-none max-w-5xl"
             >
               {currentBanner.titleLine1} <br />
               <span className="text-white hover:text-sp-accent transition-colors duration-300">
@@ -218,7 +233,7 @@ export function HomeHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="text-white/80 text-xs sm:text-base max-w-xl leading-relaxed mb-6 font-medium"
+              className="text-white/90 text-xs sm:text-base max-w-xl leading-relaxed mb-4 sm:mb-6 font-medium"
             >
               {currentBanner.subtitle}
             </motion.p>
@@ -228,7 +243,7 @@ export function HomeHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="flex flex-col sm:flex-row gap-3 mb-2"
+              className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 mb-1 sm:mb-2"
             >
               <PremiumButton
                 to={currentBanner.primaryBtn.to}
@@ -247,10 +262,10 @@ export function HomeHero() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Carousel Navigation Arrow Buttons (Left / Right) */}
+        {/* Carousel Navigation Arrow Buttons (Left / Right) — desktop only to prevent touch overlay on mobile */}
         <button
           onClick={() => paginate(-1)}
-          className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/50 hover:bg-black/90 border border-white/20 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
+          className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/50 hover:bg-black/90 border border-white/20 text-white items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
           aria-label="Banner anterior"
         >
           <ChevronLeft size={24} />
@@ -258,22 +273,22 @@ export function HomeHero() {
 
         <button
           onClick={() => paginate(1)}
-          className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/50 hover:bg-black/90 border border-white/20 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
+          className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/50 hover:bg-black/90 border border-white/20 text-white items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
           aria-label="Siguiente banner"
         >
           <ChevronRight size={24} />
         </button>
       </div>
 
-      {/* Pagination Bar & Organic Morphing Indicators */}
-      <div className="relative z-30 max-w-[1400px] w-full mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between py-3">
+      {/* Pagination Bar & Indicators */}
+      <div className="relative z-30 max-w-[1400px] w-full mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between py-2 sm:py-3">
         {/* Slide Counter */}
-        <div className="text-xs font-bold tracking-widest text-white/50">
+        <div className="text-[10px] sm:text-xs font-bold tracking-widest text-white/50">
           <span className="text-white font-black">0{activeIndex + 1}</span> / 0{BANNERS.length}
         </div>
 
         {/* Organic Morphing Dots */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
           {BANNERS.map((banner, index) => {
             const isActive = index === activeIndex;
             return (
@@ -285,7 +300,7 @@ export function HomeHero() {
               >
                 {/* Dot base placeholder */}
                 <div className={`h-2.5 rounded-full transition-all duration-300 ${
-                  isActive ? 'w-10 bg-white/10' : 'w-2.5 bg-white/30 group-hover:bg-white/60'
+                  isActive ? 'w-8 sm:w-10 bg-white/10' : 'w-2.5 bg-white/30 group-hover:bg-white/60'
                 }`} />
 
                 {/* Organic morphing active red pill sliding with spring physics */}
@@ -326,23 +341,23 @@ export function HomeHero() {
         </div>
       </div>
 
-      {/* Metrics Overlay at the bottom */}
-      <div className="relative z-20 w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 border-t border-white/10 pt-6 mt-auto">
-        <div className="grid md:grid-cols-3 gap-6 md:gap-12 items-end">
+      {/* Metrics Overlay at the bottom — horizontal 3-column row on mobile */}
+      <div className="relative z-20 w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 border-t border-white/10 pt-2.5 sm:pt-6 mt-auto">
+        <div className="grid grid-cols-3 gap-2 sm:gap-8 md:gap-12 items-end">
           {metrics.map((metric, i) => (
             <ScrollReveal key={i} delay={i * 0.1} direction="up">
               <motion.div 
                 whileHover={{ y: -5, scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="w-full flex flex-col text-left cursor-default select-none border-l-0 md:border-l border-white/10 pl-0 md:pl-4 group pb-4 border-b border-white/10 md:border-b-0 md:pb-0"
+                className="w-full flex flex-col text-left cursor-default select-none border-l-0 md:border-l border-white/10 pl-0 md:pl-4 group pb-1 sm:pb-4 border-b-0"
               >
-                <span className="font-heading font-black text-4xl sm:text-5xl tracking-tight leading-none mb-1 text-white select-none group-hover:text-[#E43537] transition-colors duration-300">
+                <span className="font-heading font-black text-xl sm:text-4xl lg:text-5xl tracking-tight leading-none mb-0.5 sm:mb-1 text-white select-none group-hover:text-[#E43537] transition-colors duration-300">
                   {metric.value}
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-white/80 mb-1">
+                <span className="text-[8px] sm:text-[10px] font-bold uppercase tracking-wider text-white/80 mb-0.5 sm:mb-1 truncate">
                   {metric.label}
                 </span>
-                <span className="text-[10px] text-white/40 font-medium tracking-wide">
+                <span className="text-[9px] text-white/40 font-medium tracking-wide hidden sm:block">
                   {metric.sub}
                 </span>
               </motion.div>
