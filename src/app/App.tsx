@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect, useRef, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router';
 import { AnimatePresence } from 'motion/react';
 import { Navbar } from './components/Navbar';
@@ -31,11 +31,17 @@ function PageLoader() {
   );
 }
 
-// Scroll to hash or top on route change helper
+// Scroll to hash or top on route change helper with active timer cancellation
 function ScrollToHashAndTop() {
   const { pathname, hash } = useLocation();
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+
     if (hash) {
       const targetId = hash.slice(1);
       let attempts = 0;
@@ -47,14 +53,21 @@ function ScrollToHashAndTop() {
           element.scrollIntoView({ behavior: 'smooth' });
         } else if (attempts < maxAttempts) {
           attempts++;
-          setTimeout(tryScroll, 100);
+          timerRef.current = setTimeout(tryScroll, 100);
         }
       };
 
-      setTimeout(tryScroll, 150);
+      timerRef.current = setTimeout(tryScroll, 150);
     } else {
       window.scrollTo(0, 0);
     }
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    };
   }, [pathname, hash]);
 
   return null;
@@ -65,12 +78,12 @@ export default function App() {
   useSEO();
 
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col justify-between rounded-none">
+    <div className="min-h-screen bg-white text-black flex flex-col justify-between rounded-none overflow-x-hidden w-full">
       <ScrollToHashAndTop />
       <Navbar />
       <WhatsAppButton />
       
-      <main className="flex-grow relative z-30 bg-white">
+      <main className="flex-grow relative z-30 bg-white overflow-x-hidden w-full">
         {/* Animated Page Transitions */}
         <AnimatePresence mode="wait">
           <Suspense fallback={<PageLoader />}>

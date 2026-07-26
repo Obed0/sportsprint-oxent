@@ -213,8 +213,8 @@ export function ParallaxImage({
           src={src}
           alt={alt}
           loading={loading}
-          style={objectFit === 'contain' ? {} : { y, scale, objectPosition }}
-          className={`w-full h-full rounded-none ${
+          style={objectFit === 'contain' ? {} : { y, scale, objectPosition, willChange: 'transform' }}
+          className={`w-full h-full rounded-none transform-gpu ${
             objectFit === 'contain' ? 'object-contain p-4' : 'object-cover'
           } ${className}`}
           onError={() => setDidError(true)}

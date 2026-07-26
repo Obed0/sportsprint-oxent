@@ -13,6 +13,7 @@ export function WhatsAppButton() {
       return;
     }
 
+    let ticking = false;
     const checkVisibility = () => {
       const heroBanner = document.getElementById('hero-banner');
       const ctaSection = document.getElementById('contacto');
@@ -30,22 +31,30 @@ export function WhatsAppButton() {
       let isCtaVisible = false;
       if (ctaSection) {
         const rect = ctaSection.getBoundingClientRect();
-        // "Cotiza ahora" CTA section is visible in viewport
+        // "Cotiza now" CTA section is visible in viewport
         isCtaVisible = rect.top < window.innerHeight && rect.bottom > 0;
       }
 
       // Show button only when scrolled past banner section AND not inside "Cotiza ahora"
       setIsVisible(!isHeroVisible && !isCtaVisible);
+      ticking = false;
+    };
+
+    const onScrollOrResize = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(checkVisibility);
+      }
     };
 
     checkVisibility();
 
-    window.addEventListener('scroll', checkVisibility, { passive: true });
-    window.addEventListener('resize', checkVisibility, { passive: true });
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', checkVisibility);
-      window.removeEventListener('resize', checkVisibility);
+      window.removeEventListener('scroll', onScrollOrResize);
+      window.removeEventListener('resize', onScrollOrResize);
     };
   }, [pathname]);
 
