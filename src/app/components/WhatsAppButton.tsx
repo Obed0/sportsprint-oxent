@@ -7,23 +7,45 @@ export function WhatsAppButton() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Show after initial page load delay
-    const timer = setTimeout(() => setIsVisible(true), 2000);
+    // Hide immediately if on the /cotizar page
+    if (pathname === '/cotizar') {
+      setIsVisible(false);
+      return;
+    }
 
-    // Hide when CTA section/Footer is in view
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(!entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
+    const checkVisibility = () => {
+      const heroBanner = document.getElementById('hero-banner');
+      const ctaSection = document.getElementById('contacto');
 
-    const ctaSection = document.getElementById('contacto');
-    if (ctaSection) observer.observe(ctaSection);
+      let isHeroVisible = false;
+      if (heroBanner) {
+        const rect = heroBanner.getBoundingClientRect();
+        // Banner is active/visible if its bottom hasn't scrolled past top threshold
+        isHeroVisible = rect.bottom > 150;
+      } else {
+        // Fallback for pages without hero-banner ID: hide at top scroll position
+        isHeroVisible = window.scrollY < 200;
+      }
+
+      let isCtaVisible = false;
+      if (ctaSection) {
+        const rect = ctaSection.getBoundingClientRect();
+        // "Cotiza ahora" CTA section is visible in viewport
+        isCtaVisible = rect.top < window.innerHeight && rect.bottom > 0;
+      }
+
+      // Show button only when scrolled past banner section AND not inside "Cotiza ahora"
+      setIsVisible(!isHeroVisible && !isCtaVisible);
+    };
+
+    checkVisibility();
+
+    window.addEventListener('scroll', checkVisibility, { passive: true });
+    window.addEventListener('resize', checkVisibility, { passive: true });
 
     return () => {
-      clearTimeout(timer);
-      observer.disconnect();
+      window.removeEventListener('scroll', checkVisibility);
+      window.removeEventListener('resize', checkVisibility);
     };
   }, [pathname]);
 

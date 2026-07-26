@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ScrollReveal } from '../ScrollReveal';
@@ -73,7 +73,7 @@ const BANNERS = [
     badge: 'PROCESO INTEGRAL 100% INTERNO',
     titleLine1: 'ARMA LOS KITS COMPLETOS',
     titleLine2: 'PARA TU EVENTO',
-    subtitle: 'Playeras sublimadas, morrales reforzados y medallas personalizadas ensamblados en nuestra propia planta. Control total de entregas y calidad.',
+    subtitle: 'Playeras sublimadas, morrales reforzados y medallas personalizadas ensambados en nuestra propia planta. Control total de entregas y calidad.',
     primaryBtn: {
       text: 'CONTÁCTANOS',
       to: 'https://wa.me/525543945069?text=Hola%2C%20me%20interesa%20armar%20kits%20deportivos%20para%20mi%20evento',
@@ -118,6 +118,50 @@ export function HomeHero() {
     setPage([page + (slideIndex - activeIndex), dir]);
   };
 
+  // Safe paginator with debounce to prevent duplicate transitions from drag + touch
+  const lastPaginateTimeRef = useRef<number>(0);
+  const safePaginate = useCallback((dir: number) => {
+    const now = Date.now();
+    if (now - lastPaginateTimeRef.current < 400) return;
+    lastPaginateTimeRef.current = now;
+    paginate(dir);
+  }, [paginate]);
+
+  // Touch swipe handling for mobile devices across the entire section
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const touchEndRef = useRef<{ x: number; y: number } | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+    touchEndRef.current = null;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartRef.current || !touchEndRef.current) return;
+    const deltaX = touchStartRef.current.x - touchEndRef.current.x;
+    const deltaY = touchStartRef.current.y - touchEndRef.current.y;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
+      if (deltaX > 0) {
+        safePaginate(1);
+      } else {
+        safePaginate(-1);
+      }
+    }
+    touchStartRef.current = null;
+    touchEndRef.current = null;
+  };
+
   // Automatic timer transition every 5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -134,7 +178,11 @@ export function HomeHero() {
 
   return (
     <section 
-      className="relative min-h-[100dvh] md:h-[100dvh] md:min-h-[650px] flex flex-col justify-between pt-20 sm:pt-28 pb-3 sm:pb-4 overflow-hidden bg-black text-white select-none"
+      id="hero-banner"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      className="relative min-h-[100dvh] md:h-[100dvh] md:min-h-[650px] flex flex-col justify-between pt-20 sm:pt-28 pb-3 sm:pb-4 overflow-hidden bg-black text-white select-none touch-pan-y"
     >
       {/* 100% Fullscreen Background Image Slider Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
@@ -182,7 +230,7 @@ export function HomeHero() {
       <NeonGrid />
 
       {/* Multibanner Foreground Content & Controls */}
-      <div className="relative z-20 w-full my-auto flex-grow flex items-center overflow-hidden py-2 sm:py-4">
+      <div className="relative z-20 w-full my-auto flex-grow flex flex-col justify-center overflow-hidden py-2 sm:py-4">
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={page}
@@ -195,10 +243,10 @@ export function HomeHero() {
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.2}
             onDragEnd={(e, { offset }) => {
-              if (offset.x < -60) paginate(1);
-              else if (offset.x > 60) paginate(-1);
+              if (offset.x < -50) safePaginate(1);
+              else if (offset.x > 50) safePaginate(-1);
             }}
-            className="w-full flex flex-col justify-center max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 py-2 sm:py-4"
+            className="w-full h-full flex-grow flex flex-col justify-center max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 py-2 sm:py-4"
           >
             {/* Category Badge */}
             {currentBanner.badge && (
